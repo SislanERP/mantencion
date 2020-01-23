@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once("../php/conexion.php");
+    require_once("../phpp/conexion.php");
     
     $email = $_POST['email_login'];
     $contraseña = $_POST['password_login'];
