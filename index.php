@@ -1,5 +1,7 @@
 <?php 
     include('php/funciones.php');
+    ini_set('display_errors', 1); 
+    error_reporting(E_ALL);
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +44,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://mantencion.landes.cl/ajax/login.php",
+                url: "ajax/login.php",
                 data: data,
                 processData: false,
                 contentType: false,
