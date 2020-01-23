@@ -12,7 +12,7 @@
     # conectare la base de datos
     function conectar(){
         $con=@mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        $con->query();
+        //$con->query();
         if(!$con){
             die("imposible conectarse: ".mysqli_error($con));
         }
