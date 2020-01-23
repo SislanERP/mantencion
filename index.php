@@ -43,8 +43,7 @@
             $.ajax({
                 type: "POST",
                 url: "ajax/login.php",
-                data: JSON.stringify(data),
-                dataType: 'application/json',
+                data: data,
                 processData: false,
                 contentType: false,
                 cache: false,
