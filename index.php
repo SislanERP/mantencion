@@ -1,5 +1,6 @@
 <?php 
     include('php/funciones.php');
+    echo 'Current PHP version: ' . phpversion();
 ?>
 
 <!DOCTYPE html>
