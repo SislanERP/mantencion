@@ -1,6 +1,5 @@
 <?php 
     include('php/funciones.php');
-    echo 'Current PHP version: ' . phpversion();
 ?>
 
 <!DOCTYPE html>
@@ -45,9 +44,6 @@
                 type: "POST",
                 url: "ajax/login.php",
                 data: data,
-                processData: false,
-                contentType: false,
-                cache: false,
                 success: function (data) {
                     if(data=='1'){
                         location.href ="equipos.php";
