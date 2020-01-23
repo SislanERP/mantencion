@@ -44,6 +44,9 @@
                 type: "POST",
                 url: "ajax/login.php",
                 data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
                 success: function (data) {
                     if(data=='1'){
                         location.href ="equipos.php";
