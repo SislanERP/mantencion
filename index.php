@@ -41,8 +41,8 @@
             var data = new FormData(form);
 
             $.ajax({
-                url: "ajax/login.php",
                 type: "POST",
+                url: "http://mantencion.landes.cl/ajax/login.php",
                 data: data,
                 processData: false,
                 contentType: false,
