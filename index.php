@@ -41,8 +41,8 @@
             var data = new FormData(form);
 
             $.ajax({
-                type: "POST",
                 url: "ajax/login.php",
+                type: "POST",
                 data: data,
                 processData: false,
                 contentType: false,
