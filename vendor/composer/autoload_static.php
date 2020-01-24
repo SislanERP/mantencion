@@ -12,6 +12,10 @@ class ComposerStaticInit8ca23643e4ebfd3a48a4fc330360409d
             'Svg\\' => 4,
             'Spipu\\Html2Pdf\\' => 15,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'F' => 
         array (
             'FontLib\\' => 8,
@@ -30,6 +34,10 @@ class ComposerStaticInit8ca23643e4ebfd3a48a4fc330360409d
         'Spipu\\Html2Pdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/spipu/html2pdf/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'FontLib\\' => 
         array (

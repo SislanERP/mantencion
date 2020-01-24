@@ -2,6 +2,9 @@
     session_start();
     include ('../../conexion.php');
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    require '../../vendor/autoload.php';
+
     $id_usuario = $_SESSION['id_user'];
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
@@ -24,39 +27,50 @@
     if (conectar()->query($query) === TRUE) 
     {
         $messages[] = "Usuario guardado satisfactoriamente.";
-        $destinatario = $_POST['email0']; 
-        $asunto = "Sistema Mantención Landes Mussels"; 
-        $cuerpo =   '<html> 
-                        <head> 
-                            <title>Sistema Mantención Landes Mussels</title> 
-                        </head> 
-                        <body> 
-                            <h1>Bienvenido '.$_POST['nombre0'].'!</h1> 
-                            <p> 
-                                <b>Para acceder al sistema de Sistema Mantención Landes Mussels, pinche en el siguiente enlace:</b> 
-                            </p> 
-                            <p>
-                                <a href="#">Sistema Mantención</a>
-                            </p>
-                            <p>
-                                Contraseña temporal: '.$d.'
-                            </p>
-                            <p>
-                                Favor no responder este mensaje, Gracias!!.
-                            </p>
-                        </body> 
-                    </html> '; 
-        //para el envío en formato HTML 
-        $headers = "MIME-Version: 1.0\r\n"; 
-        $headers .= "Content-type: text/html; charset=UTF-8\r\n"; 
 
-        //dirección del remitente 
-        $headers .= "From: Sistema Mantención <cristianasenjotorres@gmail.com>\r\n"; 
+        
 
-        //ruta del mensaje desde origen a destino 
-        $headers .= "Return-path: ".$_POST['email0']."\r\n"; 
-
-        mail($destinatario,$asunto,$cuerpo,$headers);
+        //Crear una instancia de PHPMailer
+        $mail = new PHPMailer();
+        //Definir que vamos a usar SMTP
+        $mail->IsSMTP();
+        //Esto es para activar el modo depuración. En entorno de pruebas lo mejor es 2, en producción siempre 0
+        // 0 = off (producción)
+        // 1 = client messages
+        // 2 = client and server messages
+        $mail->SMTPDebug  = 2;
+        //Ahora definimos gmail como servidor que aloja nuestro SMTP
+        $mail->Host       = 'smtp.gmail.com';
+        //El puerto será el 587 ya que usamos encriptación TLS
+        $mail->Port       = 465;
+        //Definmos la seguridad como TLS
+        $mail->SMTPSecure = 'ssl';
+        //Tenemos que usar gmail autenticados, así que esto a TRUE
+        $mail->SMTPAuth   = true;
+        //Definimos la cuenta que vamos a usar. Dirección completa de la misma
+        $mail->Username   = "cristianasenjotorres@gmail.com";
+        //Introducimos nuestra contraseña de gmail
+        $mail->Password   = "qkoemzfrnrnlxuto";
+        //$mail->Password = "vnqrxxrxmplqhwct";
+        //Definimos el remitente (dirección y, opcionalmente, nombre)
+        $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+        //Esta línea es por si queréis enviar copia a alguien (dirección y, opcionalmente, nombre)
+        //$mail->AddReplyTo('replyto@correoquesea.com','El de la réplica');
+        //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
+        $mail->AddAddress('$_POST[email0]', '$_POST[nombre0]');
+        //Definimos el tema del email
+        $mail->Subject = 'Esto es un correo de prueba';
+        //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
+        //$mail->MsgHTML(file_get_contents('correomaquetado.html'), dirname(ruta_al_archivo));
+        //Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
+        $mail->Body = 'Hello, this is my message.';
+        $mail->AltBody = 'This is a plain-text message body';
+        //Enviamos el correo
+        if(!$mail->Send()) {
+        echo "Error: " . $mail->ErrorInfo;
+        } else {
+        echo "Enviado!";
+        }  
     }
 
     else
