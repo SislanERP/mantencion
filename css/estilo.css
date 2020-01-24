@@ -438,10 +438,14 @@ input[type="checkbox"]:checked:disabled + label:before {
     #imagenmuestra1{margin-top: 30px;}
 }
 
+.e1{
+    width: 50%;
+}
 
 @media (max-width: 365px) {
     .row{flex-wrap: nowrap;}
     .hi{display: none;}
+    .logo{left: 1rem;}
 }
 
 
