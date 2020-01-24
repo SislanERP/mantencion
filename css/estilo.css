@@ -443,7 +443,7 @@ input[type="checkbox"]:checked:disabled + label:before {
 
 @media (max-width: 412px) {
     /**/
-    .row{flex-wrap: nowrap !important;margin-right: 0px !important;margin-left: 0px !important;}
+    .row{flex-wrap: nowrap  ;margin-right: 0px !important;margin-left: 0px !important;}
     .hi{display: none !important;}
     .logo{left: 1rem !important; width: 50% !important;height: 42px !important;}
     .e1{width: 50% !important;}
