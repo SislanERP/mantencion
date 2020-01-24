@@ -61,6 +61,7 @@ function load(page){
             $('#nombre').val('')
             $('#email').val('')
             $('#perfil0').val(1)
+            $('#dataRegister').modal('hide');
 
             load(1);
           }

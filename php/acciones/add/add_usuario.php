@@ -51,7 +51,7 @@
         $headers .= "Content-type: text/html; charset=UTF-8\r\n"; 
 
         //dirección del remitente 
-        $headers .= "From: Boris Velásquez <bvelasquez@landes.cl>\r\n"; 
+        $headers .= "From: Sistema Mantención <cristianasenjotorres@gmail.com>\r\n"; 
 
         //ruta del mensaje desde origen a destino 
         $headers .= "Return-path: ".$_POST['email0']."\r\n"; 
