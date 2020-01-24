@@ -7,7 +7,7 @@
     <?php include('head.php');?>
 <body>
     <div class="container-fluid vh-100">
-        <div class="row vh-100">
+        <div class="row vh-100 e12">
         <div class="datos_ajax_delete mensaje"></div>
             <div class="col-sm-12 col-12 col-md-6 col-xl">
                 <div class="d-flex justify-content-center align-items-center vh-100">
