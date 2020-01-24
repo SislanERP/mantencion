@@ -36,7 +36,7 @@
                                 <b>Para acceder al sistema de Sistema Mantención Landes Mussels, pinche en el siguiente enlace:</b> 
                             </p> 
                             <p>
-                                <a href="#">Sistema Lubricentro</a>
+                                <a href="#">Sistema Mantención</a>
                             </p>
                             <p>
                                 Contraseña temporal: '.$d.'
@@ -51,7 +51,7 @@
         $headers .= "Content-type: text/html; charset=UTF-8\r\n"; 
 
         //dirección del remitente 
-        $headers .= "From: Javier Barría <sistema@lubricentrodalcahue.cl>\r\n"; 
+        $headers .= "From: Boris Velásquez <bvelasquez@landes.cl>\r\n"; 
 
         //ruta del mensaje desde origen a destino 
         $headers .= "Return-path: ".$_POST['email0']."\r\n"; 

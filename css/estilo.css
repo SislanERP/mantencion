@@ -439,9 +439,10 @@ input[type="checkbox"]:checked:disabled + label:before {
 }
 
 
-
-
-
+@media (max-width: 365px) {
+    .row{flex-wrap: nowrap;}
+    .hi{display: none;}
+}
 
 
 
