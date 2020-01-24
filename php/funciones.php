@@ -127,7 +127,7 @@
         $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 		if ($columna = mysqli_fetch_array( $resultado ))
 		{ 
-			echo    "<div class='col-md-12 col-lg-7'>
+			echo    "<div class='col-md-12 col-lg-7 e3'>
                         <div class='col-lg-12 mt-2'>
                             <label>Nombre</label>
                             <input type='text' class='form-control' placeholder='Ingrese nombre' value='".$columna['nombre']."' name='nombre'>

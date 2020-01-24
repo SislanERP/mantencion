@@ -35,29 +35,29 @@
     <?php include('nav.php');?>
 
     <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
-        <div class="d-flex justify-content-between">
+      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
+        <div class="d-flex justify-content-between e3">
           <h3>Actividades Diarias</h3>
-          <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar">
-            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar Día
+          <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar e6">
+            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
           </a>
         </div>
 
-        <div class="row d-flex justify-content-between mt-5">
+        <div class="row d-flex justify-content-between mt-5 e3">
           <div class="col-sm-7 col-md-7 col-xl-3">
               <input class="form-control" id="q" onchange="load(1);" type="date" value="<?php echo date("Y-m-d");?>" autofocus/>
           </div>
-          <div>
+          <div class="e8">
             <button class="btn btn-primary agregar mr-3" id="actualizar">
               <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
             </button>
             <?php if(consulta_acceso_sub_pagina() == 1){?>
               <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Actividad
+                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </button>
             <?php }else{?>
               <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Actividad
+                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </button>
             <?php }?>
           </div>

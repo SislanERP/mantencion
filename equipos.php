@@ -52,28 +52,28 @@
                 </div>
             </div>
 
-            <div class="container-fluid d-flex justify-content-between mt-5">
-                <div class="row w-50">
-                    <div class="col-xl-8 col-8 p-0">
+            <div class="container-fluid d-flex justify-content-between mt-5 e3">
+                <div class="row w-50 e4">
+                    <div class="col-xl-8 col-8 p-0 e5">
                         <input class="form-control" id="q" onkeyup="load(1);" type="text" placeholder="Buscar.." autofocus/>
                     </div>
                 </div>
-                <div class="row d-flex">
+                <div class="row d-flex e6">
                     <button class="btn btn-primary agregar mr-3" id="actualizar">
                         <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
                     </button>
                     <form action="php/acciones/report/report_equipos.php" target="somewhere_new">
                         <button class="btn btn-primary agregar mr-3" id="exportar">
-                            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar Equipos
+                            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
                         </button>
                     </form>
                     <?php if(consulta_acceso_pagina() == 1){?>
                         <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
-                            <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Equipo
+                            <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
                         </button>
                     <?php }else{?>
                         <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
-                            <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Equipo
+                            <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
                         </button>
                     <?php }?>
                 </div>

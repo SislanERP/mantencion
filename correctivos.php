@@ -35,23 +35,23 @@
     <?php include('nav.php');?>
 
     <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
+      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
         <h3>Correctivos Programados</h3>
-        <div class="row d-flex justify-content-between mt-5">
-          <div class="col-sm-7 col-md-7 col-xl-3">
+        <div class="row d-flex justify-content-between mt-5 e3">
+          <div class="col-sm-7 col-md-7 col-xl-3 e3">
               <input class="form-control" id="q" onkeyup="load(1);" type="text" placeholder="Buscar.." autofocus/>
           </div>
-          <div>
+          <div class="e8">
             <button class="btn btn-primary agregar mr-3" id="actualizar">
               <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
             </button>
             <?php if(consulta_acceso_sub_pagina() == 1){?>
               <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Correctivo
+                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </button>
             <?php }else{?>
               <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Correctivo
+                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </button>
             <?php }?>
           </div>

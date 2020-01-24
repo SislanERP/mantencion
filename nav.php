@@ -1,7 +1,7 @@
-<nav class="container-fluid nav-superior bg-white">
+<nav class="container-fluid nav-superior bg-white e2">
   <div class="row d-flex justify-content-between align-items-center">
     <div class="d-flex">
-      <a class="menu_desplegable" href="#" onclick="abrir()" ><img src="img/iconos/menu.png" alt="" style="width:40px;height:40px;margin-top:20px;margin-left:20px;"></a>
+      <a class="menu_desplegable" href="#" onclick="abrir()" ><img src="img/iconos/menu.png" alt="" style="width:40px;height:40px;margin-left:10px;"></a>
       <img class="logo img-fluid" src="img/logo.png" alt="">
     </div>
       <div class="perfil">

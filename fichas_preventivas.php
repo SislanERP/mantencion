@@ -32,13 +32,13 @@
     <?php include('nav.php');?>
 
     <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
+      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
         <h3>Fichas Preventivas</h3>
         <form id="guardarDatos">
             <div class="form-row">
                 <div class="form-group">
-                    <div class="d-flex align-items-end">
-                        <div class="col-4 p-0">
+                    <div class="d-flex align-items-end e9">
+                        <div class="col-4 p-0 e5">
                             <label>Equipo:</label>
                             <select class="selectpicker form-control" data-live-search="true" name="equipo" id="equipo" onchange="load(1);">
                                 <?php 
@@ -51,7 +51,7 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="col-8 d-flex justify-content-end">
+                        <div class="col-8 d-flex justify-content-end e3 e6">
                             <button type="submit" class="btn btn-primary agregar">
                                 <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar Plantilla
                             </button>

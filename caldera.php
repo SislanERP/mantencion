@@ -35,17 +35,17 @@
     <?php include('nav.php');?>
 
     <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
-        <div class="d-flex justify-content-between">
+      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
+        <div class="d-flex justify-content-between e3">
           <h3>Consumo Diario</h3>
           <a href="php/acciones/report/report_caldera.php" target="_blank" class="btn btn-primary agregar">
             <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar Día
           </a>
         </div>
         
-        <form id="guardarEncabezado" novalidate>
-          <div class="d-flex justify-content-between">
-            <div class="form-row w-50">
+        <form id="guardarEncabezado" novalidate class="e6">
+          <div class="d-flex justify-content-between e3">
+            <div class="form-row w-50 e10">
               <div class="form-group col-md-12">
                   <label>Fecha</label>
                   <input type="date" class="form-control" id="fecha" name="fecha" onchange="load(1);" value="<?php echo date("Y-m-d");?>" required>
@@ -55,7 +55,7 @@
                   <input type="time" id="hora_encendido" name="hora_encendido" class="form-control">
               </div>
             </div>
-            <div class="form-row w-50">
+            <div class="form-row w-50 e10">
               <div class="form-group col-md-12">
                   <label>Hora Apagado</label>
                   <input type="time" id="hora_apagado" name="hora_apagado" class="form-control">
@@ -69,17 +69,17 @@
           <div class="d-flex justify-content-between mt-3">
             <?php if(consulta_acceso_sub_pagina() == 1){?>
               <button type="submit" class="btn btn-primary agregar">
-                <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar datos
+                <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
               </button>
               <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_control">
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Consumo
+                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </a>
               <?php }else{?>
                 <button type="submit" class="btn btn-primary agregar" id="save" disabled>
-                  <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar datos
+                  <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
                 </button>
                 <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_control" disabled>
-                  <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Control
+                  <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
                 </a>
               <?php }?>
             </div>

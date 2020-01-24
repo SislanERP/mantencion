@@ -35,16 +35,16 @@
     <?php include('nav.php');?>
 
     <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
-        <div class="d-flex justify-content-between">
+      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
+        <div class="d-flex justify-content-between e3">
             <h3>Información de Producción y Problemas Mecánicos</h3>
-            <a href="php/acciones/report/report_detenciones.php" target="_blank" class="btn btn-primary agregar mr-3" id="exportar">
-                <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar Detenciones
+            <a href="php/acciones/report/report_detenciones.php" target="_blank" class="btn btn-primary agregar mr-3 e6" id="exportar">
+                <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
             </a>
         </div>
         
         
-        <form id="guardarEncabezado" novalidate>
+        <form id="guardarEncabezado" novalidate class="e6">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Fecha</label>
@@ -76,17 +76,17 @@
             <div class="d-flex justify-content-between">
                 <?php if(consulta_acceso_pagina() == 1){?>
                     <button type="submit" class="btn btn-primary agregar">
-                        <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar datos productivos
+                        <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
                     </button>
                     <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_detencion">
-                        <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Detenciones
+                        <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
                     </a>
                 <?php }else{?>
                     <button type="submit" class="btn btn-primary agregar" id="save" disabled>
-                        <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar datos productivos
+                        <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
                     </button>
                     <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_detencion" disabled>
-                        <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar Detenciones
+                        <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
                     </a>
                 <?php }?>
                 
