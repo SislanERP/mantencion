@@ -440,7 +440,7 @@ input[type="checkbox"]:checked:disabled + label:before {
 
 
 
-@media (max-width: 365px) {
+@media (max-width: 412px) {
     /**/
     .row{flex-wrap: nowrap !important;margin-right: 0px !important;margin-left: 0px !important;}
     .hi{display: none !important;}
