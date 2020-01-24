@@ -2,6 +2,29 @@
     include('php/funciones.php');
 ?>
 
+<?php
+    $inactivo = 1800;
+ 
+    if(isset($_SESSION['id_user']) ) {
+        $vida_session = time() - $_SESSION['tiempo'];
+        if($vida_session > $inactivo)
+        {
+            session_destroy();
+            header("location:index.php");
+            exit;
+        }
+        else
+        {
+            $_SESSION['tiempo'] = time();
+        }
+    }
+    else
+    {
+        header("location:index.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <?php include('head.php');?>
