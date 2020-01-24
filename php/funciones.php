@@ -191,6 +191,7 @@
         $token="";
         $id_usuario = $_SESSION['id_user'];
         $token = strtok($_SERVER["REQUEST_URI"], "/");
+        echo $token;
         while($token !== false) {
             $token = strtok("/");
             $_SESSION['page'] = $token;
