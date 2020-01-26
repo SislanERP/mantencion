@@ -52,9 +52,9 @@
                             </select>
                         </div>
                         <div class="col-8 d-flex justify-content-end e3 e6">
-                            <button type="submit" class="btn btn-primary agregar">
+                            <a data-toggle='modal' data-target="confirm" class="btn btn-primary agregar">
                                 <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar Plantilla
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -63,9 +63,29 @@
                     <textarea class="form-control" name="detalle" id="detalle" rows="20"></textarea>
                 </div>
             </div>
+
+            <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Esta Seguro?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Seleccione <b>"Seguro"</b> si está listo para guardar la plantilla.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-primary" type="submit">Seguro</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
   </div>
+
+  
               
   <?php include('footer.php');?>
   <script src="js/funciones/plantilla.js"></script>
