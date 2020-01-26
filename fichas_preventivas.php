@@ -52,7 +52,7 @@
                             </select>
                         </div>
                         <div class="col-8 d-flex justify-content-end e3 e6">
-                            <a data-toggle='modal' data-target="confirm" class="btn btn-primary agregar">
+                            <a data-toggle='modal' data-target="#confirm" class="btn btn-primary agregar">
                                 <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar Plantilla
                             </a>
                         </div>

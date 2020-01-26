@@ -30,6 +30,7 @@ $( "#guardarDatos" ).submit(function( event ) {
         $(".datos_ajax_delete").show();
         $(".datos_ajax_delete").html(data);
         setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+        $('#confirm').modal('hide');
         load(1);
       }
     });
