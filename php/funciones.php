@@ -192,6 +192,7 @@
         $id_usuario = $_SESSION['id_user'];
         $token = strtok($_SERVER["REQUEST_URI"], "/");
         while($token !== false) {
+            $token = strtok("/");
             $_SESSION['page'] = $token;
             $consulta = "call consulta_acceso_pagina('$token',$id_usuario)";
             $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
@@ -208,6 +209,7 @@
         $id_usuario = $_SESSION['id_user'];
         $token = strtok($_SERVER["REQUEST_URI"], "/");
         while($token !== false) {
+            $token = strtok("/");
             $_SESSION['page'] = $token;
             $consulta = "call consulta_acceso_sub_pagina('$token',$id_usuario)";
             $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");

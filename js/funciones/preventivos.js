@@ -21,7 +21,7 @@ function load(page){
         var fecha = button.data('fecha')
         var equipo = button.data('equipo')
         var actividad = button.data('actividad')
-        var responsable = button.data('responsable')
+        var frecuencia = button.data('frecuencia')
         var estado = button.data('estado')
 
         var modal = $(this)
@@ -30,7 +30,7 @@ function load(page){
         modal.find('.modal-body #fecha').val(fecha)
         modal.find('select[id=equipo]').val(equipo)
         modal.find('.modal-body #actividad').val(actividad)
-        modal.find('select[id=responsable]').val(responsable)
+        modal.find('select[id=frecuencia]').val(frecuencia)
         modal.find('select[id=estado]').val(estado)
         $('.selectpicker').selectpicker('refresh');
         $('.alert').hide();

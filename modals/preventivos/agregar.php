@@ -30,14 +30,14 @@
                                 </select>
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Responsable:</label>
-                                <select name="responsable0" id="responsable0" class="selectpicker form-control" data-live-search="true">
+                                <label class="col-form-label">Frecuencia:</label>
+                                <select name="frecuencia0" id="frecuencia0" class="selectpicker form-control" data-live-search="true">
                                     <?php 
-                                        $consulta = "call consulta_responsables()";
+                                        $consulta = "call consulta_frecuencia()";
                                         $resultado = mysqli_query(conectar(), $consulta );
                                         while ($columna = mysqli_fetch_array( $resultado ))
                                         { 
-                                            echo    "<option value='".$columna['id_usuario']."'>".$columna['nombre']."</option>";
+                                            echo    "<option value='".$columna['id_frecuencia']."'>".$columna['frecuencia']."</option>";
                                         }
                                     ?>
                                 </select>
