@@ -91,22 +91,6 @@
                         <label class="col-form-label">Fecha Inicio:</label>
                         <input type="date" name="start" class="form-control" id="start" readonly>
                     </div>
-				  <!-- <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Color</label>
-					<div class="col-sm-10">
-					  <select name="color" class="form-control" id="color">
-									  <option value="">Seleccionar</option>
-						  <option style="color:#0071c5;" value="#0071c5">&#9724; Azul oscuro</option>
-						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquesa</option>
-						  <option style="color:#008000;" value="#008000">&#9724; Verde</option>						  
-						  <option style="color:#FFD700;" value="#FFD700">&#9724; Amarillo</option>
-						  <option style="color:#FF8C00;" value="#FF8C00">&#9724; Naranja</option>
-						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rojo</option>
-						  <option style="color:#000;" value="#000">&#9724; Negro</option>
-						  
-						</select>
-					</div>
-				  </div> -->
 				  
 				  <div class="form-group">
 					  <input type="hidden" name="end" class="form-control" id="end" readonly>
