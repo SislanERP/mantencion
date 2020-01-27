@@ -28,7 +28,7 @@
 					a.id_turno as id_turno,
 					a.id_usuario_registro as id_usuario";
 		$sWhere=" e.fecha LIKE '%".$query."%' or d.nombre LIKE '%".$query."%' or c.consumo LIKE '%".$query."%'";
-		$sWhere.=" order by a.id_registro desc";
+		$sWhere.=" order by a.id_registro asc";
 
         include 'pagination.php'; 
 
