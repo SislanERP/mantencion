@@ -14,7 +14,7 @@
         $control = $columna['id_control'];
     }
 
-    $consulta = "SELECT max(id_control) as correlativo FROM detalle_caldera";
+    $consulta = "SELECT max(id_registro) as correlativo FROM detalle_caldera";
 	$resultado = mysqli_query( conectar(), $consulta );
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
