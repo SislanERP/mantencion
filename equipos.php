@@ -3,7 +3,7 @@
 ?>
 
 <?php
-    $inactivo = 30;
+    $inactivo = 1800;
  
     if(isset($_SESSION['id_user']) ) {
         $vida_session = time() - $_SESSION['tiempo'];

@@ -10,8 +10,8 @@
         if($vida_session > $inactivo)
         {
             session_destroy();
-            header("location:index.php");
-            exit;
+            echo "<script>location.href='index.php';</script>";
+            die();
         }
         else
         {
@@ -20,8 +20,8 @@
     }
     else
     {
-        header("location:index.php");
-        exit;
+        echo "<script>location.href='index.php';</script>";
+        die();
     }
 ?>
 

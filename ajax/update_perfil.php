@@ -13,7 +13,7 @@
         $target = $target_path . basename( $_FILES['imagen']['name']);
         if(move_uploaded_file($_FILES['imagen']['tmp_name'], $target))
         {
-            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]', imagen = 'img/perfil/".$_FILES['imagen']['name']."' where id_usuario = $_POST[id]";
+            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]', imagen = 'img/perfil/".$_FILES['imagen']['name']."',temporal=0 where id_usuario = $_POST[id]";
             if (conectar()->query($query) === TRUE) 
             {
                 $messages[] = "Los datos han sido actualizados satisfactoriamente.";
@@ -22,7 +22,7 @@
 
         else
         {
-            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]' where id_usuario = $_POST[id]";
+            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]',temporal=0 where id_usuario = $_POST[id]";
             if (conectar()->query($query) === TRUE) 
             {
                 $messages[] = "Los datos han sido actualizados satisfactoriamente.";
@@ -53,7 +53,7 @@
                         $target = $target_path . basename( $_FILES['imagen']['name']);
                         if(move_uploaded_file($_FILES['imagen']['tmp_name'], $target))
                         {
-                            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]', imagen = 'img/perfil/".$_FILES['imagen']['name']."',password='$hash', temporal=1 where id_usuario = $_POST[id]";
+                            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]', imagen = 'img/perfil/".$_FILES['imagen']['name']."',password='$hash', temporal=0 where id_usuario = $_POST[id]";
                             if (conectar()->query($query) === TRUE) 
                             {
                                 $messages[] = "Los datos han sido actualizados satisfactoriamente.";
@@ -62,7 +62,7 @@
 
                         else
                         {
-                            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]',password='$hash', temporal=1 where id_usuario = $_POST[id]";
+                            $query="UPDATE usuarios set nombre = '$_POST[nombre]', direccion = '$_POST[direccion]', telefono = '$_POST[telefono]',password='$hash', temporal=0 where id_usuario = $_POST[id]";
                             if (conectar()->query($query) === TRUE) 
                             {
                                 $messages[] = "Los datos han sido actualizados satisfactoriamente.";
@@ -112,5 +112,4 @@
                 </div>
                 <?php
             }
-    //header('Location: ../../../perfil.php');
 ?>

@@ -15,21 +15,10 @@
             $_SESSION['nombre_usuario'] = $columna['nombre'];
             $_SESSION['imagen'] = $columna['imagen'];
             $_SESSION['tiempo'] = time();
-            if($columna['id_perfil'] == 1)
+            if($columna['temporal'] == 1)
             {
-                if($columna['temporal'])
-                {
-                    echo "2";
-                }else{echo "1";}
-            }
-
-            else
-            {
-                if($columna['temporal'])
-                {
-                    echo "2";
-                }else{echo "1";}
-            }
+                echo "2";
+            }else{echo "1";}
         } 
         
         else
