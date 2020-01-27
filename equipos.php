@@ -3,14 +3,14 @@
 ?>
 
 <?php
-    $inactivo = 1800;
+    $inactivo = 30;
  
     if(isset($_SESSION['id_user']) ) {
         $vida_session = time() - $_SESSION['tiempo'];
         if($vida_session > $inactivo)
         {
             session_destroy();
-            header("location:index.php");
+            header("location:http://www.mantencion.landes.cl");
             exit;
         }
         else
@@ -20,7 +20,7 @@
     }
     else
     {
-        header("location:index.php");
+        header("location:http://www.mantencion.landes.cl");
         exit;
     }
 ?>
