@@ -6,10 +6,10 @@
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
     
-    $query="UPDATE usuarios SET id_perfil='$_POST[perfil]',id_area=$_POST[area],fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_usuario=$_POST[id]";
+    $query="UPDATE desviaciones SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[fase], desviacion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_desviacion=$_POST[id]";
     if (conectar()->query($query) === TRUE) 
     {
-        $messages[] = "Usuario actualizado satisfactoriamente.";
+        $messages[] = "Desviación ha sido editada satisfactoriamente.";
     }
 
     else

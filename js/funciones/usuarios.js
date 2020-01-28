@@ -20,11 +20,13 @@ function load(page){
         var id = button.data('id') // Extraer la información de atributos de datos
         var nombre = button.data('nombre') // Extraer la información de atributos de datos
         var perfil = button.data('perfil') 
+        var area = button.data('area') 
 
         var modal = $(this)
         modal.find('.modal-title').text('Editar : '+nombre)
         modal.find('.modal-body #id').val(id)
         modal.find('select[id=perfil]').val(perfil)
+        modal.find('select[id=area]').val(area)
         $('.selectpicker').selectpicker('refresh');
         $('.alert').hide();//Oculto alert
     })

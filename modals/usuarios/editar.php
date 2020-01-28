@@ -25,6 +25,19 @@
                                 </select>
                                 <input type="hidden" id="id" name="id">
                             </div>
+                            <div class="form-group mb-0">
+                                <label class="col-form-label">Área:</label>
+                                <select name="area" id="area" class="selectpicker form-control" data-live-search="true">
+                                    <?php 
+                                        $consulta = "call consulta_areas()";
+                                        $resultado = mysqli_query(conectar(), $consulta );
+                                        while ($columna = mysqli_fetch_array( $resultado ))
+                                        { 
+                                            echo    "<option value='".$columna['id_area']."'>".$columna['area']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,14 @@
 <?php
     session_start();
     include ('../../conexion.php');
-
     use PHPMailer\PHPMailer\PHPMailer;
     require '../../../vendor/autoload.php';
 
     $id_usuario = $_SESSION['id_user'];
     date_default_timezone_set("America/Santiago");
-    $fecha = date("Y-m-d G:i:s");
+	$fecha = date("Y-m-d G:i:s");
 
-    $consulta = "SELECT max(id_usuario) as correlativo FROM usuarios";
+    $consulta = "SELECT max(id_desviacion) as correlativo FROM desviaciones";
 	$resultado = mysqli_query( conectar(), $consulta );
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
@@ -19,11 +18,8 @@
     {
         $contador = 1;
     }
-            
-    $d=mt_rand(1111,9999);
-    $hash = password_hash($d, PASSWORD_DEFAULT);
     
-    $query="INSERT INTO usuarios (id_usuario,nombre,email,imagen,id_perfil,id_area,password,temporal,fec_registro,id_usuario_registro) values($contador,'$_POST[nombre0]','$_POST[email0]','img/perfil/perfil.png',$_POST[perfil0],$_POST[area0],'$hash',1,'$fecha',$id_usuario)";
+    $query="INSERT INTO desviaciones (id_desviacion,fecha,id_area,id_producto,id_fase,id_personal,desviacion,id_estado,fec_registro,id_usuario_registro) values($contador,'$_POST[fecha0]',$_POST[area0],$_POST[producto0],$_POST[fase0],$_POST[detector0],'$_POST[desviacion0]',1,'$fecha',$id_usuario)";
     if (conectar()->query($query) === TRUE) 
     {
         //Crear una instancia de PHPMailer
@@ -53,7 +49,12 @@
         //Esta línea es por si queréis enviar copia a alguien (dirección y, opcionalmente, nombre)
         //$mail->AddReplyTo('replyto@correoquesea.com','El de la réplica');
         //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
-        $mail->AddAddress($_POST['email0'], $_POST['nombre0']);
+        $consulta = "CALL consulta_correos_area($_POST[area0])";
+        $resultado = mysqli_query( conectar(), $consulta );
+        while ($columna = mysqli_fetch_array( $resultado ))
+        { 
+            $mail->AddAddress($columna['email'], $columna['nombre']);
+        }
         //Definimos el tema del email
         $mail->Subject = 'Sistema Mantención';
         //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
@@ -62,16 +63,14 @@
                                 <title>Sistema Mantención</title> 
                             </head> 
                             <body> 
-                                <h1>Bienvenido ".$_POST['nombre0']."!</h1> 
+                                <h1>Se registro una desviación a su departamento!</h1> 
                                 <p> 
-                                    <b>Para acceder al Sistema Mantención Landes S.A, pinche en el siguiente enlace:</b> 
+                                    <h2>N° AC: ".$contador."</h2> 
                                 </p> 
-                                <p>
-                                    <a href='http://mantencion.landes.cl'>Sistema Mantención</a>
-                                </p>
-                                <p>
-                                    Contraseña temporal: ".$d."
-                                </p>
+                                <p> 
+                                    <b>Descripción de la desviación:</b></br>
+                                    <span>".$_POST['desviacion0']."</span>
+                                </p> 
                                 <p>
                                     Favor no responder este mensaje, Gracias!!.
                                 </p>
@@ -79,7 +78,7 @@
                         </html>");
         $mail->CharSet = 'UTF-8';
         if(!$mail->Send()) {
-            $messages[] = "Usuario guardado satisfactoriamente.";
+            $messages[] = "Desviación guardada satisfactoriamente.";
         } else {
             echo $mail->ErrorInfo;
         }  

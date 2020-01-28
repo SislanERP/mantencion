@@ -8,7 +8,8 @@
 		$query = mysqli_real_escape_string(conectar(),(strip_tags($_REQUEST['query'], ENT_QUOTES)));
 
 		$tables="	usuarios a inner join 
-					tipo_perfil b on a.id_perfil = b.id_perfil";
+					tipo_perfil b on a.id_perfil = b.id_perfil inner join
+					areas c on a.id_area = c.id_area";
 
 		$campos="	a.id_usuario as Id,
 					a.nombre as Nombre,
@@ -16,7 +17,9 @@
 					a.direccion as Direccion,
 					a.telefono as Telefono,
 					b.tipo as Perfil,
-					b.id_perfil as Id_perfil";
+					b.id_perfil as Id_perfil,
+					a.id_area as id_area,
+					c.area as area";
 		$sWhere=" a.nombre LIKE '%".$query."%' or a.email LIKE '%".$query."%' or a.direccion LIKE '%".$query."%' or a.telefono LIKE '%".$query."%' or b.tipo LIKE '%".$query."%'";
 		$sWhere.=" order by a.nombre";
 
@@ -43,6 +46,7 @@
 				  <th>Dirección</th>
 				  <th>Teléfono</th>
 				  <th>Perfil</th>
+				  <th>Área</th>
 				  <th>Acción</th>
 				</tr>
 			</thead>
@@ -56,6 +60,7 @@
 					<td><?php echo $row['Direccion'];?></td>
 					<td>+56 9 <?php echo $row['Telefono'];?></td>
 					<td><?php echo $row['Perfil'];?></td>
+					<td><?php echo $row['area'];?></td>
 					<td>
 						<?php
 								$id_usuario = $_SESSION['id_user'];
@@ -66,11 +71,7 @@
 								{ 
 									if($columna['editar'] == 1){
 						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['Id']?>" data-nombre="<?php echo $row['Nombre']?>" data-perfil="<?php echo $row['Id_perfil']?>" ><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['Id']?>" data-nombre="<?php echo $row['Nombre']?>" data-perfil="<?php echo $row['Id_perfil']?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['Id']?>" data-nombre="<?php echo $row['Nombre']?>" data-perfil="<?php echo $row['Id_perfil']?>" data-area="<?php echo $row['id_area']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
 									}
 						?>
@@ -79,13 +80,7 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['Id']?>" data-nombre="<?php echo $row['Nombre']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['Id']?>" data-nombre="<?php echo $row['Nombre']?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
-						?>
-						<?php
 								}
 						?>
 					</td>

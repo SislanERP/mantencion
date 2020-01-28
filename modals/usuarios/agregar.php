@@ -33,6 +33,19 @@
                                     ?>
                                 </select>
                             </div>
+                            <div class="form-group mb-0">
+                                <label class="col-form-label">Área:</label>
+                                <select name="area0" id="area0" class="selectpicker form-control" data-live-search="true">
+                                    <?php 
+                                        $consulta = "call consulta_areas()";
+                                        $resultado = mysqli_query(conectar(), $consulta );
+                                        while ($columna = mysqli_fetch_array( $resultado ))
+                                        { 
+                                            echo    "<option value='".$columna['id_area']."'>".$columna['area']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <output id="list"></output>
