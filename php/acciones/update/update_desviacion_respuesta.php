@@ -8,7 +8,12 @@
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
 
-    if($_POST['area'] <> 3){
+    $consulta = "select * as area from usuarios where id_usuario=".$id_usuario;
+	$resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+	if ($columna = mysqli_fetch_array( $resultado ))
+	{ $area = $columna['id_area']; }
+
+    if($area <> 3){
         $query="UPDATE desviaciones SET consecuencia='$_POST[consecuencia1]', acciones='$_POST[acciones1]', responsable='$_POST[responsable1]', observaciones='$_POST[observaciones1]',fec_edicion='$fecha',id_usuario_edicion='$id_usuario',fec_ejecucion='$_POST[ejecucion1]',log_ejecucion='$_POST[radio]' where id_desviacion=$_POST[id1]";
         if (conectar()->query($query) === TRUE) 
         {
@@ -20,9 +25,9 @@
             $mail->Port       = 465;
             $mail->SMTPSecure = 'ssl';
             $mail->SMTPAuth   = true;
-            $mail->Username   = "cristianasenjotorres@gmail.com";
-            $mail->Password   = "qkoemzfrnrnlxuto";
-            $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+            $mail->Username   = "sismantencionlandes@gmail.com";
+            $mail->Password   = "vaongachlooxposk";
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
             $consulta = "CALL consulta_correos_area(3)";
             $resultado = mysqli_query( conectar(), $consulta );
             while ($columna = mysqli_fetch_array( $resultado ))
@@ -70,9 +75,9 @@
             $mail->Port       = 465;
             $mail->SMTPSecure = 'ssl';
             $mail->SMTPAuth   = true;
-            $mail->Username   = "cristianasenjotorres@gmail.com";
-            $mail->Password   = "qkoemzfrnrnlxuto";
-            $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+            $mail->Username   = "sismantencionlandes@gmail.com";
+            $mail->Password   = "vaongachlooxposk";
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
             $consulta = "CALL consulta_correos_area($_POST[area])";
             $resultado = mysqli_query( conectar(), $consulta );
             while ($columna = mysqli_fetch_array( $resultado ))
