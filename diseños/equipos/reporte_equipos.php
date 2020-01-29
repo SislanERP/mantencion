@@ -7,7 +7,7 @@
     <style>
        @page { margin: 180px 50px; }
        #header { position: fixed; left: 0px; top: -150px; right: 0px; text-align: center; }
-       #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 150px; background-color: lightblue; }
+       #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 150px; }
        #footer .page:after { content: counter(page, upper-roman); }
      </style>
      
@@ -22,7 +22,7 @@
             $size = 9;
             $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;
             $y = 48;
-            $x = 480;
+            $x = 465;
             $pdf->text($x, $y, $pageText, $font, $size);
         } 
     ');
@@ -49,6 +49,9 @@
             </tr>
         <thead>
     </table>
+    <div id="footer" class="w-100 mt-3 text-center">
+        <em style="font-size:9px;">Soc. Pesquera Landes S.A. - Secotr Astillero Rural - Dalcahue, Décima Región - CHILE.</em>
+    </div>
     <table class="table tab table-bordered tab-cot">
         <tr>
             <th>Nombre</th>
@@ -66,5 +69,6 @@
             }
         ?>
     </table>
+    
 </body>
 </html>
