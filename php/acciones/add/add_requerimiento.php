@@ -39,9 +39,9 @@
             $mail->Port       = 465;
             $mail->SMTPSecure = 'ssl';
             $mail->SMTPAuth   = true;
-            $mail->Username   = "cristianasenjotorres@gmail.com";
-            $mail->Password   = "qkoemzfrnrnlxuto";
-            $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+            $mail->Username   = "sismantencionlandes@gmail.com";
+            $mail->Password   = "vaongachlooxposk";
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
             $consulta = "CALL consulta_correos_area(2)";
             $resultado = mysqli_query( conectar(), $consulta );
             while ($columna = mysqli_fetch_array( $resultado ))
