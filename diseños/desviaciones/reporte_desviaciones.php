@@ -36,7 +36,7 @@
                 <td  rowspan="4" class="p-1" style="width:10%;vertical-align: inherit;"><img src="../../../img/logo.png" alt="" style="width:90px;"></td>
                 <td rowspan="4" class="text-center p-1" style="vertical-align: inherit; width:62%;"><h6>REGISTRO DE DESVIACIONES PROCESOS O PRODUCTOS<br>R58   </br></h6></td>
                 <td class="text-center p-1" style="font-size: 11px;">Versión</td>
-                <td class="text-center p-1" style="font-size: 11px;">04</td>
+                <td class="text-center p-1" style="font-size: 11px;">05</td>
                 <tr>
                     <td class="text-center p-1" colspan="2" style="font-size: 11px;">Página 1 de 1</td>
                 </tr>
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <td class="text-center p-1" style="font-size: 11px;">Fecha Rev</td>
-                    <td class="text-center p-1" style="font-size: 11px;">26/09/2019</td>
+                    <td class="text-center p-1" style="font-size: 11px;">10/02/2020</td>
                 </tr>
             </tr>
         <thead>
