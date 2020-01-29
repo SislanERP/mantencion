@@ -60,7 +60,7 @@
     }
     else
     {
-        $query="UPDATE desviaciones SET consecuencia='$_POST[consecuencia1]', acciones='$_POST[acciones1]', responsable='$_POST[responsable1]', observaciones='$_POST[observaciones1]', id_estado=$_POST[estado],fec_edicion='$fecha',id_usuario_edicion='$id_usuario', fec_ejecucion='$_POST[ejecucion1]',log_ejecucion='$_POST[radio]',id_usuario_verificacion='$id_usuario',fec_verificacion='$fecha' where id_desviacion=$_POST[id1]";
+        $query="UPDATE desviaciones SET observaciones='$_POST[observaciones1]', id_estado=$_POST[estado],fec_edicion='$fecha',id_usuario_verificacion='$id_usuario',fec_verificacion='$fecha' where id_desviacion=$_POST[id1]";
         if (conectar()->query($query) === TRUE) 
         {
             if($_POST['estado'] == 1){$estado = "Ingresado";}else{$estado ="Verificado";}
