@@ -10,9 +10,6 @@
     <table class="table tab table-bordered tab-cot">
         <tr>
             <th>Nombre</th>
-            <th>Marca</th>
-            <th>Ubicación</th>
-            <html>Linea</html>
         </tr>
         <?php
             $consulta = "call consulta_equipos()";
@@ -21,10 +18,7 @@
             { 
         ?>
                     <tr>
-                        <td colspan="3" class="bor"><?php echo $columna['equipo'];?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="bor p-1"><?php echo $columna['equipo'];?></td>
                     </tr>
         <?php   
             }

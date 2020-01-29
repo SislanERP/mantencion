@@ -79,7 +79,6 @@
             while ($columna = mysqli_fetch_array( $resultado ))
             { 
                 $mail->AddAddress($columna['email'], $columna['nombre']);
-                echo $columna['email'].$columna['nombre'];
             }
             $mail->Subject = 'Sistema Mantención';
             $mail->MsgHTML("<html> 
@@ -98,7 +97,7 @@
                             </html>");
             $mail->CharSet = 'UTF-8';
             if(!$mail->Send()) {
-                $messages[] = $columna['email'].$columna['nombre'];
+                $messages[] = "Desviación guardada satisfactoriamente.";
             } else {
                 echo $mail->ErrorInfo;
             }  
