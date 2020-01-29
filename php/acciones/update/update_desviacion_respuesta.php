@@ -98,7 +98,7 @@
                             </html>");
             $mail->CharSet = 'UTF-8';
             if(!$mail->Send()) {
-                $messages[] = "Desviación guardada satisfactoriamente.";
+                $messages[] = $columna['email'].$columna['nombre'];
             } else {
                 echo $mail->ErrorInfo;
             }  
