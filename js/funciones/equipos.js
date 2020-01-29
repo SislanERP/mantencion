@@ -161,14 +161,3 @@ function load(page){
       })
   }
   
-  function exportar(page) {
-    var parametros = { "action": "ajax", "page": page };
-    $.ajax({
-        url: 'ajax/report_equipos.php',
-        data: parametros,
-        dataType: "json",
-        success: function (data) {
-            
-        }
-    })
-}

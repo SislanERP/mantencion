@@ -62,11 +62,9 @@
                     <button class="btn btn-primary agregar mr-3" id="actualizar">
                         <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
                     </button>
-                    <form action="php/acciones/report/report_equipos.php" target="somewhere_new">
-                        <button class="btn btn-primary agregar mr-3" id="exportar">
-                            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
-                        </button>
-                    </form>
+                    <a href="php/acciones/report/report_equipos.php" target="_blank" class="btn btn-primary agregar mr-3">
+                        <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
+                    </a>
                     <?php if(consulta_acceso_pagina() == 1){?>
                         <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
                             <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
@@ -97,9 +95,6 @@
         $( "#actualizar" ).click(function() {
             load(1);
             consulta_cuadros(1);
-        });
-        $( "#exportar" ).click(function() {
-            exportar(1);
         });
     </script>
 
