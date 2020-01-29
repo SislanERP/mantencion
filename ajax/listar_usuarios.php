@@ -8,7 +8,7 @@
 		$query = mysqli_real_escape_string(conectar(),(strip_tags($_REQUEST['query'], ENT_QUOTES)));
 
 		$tables="	usuarios a inner join 
-					tipo_perfil b on a.id_perfil = b.id_perfil inner join
+					tipo_perfil b on a.id_perfil = b.id_perfil left outer join
 					areas c on a.id_area = c.id_area";
 
 		$campos="	a.id_usuario as Id,
@@ -65,7 +65,7 @@
 						<?php
 								$id_usuario = $_SESSION['id_user'];
 								$token = $_SESSION['page'];
-								$consulta = "call consulta_acceso_pagina('$token',$id_usuario)";
+								$consulta = "call consulta_acceso_sub_pagina('$token',$id_usuario)";
 								$resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 								while ($columna = mysqli_fetch_array( $resultado ))
 								{ 
