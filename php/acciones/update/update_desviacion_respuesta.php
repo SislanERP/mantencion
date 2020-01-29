@@ -79,6 +79,7 @@
             while ($columna = mysqli_fetch_array( $resultado ))
             { 
                 $mail->AddAddress($columna['email'], $columna['nombre']);
+                echo $columna['email'].$columna['nombre'];
             }
             $mail->Subject = 'Sistema Mantención';
             $mail->MsgHTML("<html> 
