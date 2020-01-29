@@ -17,6 +17,7 @@
                                 <textarea name="desviacion1" id="desviacion1" cols="30" rows="3" class="form-control" readonly></textarea>
                                 <input type="hidden" id="id1" name="id1">
                                 <input type="hidden" id="area" name="area">
+                                <input type="hidden" id="depa" name="depa">
                             </div>
                         </div>
                     </div>

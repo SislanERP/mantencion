@@ -50,6 +50,7 @@ function load(page){
         var ejecucion = button.data('ejecucion')
         var area = button.data('area')
         var fec_ejecucion= button.data('fec_ejecucion')
+        var depa= button.data('depa')
 
 
         var modal = $(this)
@@ -62,6 +63,7 @@ function load(page){
         modal.find('.modal-body #observaciones1').val(observaciones)
         modal.find('.modal-body #ejecucion1').val(fec_ejecucion)
         modal.find('.modal-body #area').val(area)
+        modal.find('.modal-body #depa').val(depa)
 
         if(estado == 2)
         {
