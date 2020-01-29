@@ -7,6 +7,7 @@
     $id_usuario = $_SESSION['id_user'];
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
+    $dep = $_POST['depa'];
 
     if($_POST['area'] <> 3){
         $query="UPDATE desviaciones SET consecuencia='$_POST[consecuencia1]', acciones='$_POST[acciones1]', responsable='$_POST[responsable1]', observaciones='$_POST[observaciones1]',fec_edicion='$fecha',id_usuario_edicion='$id_usuario',fec_ejecucion='$_POST[ejecucion1]',log_ejecucion='$_POST[radio]' where id_desviacion=$_POST[id1]";
@@ -73,7 +74,7 @@
             $mail->Username   = "sismantencionlandes@gmail.com";
             $mail->Password   = "vaongachlooxposk";
             $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
-            $consulta = "CALL consulta_correos_area($_POST[depa])";
+            $consulta = "CALL consulta_correos_area($dep)";
             $resultado = mysqli_query( conectar(), $consulta );
             while ($columna = mysqli_fetch_array( $resultado ))
             { 
