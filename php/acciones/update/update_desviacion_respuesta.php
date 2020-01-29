@@ -8,7 +8,7 @@
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
 
-    $consulta = "select * as area from usuarios where id_usuario=".$id_usuario;
+    $consulta = "select * from usuarios where id_usuario=".$id_usuario;
 	$resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ $area = $columna['id_area']; }
