@@ -20,7 +20,7 @@ try
         {
             
             $recData = $modbus->readMultipleRegisters(0, $columna['direccion'], 1);
-            //$recData[1] = $recData[1] / 1000;
+            $recData[1] = $recData[1] / 1000;
             echo "<h1 class='tituloplc'>".$columna['nombre']."</h1></br>";
             echo  "<h1 class='valorplc'>".$recData[1]."</h1>";
         }
