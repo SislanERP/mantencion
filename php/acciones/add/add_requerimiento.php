@@ -32,7 +32,47 @@
         $query="INSERT INTO requerimientos (id_requerimiento,actividad,id_estado,imagen,fec_registro,id_usuario_registro) values($contador,'$_POST[actividad0]',1,'img/requerimientos/".$_FILES['imagen']['name']."','$fecha',$id_usuario)";
         if (conectar()->query($query) === TRUE) 
         {
-            $messages[] = "El requerimiento se guardo satisfactoriamente.";
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug  = 0;
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 465;
+            $mail->SMTPSecure = 'ssl';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = "cristianasenjotorres@gmail.com";
+            $mail->Password   = "qkoemzfrnrnlxuto";
+            $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+            $consulta = "CALL consulta_correos_area(2)";
+            $resultado = mysqli_query( conectar(), $consulta );
+            while ($columna = mysqli_fetch_array( $resultado ))
+            { 
+                $mail->AddAddress($columna['email'], $columna['nombre']);
+            }
+            $mail->Subject = 'Sistema Mantención';
+            $mail->MsgHTML("<html> 
+                                <head> 
+                                    <title>Sistema Mantención</title> 
+                                </head> 
+                                <body> 
+                                    <h1>Se registro un requerimiento a su departamento!</h1> 
+                                    <p> 
+                                        <h2>N°: ".$contador."</h2> 
+                                    </p> 
+                                    <p> 
+                                        <b>Descripción de la actividad:</b></br>
+                                        <span>".$_POST['actividad0']."</span>
+                                    </p> 
+                                    <p>
+                                        Favor no responder este mensaje, Gracias!!.
+                                    </p>
+                                </body> 
+                            </html>");
+            $mail->CharSet = 'UTF-8';
+            if(!$mail->Send()) {
+                $messages[] = "Desviación guardada satisfactoriamente.";
+            } else {
+                echo $mail->ErrorInfo;
+            }  
         }
 
         else
@@ -46,7 +86,47 @@
         $query="INSERT INTO requerimientos (id_requerimiento,actividad,id_estado,fec_registro,id_usuario_registro) values($contador,'$_POST[actividad0]',1,'$fecha',$id_usuario)";
         if (conectar()->query($query) === TRUE) 
         {
-            $messages[] = "El requerimiento se guardo satisfactoriamente.";
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug  = 0;
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 465;
+            $mail->SMTPSecure = 'ssl';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = "cristianasenjotorres@gmail.com";
+            $mail->Password   = "qkoemzfrnrnlxuto";
+            $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+            $consulta = "CALL consulta_correos_area(2)";
+            $resultado = mysqli_query( conectar(), $consulta );
+            while ($columna = mysqli_fetch_array( $resultado ))
+            { 
+                $mail->AddAddress($columna['email'], $columna['nombre']);
+            }
+            $mail->Subject = 'Sistema Mantención';
+            $mail->MsgHTML("<html> 
+                                <head> 
+                                    <title>Sistema Mantención</title> 
+                                </head> 
+                                <body> 
+                                    <h1>Se registro un requerimiento a su departamento!</h1> 
+                                    <p> 
+                                        <h2>N°: ".$contador."</h2> 
+                                    </p> 
+                                    <p> 
+                                        <b>Descripción de la actividad:</b></br>
+                                        <span>".$_POST['actividad0']."</span>
+                                    </p> 
+                                    <p>
+                                        Favor no responder este mensaje, Gracias!!.
+                                    </p>
+                                </body> 
+                            </html>");
+            $mail->CharSet = 'UTF-8';
+            if(!$mail->Send()) {
+                $messages[] = "Desviación guardada satisfactoriamente.";
+            } else {
+                echo $mail->ErrorInfo;
+            }  
         }
 
         else

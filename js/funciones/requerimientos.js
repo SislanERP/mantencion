@@ -37,14 +37,21 @@ function load(page){
         var area = button.data('area')
         var estado = button.data('estado')
         var terminado = button.data('terminado')
+        var prioridad = button.data('prioridad')
+        var responsable = button.data('responsable')
+        var desarrollo = button.data('desarrollo')
 
         var modal = $(this)
         modal.find('.modal-title').text('Responder Requerimiento')
         modal.find('.modal-body #id1').val(id)
         modal.find('.modal-body #actividad1').val(actividad)
         modal.find('.modal-body #imagenmuestra1').attr("src", imagen)
+        modal.find('select[id=prioridad1]').val(prioridad)
+        modal.find('select[id=responsable1]').val(responsable)
+        modal.find('.modal-body #desarrollo1').val(desarrollo)
+        modal.find('select[id=estado1]').val(estado)
 
-        if(estado == 3)
+        if(terminado == 1)
         {
             $("#blo").css("pointer-events", "none");
             modal.find('.modal-body #prioridad1').prop("disabled", true)
@@ -188,7 +195,7 @@ function load(page){
         var parametros = $(this).serialize();
              $.ajax({
                     type: "POST",
-                    url: "php/acciones/delete/delete_desviacion.php",
+                    url: "php/acciones/delete/delete_requerimiento.php",
                     data: parametros,
                      beforeSend: function(objeto){
                         $(".datos_ajax_delete").html("Mensaje: Cargando...");

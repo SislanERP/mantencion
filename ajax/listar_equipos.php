@@ -19,7 +19,7 @@
 					a.id_ubicacion as id_ubicacion,
 					a.id_linea as id_linea,
 					c.linea as linea";
-		$sWhere=" a.equipo LIKE '%".$query."%' or a.marca LIKE '%".$query."%' or c.linea LIKE '%".$query."%'";
+		$sWhere=" a.equipo LIKE '%".$query."%' or a.marca LIKE '%".$query."%' or c.linea LIKE '%".$query."%' or b.ubicacion LIKE '%".$query."%'";
 		$sWhere.=" order by id_equipo desc";
 
         include 'pagination.php'; 

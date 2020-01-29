@@ -61,7 +61,8 @@
                     <th>Fecha</th>
                     <th>Prioridad</th>
                     <th>Responsable</th>
-                    <th>Estado</th>
+					<th>Estado</th>
+					<th>Terminado?</th>
                     <th>Acción</th>
 				</tr>
 			</thead>
@@ -75,6 +76,19 @@
 					<td><?php echo $row['prioridad'];?></td>
 					<td><?php echo $row['trabajador'];?></td>
 					<td><?php echo $row['estado'];?></td>
+					<td>
+						<?php 
+							if ($row['log_terminado'] == 1){
+						?>
+							<img src="img/iconos/no.svg" alt="" class="btn-accion align-self-center" style="width:24px;">
+						<?php		
+							}else{
+						?>
+							<img src="img/iconos/si.svg" alt="" class="btn-accion align-self-center" style="width:24px;">
+						<?php
+							}
+						?>
+					</td>
 					<td>
 						<?php
 								$id_usuario = $_SESSION['id_user'];
@@ -99,9 +113,6 @@
 						?>
 						
                         <button type="button" class="btn p-0" data-toggle="modal" data-target="#dataResponder" data-id="<?php echo $row['id']?>" data-actividad="<?php echo $row['actividad']?>" data-imagen="<?php echo $row['imagen']?>" data-area="<?php echo $area?>" data-prioridad="<?php echo $row['id_prioridad']?>" data-estado="<?php echo $row['id_estado']?>" data-desarrollo="<?php echo $row['desarrollo']?>" data-terminado="<?php echo $row['log_terminado']?>" data-responsable="<?php echo $row['id_trabajador']?>"><img src="img/iconos/ver.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-                        <?php if($row['id_estado'] ==  2){?>
-                            <a href='php/acciones/report/report_desviaciones.php?id=<?php echo $row['id']?>' target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
-                        <?php }?>
                     </td>
 				</tr>
 				<?php
