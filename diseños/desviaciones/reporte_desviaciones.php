@@ -6,10 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <link rel="stylesheet" type="text/css"href="css/ventas.css">
     <style>
-       @page { margin: 180px 50px; }
-       #header { position: fixed; left: 0px; top: -150px; right: 0px; text-align: center; }
-       #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 150px; background-color: lightblue; }
-       #footer .page:after { content: counter(page, upper-roman); }
+       #firma { position: fixed; left: 0px; bottom: 150px; right: 0px; text-align: center;}
      </style>
 </head>
 
@@ -32,6 +29,7 @@
         $fec_verificacion = $columna['fec_verificacion'];
         $usuario_verificacion = $columna['usuario_verificacion'];
         $fec_ejecucion = $columna['fec_ejecucion'];
+        $id_usuario_verificacion = $columna['id_usuario_verificacion'];
     }
 ?>
 
@@ -121,6 +119,17 @@
             <td class="p-1 border" colspan="1" style="font-size: 11px;width:150px;">Responsable de la verificación</td>
             <td class="p-1 border" colspan="1" style="font-size: 11px;width:310px;"><?php echo $usuario_verificacion;?></td>
             <td class="p-1 border" colspan="1" style="font-size: 11px;width:110px;">Fecha de verificación</td>
+            <?php 
+                $consulta = "select * from usuarios where id_usuario=".$id_usuario_verificacion;
+                $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                if ($columna = mysqli_fetch_array( $resultado ))
+                {
+                    $firma = $columna['firma'];
+                }
+            ?>
+            <span id="firma" style="font-size:12px;margin-right:10px;">
+                <img src="../../../<?php echo $firma;?>" alt="" style="width:130px;">
+            </span>        
             <td class="p-1 border" colspan="1" style="font-size: 11px;"><?php echo date("d-m-Y",strtotime($fec_verificacion));?></td>/
         </tr>
     </table>
