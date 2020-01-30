@@ -17,7 +17,7 @@
         $contador = 1;
     }
     
-    $query="INSERT INTO actividades (id_registro,fecha,id_turno,id_estado,actividad,detalle,fec_registro,id_usuario_registro) values($contador,'$_POST[fecha0]',$_POST[turno0],$_POST[estado0],'$_POST[actividad0]','$_POST[detalle0]','$fecha',$id_usuario)";
+    $query="INSERT INTO actividades (id_registro,fecha,id_equipo,id_turno,id_estado,actividad,detalle,fec_registro,id_usuario_registro) values($contador,'$_POST[fecha0]',$_POST[equipo0],$_POST[turno0],$_POST[estado0],'$_POST[actividad0]','$_POST[detalle0]','$fecha',$id_usuario)";
     if (conectar()->query($query) === TRUE) 
     {
         $messages[] = "Actividad guardada satisfactoriamente.";

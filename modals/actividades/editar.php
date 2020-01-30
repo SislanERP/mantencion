@@ -30,6 +30,19 @@
                                 </select>
                             </div>
                             <div class="form-group mb-0">
+                                <label class="col-form-label">Equipo:</label>
+                                <select name="equipo" id="equipo" class="selectpicker form-control" data-live-search="true">
+                                    <?php 
+                                        $consulta = "call consulta_equipos()";
+                                        $resultado = mysqli_query(conectar(), $consulta );
+                                        while ($columna = mysqli_fetch_array( $resultado ))
+                                        { 
+                                            echo    "<option value='".$columna['id_equipo']."'>".$columna['equipo']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group mb-0">
                                 <label class="col-form-label">Estado:</label>
                                 <select name="estado" id="estado" class="selectpicker form-control" data-live-search="true">
                                     <?php 

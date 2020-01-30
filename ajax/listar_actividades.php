@@ -13,7 +13,8 @@
 		$tables="	actividades a inner JOIN
 					turnos b on a.id_turno = b.id_turno inner JOIN
 					estados c on a.id_estado = c.id_estado inner join
-					usuarios d on a.id_usuario_registro = d.id_usuario";
+					usuarios d on a.id_usuario_registro = d.id_usuario inner join
+					equipos e on a.id_equipo = e.id_equipo";
 
 		$campos="	a.fecha as fecha,
 					b.turno as turno,
@@ -24,7 +25,9 @@
 					a.id_registro as id,
 					a.id_estado as id_estado,
 					a.id_turno as id_turno,
-					a.id_usuario_registro as id_usuario";
+					a.id_usuario_registro as id_usuario,
+					a.id_equipo as id_equipo,
+					e.equipo as equipo";
 		$sWhere=" a.fecha= '".$query."'";
 		$sWhere.=" order by a.id_registro";
 
@@ -48,6 +51,7 @@
 				<tr>
 				  <th>Fecha</th>
 				  <th>Turno</th>
+				  <th>Equipo</th>
 				  <th>Estado</th>
 				  <th>Actividad</th>
 				  <th>Usuario</th>
@@ -61,6 +65,7 @@
 				<tr>
 					<td><?php echo date("d/m/Y", strtotime($row['fecha']));?></td>
 					<td><?php echo $row['turno'];?></td>
+					<td><?php echo $row['equipo'];?></td>
 					<td><?php echo $row['estado'];?></td>
 					<td><?php echo $row['actividad'];?></td>
 					<td><?php echo $row['usuario'];?></td>
@@ -74,7 +79,7 @@
 								{ 
 									if($columna['editar'] == 1){
 						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-turno="<?php echo $row['id_turno']?>" data-estado="<?php echo $row['id_estado']?>" data-actividad="<?php echo $row['actividad']?>" data-detalle="<?php echo $row['detalle']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-turno="<?php echo $row['id_turno']?>" data-estado="<?php echo $row['id_estado']?>" data-actividad="<?php echo $row['actividad']?>" data-detalle="<?php echo $row['detalle']?>" data-equipo="<?php echo $row['id_equipo']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
 									}
 						?>

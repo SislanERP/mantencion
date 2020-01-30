@@ -23,6 +23,7 @@ function load(page){
         var estado = button.data('estado')
         var actividad = button.data('actividad')
         var detalle = button.data('detalle')
+        var equipo = button.data('equipo')
 
         var modal = $(this)
         modal.find('.modal-title').text('Editar : '+actividad)
@@ -31,6 +32,7 @@ function load(page){
         modal.find('select[id=estado]').val(estado)
         modal.find('select[id=turno]').val(turno)
         modal.find('.modal-body #actividad').val(actividad)
+        modal.find('.modal-body #equipo').val(equipo)
         modal.find('.modal-body #detalle').val(detalle)
         $('.selectpicker').selectpicker('refresh');
         $('.alert').hide();

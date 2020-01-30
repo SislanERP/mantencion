@@ -6,7 +6,7 @@
     date_default_timezone_set("America/Santiago");
 	$fecha = date("Y-m-d G:i:s");
     
-    $query="UPDATE actividades SET fecha='$_POST[fecha]', id_turno=$_POST[turno], id_estado=$_POST[estado], actividad ='$_POST[actividad]', detalle='$_POST[detalle]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_registro=$_POST[id]";
+    $query="UPDATE actividades SET fecha='$_POST[fecha]', id_turno=$_POST[turno], id_equipo=$_POST[equipo],id_estado=$_POST[estado], actividad ='$_POST[actividad]', detalle='$_POST[detalle]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_registro=$_POST[id]";
     if (conectar()->query($query) === TRUE) 
     {
         $messages[] = "La actividad ha sido editada satisfactoriamente.";
