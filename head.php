@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/estilo.css"/>
     <link rel="stylesheet" href="css/ventas.css"/>
     <link href='css/fullcalendar.css' rel='stylesheet' />
+    <link rel="shortcut icon" href="img/favicon.png" />
     <!-- Latest compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Carter+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
