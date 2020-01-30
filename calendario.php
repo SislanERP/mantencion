@@ -3,7 +3,7 @@
     require_once('php/bdd.php');
 
 
-    $sql = "SELECT a.id as id, b.equipo as title, a.start as start, a.end as end, a.color as color FROM events a inner join equipos b on a.title = b.id_equipo ";
+    $sql = "SELECT a.id as id, b.equipo as title, a.start as start, a.end as end, a.color as color FROM events a left outer join equipos b on a.title = b.id_equipo ";
     
     $req = $bdd->prepare($sql);
     $req->execute();
@@ -125,11 +125,11 @@
                     <label class="col-form-label">Responsable:</label>
                     <select name="responsable" id="responsable" class="selectpicker form-control" data-live-search="true" required>
                         <?php 
-                            $consulta = "call  consulta_responsables()";
+                            $consulta = "call   consulta_trabajadores()";
                             $resultado = mysqli_query(conectar(), $consulta );
                             while ($columna = mysqli_fetch_array( $resultado ))
                             { 
-                                echo    "<option value='".$columna['id_usuario']."'>".$columna['nombre']."</option>";
+                                echo    "<option value='".$columna['id_trabajador']."'>".$columna['nombre']."</option>";
                             }
                         ?>
                     </select>
@@ -155,8 +155,9 @@
 					</div>
 				</div>
 				  
-				<input type="hidden" name="id" class="form-control" id="id">
-				
+                <input type="hidden" name="id1" class="form-control" id="id1">
+                <input type="hidden" name="start1" class="form-control" id="start1">
+				<input type="hidden" name="title1" class="form-control" id="title1">
 				
 			  </div>
 			  <div class="modal-footer">
@@ -212,9 +213,10 @@ $(document).ready(function() {
         },
         eventRender: function(event, element) {
             element.bind('dblclick', function() {
-                $('#ModalEdit #id').val(event.id);
-                $('#ModalEdit #title').val(event.title);
+                $('#ModalEdit #id1').val(event.id);
+                $('#ModalEdit #title1').val(event.title);
                 $('#ModalEdit #color').val(event.color);
+                $('#ModalEdit #start1').val(moment(event.start).format('YYYY-MM-DD'));
                 $('#ModalEdit').modal('show');
             });
         },

@@ -13,34 +13,8 @@
                         <div class="col">
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Fecha:</label>
-                                <input type="date" id="fecha" name="fecha" class="form-control">
+                                <input type="date" id="fecha" name="fecha" class="form-control" readonly>
                                 <input type="hidden" id="id" name="id"> 
-                            </div>
-                            <div class="form-group mb-0">
-                                <label class="col-form-label">Equipo:</label>
-                                <select name="equipo" id="equipo" class="selectpicker form-control" data-live-search="true">
-                                    <?php 
-                                        $consulta = "call consulta_equipos()";
-                                        $resultado = mysqli_query(conectar(), $consulta );
-                                        while ($columna = mysqli_fetch_array( $resultado ))
-                                        { 
-                                            echo    "<option value='".$columna['id_equipo']."'>".$columna['equipo']."</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label class="col-form-label">Frecuencia:</label>
-                                <select name="frecuencia" id="frecuencia" class="selectpicker form-control" data-live-search="true">
-                                    <?php 
-                                        $consulta = "call consulta_frecuencia()";
-                                        $resultado = mysqli_query(conectar(), $consulta );
-                                        while ($columna = mysqli_fetch_array( $resultado ))
-                                        { 
-                                            echo    "<option value='".$columna['id_frecuencia']."'>".$columna['frecuencia']."</option>";
-                                        }
-                                    ?>
-                                </select>
                             </div>
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Estado:</label>

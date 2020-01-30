@@ -7,7 +7,10 @@ include ('../../conexion.php');
     date_default_timezone_set("America/Santiago");
 	$fecha = date("Y-m-d G:i:s");
 
-    $consulta = "SELECT max(id_registro) as correlativo FROM actividades";
+    $start = $_POST['start1'];
+    $id = $_POST['title1'];
+
+    $consulta = "SELECT max(id_preventivo) as correlativo FROM preventivos";
 	$resultado = mysqli_query( conectar(), $consulta );
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
@@ -17,11 +20,29 @@ include ('../../conexion.php');
     {
         $contador = 1;
     }
-    
-    $query="UPDATE eventos SET title='$_POST[title]', color = '$_POST[color]' WHERE id = $_POST[id]";
+
+    $consulta = "SELECT * FROM equipos where equipo = '$id'";
+	$resultado = mysqli_query( conectar(), $consulta );
+	if ($columna = mysqli_fetch_array( $resultado ))
+	{ 
+        $id_equipo = $columna['id_equipo'];
+    }
+
+    $query="INSERT INTO preventivos (id_preventivo,fec_inicio,id_tipo_mantenimiento,id_equipo,id_prioridad,id_trabajador,id_estado,fec_registro,id_usuario_registro) VALUES($contador,'$start',2,$id_equipo,$_POST[prioridad],$_POST[responsable],1,'$fecha',$id_usuario)";
     if (conectar()->query($query) === TRUE) 
     {
-        $messages[] = "Actividad guardada satisfactoriamente.";
+        $messages[] = "Preventivo creado satisfactoriamente.";
+    }
+
+    else
+    {
+        $errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error(conectar());
+    }
+    
+    
+    $query="UPDATE events SET color = '#008f39' WHERE id = $_POST[id1]";
+    if (conectar()->query($query) === TRUE) 
+    {
     }
 
     else

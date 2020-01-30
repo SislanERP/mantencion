@@ -6,8 +6,7 @@ include ('../../bdd.php');
     $id = $_POST['Event'][0];
 	$start = $_POST['Event'][1];
 	$end = $_POST['Event'][2];
-
-    echo $id.$start.$end;
+	
 	$sql = "UPDATE events SET  start = '$start', end = '$end' WHERE id = $id ";
 
 	

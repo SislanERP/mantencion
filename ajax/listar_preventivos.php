@@ -14,7 +14,7 @@
                     tipo_mantenimiento e on a.id_tipo_mantenimiento = e.id_tipo_mantenimiento inner join
                     usuarios d on a.id_usuario_registro = d.id_usuario inner join
 					estados g on a.id_estado = g.id_estado inner join
-					frecuencia h on a.id_frecuencia = h.id_frecuencia";
+					trabajadores f on a.id_trabajador = f.id_trabajador";
 
 		$campos="	a.fec_inicio as fecha,
 					c.equipo as equipo,
@@ -25,8 +25,7 @@
 					e.tipo as tipo_manteniminento,
 					g.estado as estado,
 					a.id_estado as id_estado,
-					h.frecuencia as frecuencia,
-					a.id_frecuencia as id_frecuencia";
+					f.nombre as trabajador";
 		$sWhere=" a.fec_inicio LIKE '%".$query."%' or c.equipo LIKE '%".$query."%' or a.id_preventivo='".$query."' or g.estado='".$query."'";
 		$sWhere.=" order by a.id_preventivo desc";
 
@@ -64,7 +63,7 @@
                     <td><?php echo $row['id'];?></td>
 					<td><?php echo date("d/m/Y", strtotime($row['fecha']));?></td>
 					<td><?php echo $row['equipo'];?></td>
-					<td><?php echo $row['frecuencia'];?></td>
+					<td><?php echo $row['trabajador'];?></td>
 					<td><?php echo $row['estado'];?></td>
 					<td>
 						<?php

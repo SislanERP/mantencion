@@ -45,7 +45,7 @@
             <button class="btn btn-primary agregar mr-3" id="actualizar">
               <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
             </button>
-            <?php if(consulta_acceso_sub_pagina() == 1){?>
+            <!-- <?php if(consulta_acceso_sub_pagina() == 1){?>
               <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
                 <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </button>
@@ -53,7 +53,7 @@
               <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
                 <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
               </button>
-            <?php }?>
+            <?php }?> -->
           </div>
         </div>
 

@@ -6,7 +6,7 @@
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
     
-    $query="UPDATE preventivos SET fec_inicio='$_POST[fecha]', id_equipo=$_POST[equipo], id_frecuencia=$_POST[frecuencia],id_estado=$_POST[estado],fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_preventivo=$_POST[id]";
+    $query="UPDATE preventivos SET id_estado=$_POST[estado],fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_preventivo=$_POST[id]";
     if (conectar()->query($query) === TRUE) 
     {
         $messages[] = "Preventivo ha sido editada satisfactoriamente.";
