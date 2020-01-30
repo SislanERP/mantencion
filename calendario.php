@@ -43,6 +43,7 @@
 
     <div id="content">
       <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
+        <div class="datos_ajax_delete mt-3"></div><!-- Datos ajax Final -->
         <div id="calendar" class="col-centered"></div>
     </div>
   </div>
@@ -51,7 +52,7 @@
   <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="php/acciones/add/add_evento.php">
+			<form class="form-horizontal" id="CrearEvento">
 			
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Agregar Evento </h5>
@@ -112,7 +113,7 @@
 		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="php/acciones/update/update_evento_title.php">
+			<form class="form-horizontal" id="CrearPreventivo">
             <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Crear Preventiva </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -148,13 +149,6 @@
                         ?>
                     </select>
                 </div>
-
-				<div class="form-group  mt-4 p-0"> 
-					<div class="col-sm-offset-2 col-sm-10 p-0">
-						<a href="" class="text-danger p-0">Eliminar Evento</a>
-					</div>
-				</div>
-				  
                 <input type="hidden" name="id1" class="form-control" id="id1">
                 <input type="hidden" name="start1" class="form-control" id="start1">
 				<input type="hidden" name="title1" class="form-control" id="title1">
@@ -164,7 +158,15 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
 				<button type="submit" class="btn btn-primary">Crear Preventivo</button>
 			  </div>
-			</form>
+            </form>
+            <form id="EliminarEvento" style="position: absolute;bottom: 1px;left: 18px;">
+                <input type="hidden" name="id1" class="form-control" id="id1">
+                <div class="form-group  mt-4 p-0"> 
+                    <div class="col-sm-offset-2 col-sm-10 p-0">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+			</form>  
 			</div>
 		  </div>
 		</div>
@@ -172,16 +174,11 @@
   
               
     <?php include('footer.php');?>
+    <script src="js/funciones/calendario.js"></script>
     <script src='js/fullcalendar/moment.min.js'></script>
     <script src='js/fullcalendar/fullcalendar.min.js'></script>
     <script src='js/fullcalendar/fullcalendar.js'></script>
 	<script src='js/fullcalendar/locale/es.js'></script>
-
-    <script>
-		$(document).ready(function(){
-            load(1);
-		});
-    </script>
 
 <script>
 

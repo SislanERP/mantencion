@@ -44,11 +44,6 @@ include ('../../conexion.php');
     if (conectar()->query($query) === TRUE) 
     {
     }
-
-    else
-    {
-        $errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error(conectar());
-    }
     
 
     if (isset($errors)){
@@ -79,8 +74,6 @@ include ('../../conexion.php');
             </div>
             <?php
         }
-
-header('Location: '.$_SERVER['HTTP_REFERER']);
 
 	
 ?>

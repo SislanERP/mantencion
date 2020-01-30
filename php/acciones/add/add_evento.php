@@ -73,9 +73,6 @@ while($fecha_modificada < $año_siguiente)
     $fec_inicio =  date("Y-m-d",$fecha_modificada);
     $mes_actual = $mes_actual + 1;
 }
-    
-    
-header('Location: '.$_SERVER['HTTP_REFERER']);
 
 	
 ?>
