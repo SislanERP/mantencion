@@ -10,15 +10,15 @@
         </div>
         <div class="modal-body">
           <div id="datos_ajax"></div>
-          <div class="row">
-            <div class="col-6">
+          <div class="row e12">
+            <div class="col-6 e5">
               <div class="form-group mb-0">
                 <label class="col-form-label">Actividad:</label>
                 <textarea name="actividad" id="actividad" cols="30" rows="10" class="form-control"></textarea>
                 <input type="hidden" name="id" id="id">
               </div>
             </div> 
-            <div class="col-6">
+            <div class="col-6 e5">
               <div class="col-lg-12 d-flex justify-content-center mt-3" style="height:300px;">
                 <img src="" alt="" class="pt-3 rounded-circle position-absolute" id="img" style="object-fit:cover;width:280px;height:300px;">
                 <div class="image-upload">

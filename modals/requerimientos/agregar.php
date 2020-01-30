@@ -11,14 +11,14 @@
                 </div>
                 <div class="modal-body">
                     <div id="datos_ajax_register"></div>
-                    <div class="row">
-                        <div class="col-6">
+                    <div class="row e12">
+                        <div class="col-6 e5">
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Actividad:</label>
                                 <textarea name="actividad0" id="actividad0" cols="30" rows="10" class="form-control" required></textarea>
                             </div>
                         </div>    
-                        <div class="col-6">
+                        <div class="col-6 e5">
                             <div class="col-lg-12 d-flex justify-content-center mt-3" style="height:300px;">
                                 <img src="" alt="" class="pt-3 rounded-circle position-absolute" id="imagenmuestra1" style="object-fit:cover;width:280px;height:300px;">
                                 <div class="image-upload">

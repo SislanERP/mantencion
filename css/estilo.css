@@ -466,6 +466,9 @@ input[type="checkbox"]:checked:disabled + label:before {
     .e9{flex-direction: column !important;}
     .e10{width: 100% !important;}
     .e11{display: flex !important;justify-content: end !important;}
+    .e12{flex-direction: column;}
+    #imagenmuestra1{margin-top: 0px;}
+    .modal-footer{margin-top: 30px;}
 }
 
 
