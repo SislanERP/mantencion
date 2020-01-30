@@ -55,7 +55,7 @@
                     $fecha = $_SESSION['fecha_caldera']; 
                     $consulta = "call consulta_encabezado_caldera('$fecha')";
                     $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-                    while ($columna = mysqli_fetch_array( $resultado ))
+                    if ($columna = mysqli_fetch_array( $resultado ))
                     {
                         $encendido = strtotime($columna['hora_encendido']);
                         echo date("H:i",$encendido);
@@ -67,7 +67,7 @@
                     $fecha = $_SESSION['fecha_caldera']; 
                     $consulta = "call consulta_encabezado_caldera('$fecha')";
                     $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-                    while ($columna = mysqli_fetch_array( $resultado ))
+                    if ($columna = mysqli_fetch_array( $resultado ))
                     {
                         $apagado = strtotime($columna['hora_apagado']);
                         echo date("H:i",$apagado);
@@ -124,7 +124,7 @@
             $fecha = $_SESSION['fecha_caldera']; 
             $consulta = "call consulta_encabezado_caldera('$fecha')";
             $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-            while ($columna = mysqli_fetch_array( $resultado ))
+            if ($columna = mysqli_fetch_array( $resultado ))
             {
                 echo $columna['nombre'];
             }    
