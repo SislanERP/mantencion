@@ -80,10 +80,6 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id_registro']?>" data-turno="<?php echo $row['id_turno']?>" data-tipo="<?php echo $row['id_tipo']?>" data-entrada="<?php echo $row['entrada']?>" data-salida="<?php echo $row['salida']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id_registro']?>" data-turno="<?php echo $row['id_turno']?>" data-tipo="<?php echo $row['id_tipo']?>" data-entrada="<?php echo $row['entrada']?>" data-salida="<?php echo $row['salida']?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
 						?>
 						<?php
@@ -91,13 +87,7 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id_registro']?>" data-tipo="<?php echo $row['consumo']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id_registro']?>" data-tipo="<?php echo $row['consumo']?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
-						?>
-						<?php
 								}
 						?>
 					</td>

@@ -72,10 +72,6 @@
 						?>
 									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-equipo="<?php echo $row['id_maquina']?>" data-temperatura="<?php echo $row['temperatura']?>" data-inicio="<?php $inicio = strtotime($row['hora_inicio_c']);echo date("H:i",$inicio)?>" data-termino="<?php $termino = strtotime($row['hora_termino_c']);echo date("H:i",$termino)?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-								}else{
-						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-equipo="<?php echo $row['id_maquina']?>" data-temperatura="<?php echo $row['temperatura']?>" data-inicio="<?php $inicio = strtotime($row['hora_inicio_c']);echo date("H:i",$inicio)?>" data-termino="<?php echo $termino = strtotime($row['hora_termino_c']);echo date("H:i",$termino)?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 								}
 						?>
 						<?php
@@ -83,13 +79,7 @@
 						?>
 									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-equipo="<?php echo $row['maquina']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-								}else{
-						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-equipo="<?php echo $row['maquina']?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 								}
-						?>
-						<?php
 							}
 						?>
 					</td>

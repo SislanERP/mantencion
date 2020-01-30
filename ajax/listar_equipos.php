@@ -76,10 +76,6 @@
 						?>
 									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['equipo']?>" data-marca="<?php echo $row['marca']?>" data-ubicacion="<?php echo $row['id_ubicacion']?>" data-linea="<?php echo $row['id_linea']?>" data-caracteristicas="<?php echo $row['caracteristicas']?>" data-imagen="<?php echo $row['imagen']?>" data-img="<?php echo "img".$row['id']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-								}else{
-						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['equipo']?>" data-marca="<?php echo $row['marca']?>" data-ubicacion="<?php echo $row['id_ubicacion']?>" data-linea="<?php echo $row['id_linea']?>" data-caracteristicas="<?php echo $row['caracteristicas']?>" data-imagen="<?php echo $row['imagen']?>" data-img="<?php echo "img".$row['id']?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 								}
 						?>
 						<?php
@@ -87,13 +83,7 @@
 						?>
 									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['equipo']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-								}else{
-						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['equipo']?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 								}
-						?>
-						<?php
 							}
 						?>
 		

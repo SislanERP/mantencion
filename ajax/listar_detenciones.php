@@ -92,10 +92,6 @@
 						?>
 									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-tipo_falla="<?php echo $row['id_tipo_falla']?>" data-equipo="<?php echo $row['id_equipo']?>" data-descripcion="<?php echo $row['descripcion']?>" data-falla="<?php strtotime($row['falla']);echo date("H:i",$falla)?>" data-tiempo="<?php strtotime($row['tiempo']);echo date("H:i",$tiempo)?>" data-detencion="<?php echo $row['detencion_proceso']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-								}else{
-						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-tipo_falla="<?php echo $row['id_tipo_falla']?>" data-equipo="<?php echo $row['id_equipo']?>" data-descripcion="<?php echo $row['descripcion']?>" data-falla="<?php strtotime($row['falla']);echo date("H:i",$falla)?>" data-tiempo="<?php strtotime($row['tiempo']);echo date("H:i",$tiempo)?>" data-detencion="<?php echo $row['detencion_proceso']?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 								}
 						?>
 						<?php
@@ -103,13 +99,7 @@
 						?>
 									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-tipo_falla="<?php echo $row['tipo_falla']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-								}else{
-						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-tipo_falla="<?php echo $row['tipo_falla']?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 								}
-						?>
-						<?php
 							}
 						?>
 					</td>

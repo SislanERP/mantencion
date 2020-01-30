@@ -77,10 +77,6 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-equipo="<?php echo $row['id_equipo']?>" data-frecuencia="<?php echo $row['id_frecuencia']?>" data-estado="<?php echo $row['id_estado'];?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-equipo="<?php echo $row['id_equipo']?>" data-frecuencia="<?php echo $row['id_frecuencia']?>" data-estado="<?php echo $row['id_estado'];?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
 						?>
 						<?php
@@ -88,13 +84,7 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-fecha="<?php echo date("d/m/Y", strtotime($row['fecha']))?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-fecha="<?php echo date("d/m/Y", strtotime($row['fecha']))?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
-						?>
-						<?php
 								}
 						?>
                         <?php $_SESSION['id_preventivo'] = $row['id'];?>

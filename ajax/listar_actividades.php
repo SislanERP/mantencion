@@ -76,10 +76,6 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-turno="<?php echo $row['id_turno']?>" data-estado="<?php echo $row['id_estado']?>" data-actividad="<?php echo $row['actividad']?>" data-detalle="<?php echo $row['detalle']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-turno="<?php echo $row['id_turno']?>" data-estado="<?php echo $row['id_estado']?>" data-actividad="<?php echo $row['actividad']?>" data-detalle="<?php echo $row['detalle']?>" disabled><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
 						?>
 						<?php
@@ -87,13 +83,7 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-actividad="<?php echo $row['actividad']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
-									}else{
-						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-actividad="<?php echo $row['actividad']?>" disabled><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
-						<?php
 									}
-						?>
-						<?php
 								}
 						?>
 					</td>
