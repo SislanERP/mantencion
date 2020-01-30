@@ -13,7 +13,7 @@
 		$tables="	actividades a inner JOIN
 					turnos b on a.id_turno = b.id_turno inner JOIN
 					estados c on a.id_estado = c.id_estado inner join
-					usuarios d on a.id_usuario_registro = d.id_usuario inner join
+					usuarios d on a.id_usuario_registro = d.id_usuario left outer join
 					equipos e on a.id_equipo = e.id_equipo";
 
 		$campos="	a.fecha as fecha,
