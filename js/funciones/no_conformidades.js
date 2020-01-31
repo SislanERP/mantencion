@@ -33,7 +33,7 @@ function load(page){
         modal.find('select[id=area]').val(area)
         modal.find('select[id=producto]').val(producto)
         modal.find('select[id=fase]').val(fase)
-        modal.find('select[id=personal]').val(personal)
+        modal.find('select[id=detector]').val(personal)
         modal.find('.modal-body #desviacion').val(desviacion)
         modal.find('.modal-body #img').attr("src", img_antes)
         $('.selectpicker').selectpicker('refresh');
