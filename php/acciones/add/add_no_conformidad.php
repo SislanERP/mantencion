@@ -52,7 +52,7 @@
             //Definimos la cuenta que vamos a usar. Dirección completa de la misma
             $mail->Username   = "sismantencionlandes@gmail.com";
             $mail->Password   = "vaongachlooxposk";
-            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
             //Esta línea es por si queréis enviar copia a alguien (dirección y, opcionalmente, nombre)
             //$mail->AddReplyTo('replyto@correoquesea.com','El de la réplica');
             //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
@@ -63,7 +63,7 @@
                 $mail->AddAddress($columna['email'], $columna['nombre']);
             }
             //Definimos el tema del email
-            $mail->Subject = 'Sistema Mantención';
+            $mail->Subject = 'NC '.$contador;
             //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
             $mail->MsgHTML("<html> 
                                 <head> 
@@ -121,7 +121,7 @@
             //Definimos la cuenta que vamos a usar. Dirección completa de la misma
             $mail->Username   = "sismantencionlandes@gmail.com";
             $mail->Password   = "vaongachlooxposk";
-            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
             //Esta línea es por si queréis enviar copia a alguien (dirección y, opcionalmente, nombre)
             //$mail->AddReplyTo('replyto@correoquesea.com','El de la réplica');
             //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
@@ -132,7 +132,7 @@
                 $mail->AddAddress($columna['email'], $columna['nombre']);
             }
             //Definimos el tema del email
-            $mail->Subject = 'Sistema Mantención';
+            $mail->Subject = 'NC '.$contador;
             //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
             $mail->MsgHTML("<html> 
                                 <head> 

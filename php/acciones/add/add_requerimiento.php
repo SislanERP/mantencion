@@ -95,14 +95,14 @@
             $mail->SMTPAuth   = true;
             $mail->Username   = "sismantencionlandes@gmail.com";
             $mail->Password   = "vaongachlooxposk";
-            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'REQUERIMIENTOS');
             $consulta = "CALL consulta_correos_area(2)";
             $resultado = mysqli_query( conectar(), $consulta );
             while ($columna = mysqli_fetch_array( $resultado ))
             { 
                 $mail->AddAddress($columna['email'], $columna['nombre']);
             }
-            $mail->Subject = 'Sistema Mantención';
+            $mail->Subject = 'RE '.$contador;
             $mail->MsgHTML("<html> 
                                 <head> 
                                     <title>Sistema Mantención</title> 

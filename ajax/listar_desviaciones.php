@@ -76,7 +76,7 @@
                     <th>Área</th>
                     <th>Producto</th>
                     <th>Fase Proceso</th>
-					<th>Detector</th>
+					<th>Detectado Por</th>
 					<th>Ejecución</th>
 					<th>Estado</th>
                     <th>Acción</th>

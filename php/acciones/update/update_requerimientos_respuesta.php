@@ -26,14 +26,14 @@
             $mail->SMTPAuth   = true;
             $mail->Username   = "sismantencionlandes@gmail.com";
             $mail->Password   = "vaongachlooxposk";
-            $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
+            $mail->SetFrom('sismantencionlandes@gmail.com', 'REQUERIMIENTOS');
             $consulta = "CALL consulta_correo_usuario($user)";
             $resultado = mysqli_query( conectar(), $consulta );
             while ($columna = mysqli_fetch_array( $resultado ))
             { 
                 $mail->AddAddress($columna['email'], $columna['nombre']);
             }
-            $mail->Subject = 'Sistema Mantención';
+            $mail->Subject = 'RE '.$_POST['id1'];
             $mail->MsgHTML("<html> 
                                 <head> 
                                     <title>Sistema Mantención</title> 
@@ -58,7 +58,7 @@
                             </html>");
             $mail->CharSet = 'UTF-8';
             if(!$mail->Send()) {
-                $messages[] = "Desviación guardada satisfactoriamente.";
+                $messages[] = "Requerimiento guardado satisfactoriamente.";
             } else {
                 echo $mail->ErrorInfo;
             }  
