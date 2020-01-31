@@ -31,11 +31,12 @@
     </table>
 
     <?php
-        $id = $_SESSION['id_preventivo']; 
+        $id = $_GET["id"];
         $consulta = "call consulta_report_preventivo($id)";
         $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
         while ($columna = mysqli_fetch_array( $resultado ))
         {
+            $id_equipo = $columna['id_equipo'];
             echo    "<div style='border: 1px solid #dee2e6;width:100%;padding:15px;'>
                         <div class='d-flex w-100'>
                             <div>
@@ -80,5 +81,16 @@
                     ";
         }    
     ?>
+    <div>
+        <span>
+            <?php
+                $consulta = "call consulta_plantilla_equipo($id_equipo)";
+                $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                if ($columna = mysqli_fetch_array( $resultado ))
+                {
+                    echo $columna['detalle'];
+                }  
+            ?></span>
+    </div>
 </body>
 </html>

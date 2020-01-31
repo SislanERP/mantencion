@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div id="datos_ajax_register"></div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-6">
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Fecha:</label>
                                 <input type="date" id="fecha0" name="fecha0" class="form-control" value="<?php echo date("Y-m-d");?>">
@@ -56,7 +56,7 @@
                                 </select>
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Detector:</label>
+                                <label class="col-form-label">Detectado Por:</label>
                                 <select name="detector0" id="detector0" class="selectpicker form-control" data-live-search="true">
                                     <?php 
                                         $consulta = "call consulta_detectores()";

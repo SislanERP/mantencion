@@ -10,7 +10,7 @@
 	$resultado = mysqli_query( conectar(), $consulta );
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
-        $query="UPDATE plantilla_preventiva SET detalle='$_POST[detalle]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_equipo=$_POST[equipo]";
+        $query="UPDATE plantilla_preventiva SET detalle='$_POST[editor]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_equipo=$_POST[equipo]";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "Plantilla actualizada satisfactoriamente.";
@@ -34,7 +34,7 @@
             $contador = 1;
         }
 
-        $query="INSERT INTO plantilla_preventiva (id_plantilla,id_equipo,detalle,fec_registro,id_usuario_registro) values($contador,$_POST[equipo],'$_POST[detalle]','$fecha',$id_usuario)";
+        $query="INSERT INTO plantilla_preventiva (id_plantilla,id_equipo,detalle,fec_registro,id_usuario_registro) values($contador,$_POST[equipo],'$_POST[editor]','$fecha',$id_usuario)";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "Plantilla guardada satisfactoriamente.";

@@ -88,7 +88,7 @@
 								}
 						?>
                         <?php $_SESSION['id_preventivo'] = $row['id'];?>
-                        <a href="php/acciones/report/report_preventivo.php" target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
+                        <a href="php/acciones/report/report_preventivo.php?id=<?php echo $row['id']?>" target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
 					</td>
 				</tr>
 				<?php

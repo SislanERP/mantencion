@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-12 datos_ajax_delete mt-3"></div>
                 <div class="col-12">
-                    <textarea class="form-control" name="detalle" id="detalle" rows="20"></textarea>
+                    <textarea name="editor" id="editor" class="tinymce"></textarea>
                 </div>
             </div>
 

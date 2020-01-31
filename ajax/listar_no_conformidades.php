@@ -16,13 +16,13 @@
 
 		$query = mysqli_real_escape_string(conectar(),(strip_tags($_REQUEST['query'], ENT_QUOTES)));
 
-        $tables="	desviaciones a inner join areas b on a.id_area = b.id_area inner join
+        $tables="	no_conformidades a inner join areas b on a.id_area = b.id_area inner join
                     productos c on a.id_producto = c.id_producto inner join
                     fase_del_proceso d on a.id_fase = d.id_fase inner join
                     personal_calidad e on a.id_personal = e.id_personal inner join
                     int_estados_calidad f on a.id_estado = f.id_estado";
 
-        $campos="	a.id_desviacion as id,
+        $campos="	a.id_no_conformidad as id,
                     a.fecha as fecha,
                     b.area as area,
                     a.id_area as id_area,
@@ -34,22 +34,25 @@
                     e.nombre as detector,
                     a.id_estado as id_estado,
                     f.estado as estado,
-                    a.desviacion as desviacion,
-                    a.consecuencia as consecuencia,
-                    a.acciones as acciones,
+					a.descripcion as descripcion,
+					a.causa_raiz as causa,
+					a.correctivo as correctivo,
+					a.preventivo as preventivo,
                     a.responsable as responsable,
 					a.observaciones as observaciones,
 					a.log_ejecucion as ejecucion,
-					a.fec_ejecucion as fec_ejecucion";
+					a.fec_ejecucion as fec_ejecucion,
+					a.img_antes as img_antes,
+					a.img_despues as img_despues";
 		if($area == 3)
 		{
 			$sWhere=" a.fecha LIKE '%".$query."%'";
-			$sWhere.=" order by a.id_desviacion desc";
+			$sWhere.=" order by a.id_no_conformidad desc";
 		}
 
 		else{
-			$sWhere="a.id_area = $area and a.id_desviacion like '%".$query."'";
-			$sWhere.=" order by a.id_desviacion desc";
+			$sWhere="a.id_area = $area and a.id_no_conformidad like '%".$query."'";
+			$sWhere.=" order by a.id_no_conformidad desc";
 		}
 		
 
@@ -62,7 +65,7 @@
         $count_query   = mysqli_query(conectar(),"SELECT count(*) AS numrows FROM $tables where $sWhere");
         if ($row= mysqli_fetch_array($count_query)){$numrows = $row['numrows'];}
         $total_pages = ceil($numrows/$per_page);
-		$reload = 'desviaciones.php';
+		$reload = 'no_conformidades.php';
 
         $query = mysqli_query(conectar(),"SELECT $campos from $tables where $sWhere Limit $offset,$per_page");
 
@@ -71,12 +74,12 @@
 	<table class="table">
 			  <thead class="thead-light">
 				<tr>
-                    <th>AC</th>
+                    <th>NC</th>
                     <th>Fecha</th>
                     <th>Área</th>
                     <th>Producto</th>
                     <th>Fase Proceso</th>
-					<th>Detector</th>
+					<th>Detectado Por</th>
 					<th>Ejecución</th>
 					<th>Estado</th>
                     <th>Acción</th>
@@ -105,7 +108,7 @@
 								{ 
 									if($columna['editar'] == 1){
 						?>
-										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-area="<?php echo $row['id_area']?>" data-producto="<?php echo $row['id_producto']?>" data-fase="<?php echo $row['id_fase']?>" data-personal="<?php echo $row['id_personal']?>" data-desviacion="<?php echo $row['desviacion'];?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-fecha="<?php echo $row['fecha']?>" data-area="<?php echo $row['id_area']?>" data-producto="<?php echo $row['id_producto']?>" data-fase="<?php echo $row['id_fase']?>" data-personal="<?php echo $row['id_personal']?>" data-desviacion="<?php echo $row['descripcion'];?>" data-img_antes="<?php echo $row['img_antes']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
                                     }
 						?>
@@ -118,9 +121,9 @@
 								}
 						?>
 						
-                        <button type="button" class="btn p-0" data-toggle="modal" data-target="#dataResponder" data-id="<?php echo $row['id']?>" data-desviacion="<?php echo $row['desviacion']?>" data-consecuencia="<?php echo $row['consecuencia']?>" data-acciones="<?php echo $row['acciones']?>" data-responsable="<?php echo $row['responsable']?>" data-observaciones="<?php echo $row['observaciones']?>" data-estado="<?php echo $row['id_estado']?>" data-ejecucion="<?php echo $row['ejecucion']?>" data-fec_ejecucion="<?php echo $row['fec_ejecucion']?>" data-area="<?php echo $area?>" data-depa="<?php echo $row['id_area']?>"><img src="img/iconos/ver.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+                        <button type="button" class="btn p-0" data-toggle="modal" data-target="#dataResponder" data-id="<?php echo $row['id']?>" data-desviacion="<?php echo $row['descripcion']?>" data-causa="<?php echo $row['causa']?>" data-correctivo="<?php echo $row['correctivo']?>" data-preventivo="<?php echo $row['preventivo']?>" data-responsable="<?php echo $row['responsable']?>" data-observaciones="<?php echo $row['observaciones']?>" data-estado="<?php echo $row['id_estado']?>" data-ejecucion="<?php echo $row['ejecucion']?>" data-fec_ejecucion="<?php echo $row['fec_ejecucion']?>" data-area="<?php echo $area?>" data-depa="<?php echo $row['id_area']?>" data-img_antes="<?php echo $row['img_antes']?>" data-img_despues="<?php echo $row['img_despues']?>"><img src="img/iconos/ver.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
                         <?php if($row['id_estado'] ==  2){?>
-                            <a href='php/acciones/report/report_desviaciones.php?id=<?php echo $row['id']?>' target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
+                            <a href='php/acciones/report/report_no_conformidades.php?id=<?php echo $row['id']?>' target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
                         <?php }?>
                     </td>
 				</tr>

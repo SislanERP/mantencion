@@ -40,12 +40,9 @@
         //Tenemos que usar gmail autenticados, así que esto a TRUE
         $mail->SMTPAuth   = true;
         //Definimos la cuenta que vamos a usar. Dirección completa de la misma
-        $mail->Username   = "cristianasenjotorres@gmail.com";
-        //Introducimos nuestra contraseña de gmail
-        $mail->Password   = "qkoemzfrnrnlxuto";
-        //$mail->Password = "vnqrxxrxmplqhwct";
-        //Definimos el remitente (dirección y, opcionalmente, nombre)
-        $mail->SetFrom('cristianasenjotorres@gmail.com', 'Sistema Mantención');
+        $mail->Username   = "sismantencionlandes@gmail.com";
+        $mail->Password   = "vaongachlooxposk";
+        $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
         //Esta línea es por si queréis enviar copia a alguien (dirección y, opcionalmente, nombre)
         //$mail->AddReplyTo('replyto@correoquesea.com','El de la réplica');
         //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
