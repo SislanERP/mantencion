@@ -16,10 +16,10 @@
 
 		$query = mysqli_real_escape_string(conectar(),(strip_tags($_REQUEST['query'], ENT_QUOTES)));
 
-        $tables="	no_conformidades a inner join areas b on a.id_area = b.id_area inner join
-                    productos c on a.id_producto = c.id_producto inner join
-                    fase_del_proceso d on a.id_fase = d.id_fase inner join
-                    personal_calidad e on a.id_personal = e.id_personal inner join
+        $tables="	no_conformidades a inner join areas b on a.id_area = b.id_area left outer join
+                    productos c on a.id_producto = c.id_producto left outer join
+                    fase_del_proceso d on a.id_fase = d.id_fase left outer join
+                    personal_calidad e on a.id_personal = e.id_personal left outer join
                     int_estados_calidad f on a.id_estado = f.id_estado";
 
         $campos="	a.id_no_conformidad as id,
