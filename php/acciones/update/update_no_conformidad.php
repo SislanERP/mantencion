@@ -18,7 +18,7 @@
         $imagen = "img/no_conformidades/".$_FILES['imagen']['name'];
         if(empty($_FILES['imagen']['name']))
         {
-            $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[fase], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_no_conformidad=$_POST[id]";
+            $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[detector], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_no_conformidad=$_POST[id]";
             if (conectar()->query($query) === TRUE) 
             {
                 $messages[] = "No Conformidad editada satisfactoriamente.";
@@ -33,7 +33,7 @@
         {
             if($columna['img_antes'] == $imagen)
             {
-                $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[fase], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_no_conformidad=$_POST[id]";
+                $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[detector], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario where id_no_conformidad=$_POST[id]";
                 if (conectar()->query($query) === TRUE) 
                 {
                     $messages[] = "No Conformidad editada satisfactoriamente.";
@@ -49,7 +49,7 @@
                 $target = $target_path . basename( $_FILES['imagen']['name']);
                 if(move_uploaded_file($_FILES['imagen']['tmp_name'], $target))
                 {
-                    $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[fase], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario, img_antes='img/no_conformidades/".$_FILES['imagen']['name']."' where id_no_conformidad=$_POST[id]";
+                    $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[detector], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario, img_antes='img/no_conformidades/".$_FILES['imagen']['name']."' where id_no_conformidad=$_POST[id]";
                     if (conectar()->query($query) === TRUE) 
                     {
                         $messages[] = "No Conformidad editada satisfactoriamente.";
@@ -62,7 +62,7 @@
                 }
                 else
                 {
-                    $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[fase], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario, img_antes='img/no_conformidades/".$_FILES['imagen']['name']."' where id_no_conformidad=$_POST[id]";
+                    $query="UPDATE no_conformidades SET fecha='$_POST[fecha]', id_area=$_POST[area],id_producto=$_POST[producto], id_fase=$_POST[fase], id_personal=$_POST[detector], descripcion='$_POST[desviacion]',fec_edicion='$fecha',id_usuario_edicion=$id_usuario, img_antes='img/no_conformidades/".$_FILES['imagen']['name']."' where id_no_conformidad=$_POST[id]";
                     if (conectar()->query($query) === TRUE) 
                     {
                         $messages[] = "No Conformidad editada satisfactoriamente.";
