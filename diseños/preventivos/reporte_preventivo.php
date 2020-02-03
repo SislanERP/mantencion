@@ -5,25 +5,49 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <link rel="stylesheet" type="text/css"href="css/ventas.css">
+    <style>
+       @page { margin: 180px 50px; }
+       #header { position: fixed; left: 0px; top: -150px; right: 0px; text-align: center; }
+       #footer { position: fixed; left: 0px; bottom: -80px; right: 0px; height: 150px; }
+       #footer .page:after { content: counter(page, upper-roman); }
+     </style>
+    <style>
+        td{font-size:12px;padding:3px !important;margin:3px !important;}
+        ul{margin:1px !important;   }
+    </style>
 </head>
 
 <body class="bl">
-    <table class="table table-bordered ">
+<script type="text/php">
+    if ( isset($pdf) ) { 
+        $pdf->page_script('
+        if ($PAGE_COUNT > 1) {
+            $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+            $size = 9;
+            $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;
+            $y = 48;
+            $x = 465;
+            $pdf->text($x, $y, $pageText, $font, $size);
+        } 
+    ');
+}
+</script> 
+    <table id="header" class="table table-bordered ">
         <thead>
             <tr>
                 <td  rowspan="4" class="p-1" style="width:10%;vertical-align: inherit;"><img src="../../../img/logo.png" alt="" style="width:90px;"></td>
-                <td rowspan="4" class="text-center font-weight-bold p-1" style="vertical-align: inherit; width:55%;"><h3>ORDEN DE TRABAJO <br>R13   </br></h3></td>
+                <td rowspan="4" class="text-center font-weight-bold p-1" style="vertical-align: inherit; width:62%;"><h3>ORDEN DE TRABAJO <br>R13   </br></h3></td>
                 <td class="text-center p-1" style="font-size: 12px;">Versión</td>
                 <td class="text-center p-1" style="font-size: 12px;">0.1</td>
                 <tr>
-                    <td class="text-center p-1" colspan="2" style="font-size: 12px;">Página 1 de 1</td>
+                    <td class="text-center p-1" colspan="2" style="font-size: 12px;height:18px;"></td>
                 </tr>
                 <tr>
-                    <td class="text-center p-1" style="font-size: 12px;">Fecha Elaboración</td>
+                    <td class="text-center p-1" style="font-size: 12px;">Fecha Elab</td>
                     <td class="text-center p-1" style="font-size: 12px;">23/01/2020</td>
                 </tr>
                 <tr>
-                    <td class="text-center p-1" style="font-size: 12px;">Fecha Revisión</td>
+                    <td class="text-center p-1" style="font-size: 12px;">Fecha Rev</td>
                     <td class="text-center p-1" style="font-size: 12px;">23/01/2020</td>
                 </tr>
             </tr>
@@ -37,7 +61,8 @@
         while ($columna = mysqli_fetch_array( $resultado ))
         {
             $id_equipo = $columna['id_equipo'];
-            echo    "<div style='border: 1px solid #dee2e6;width:100%;padding:15px;'>
+            $responsable = $columna['responsable'];
+            echo    "<div style='border: 1px solid #dee2e6;width:100%;padding:15px;margin-bottom:-30px;'>
                         <div class='d-flex w-100'>
                             <div>
                                 <span style='display:inline-block;width:150px;'>N° Preventivo</span>
@@ -65,24 +90,10 @@
                             <span style='display:inline-block;'>: ".$columna['equipo']."</span>
                         </div>
                     </div>
-
-
-        
-                    <div class='w-100' style='margin-top:150px;'>
-                        <div class='d-flex w-100'>
-                            <span>Responsable</span>
-                            <span style='float:right;'>V°B Jefe Mantención</span>
-                        </div>
-                        <div class='w-100'>
-                            <span class='font-weight-bold'>".$columna['responsable']."</span>
-                            <img src='../../../img/firmas/boris.png' alt='' style='width:200px;position:fixed;float:right;bottom:180px;'>
-                        </div>
-                    </div>
                     ";
         }    
     ?>
-    <div>
-        <span>
+    <div style="margin-bottom:-60px;">
             <?php
                 $consulta = "call consulta_plantilla_equipo($id_equipo)";
                 $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
@@ -90,7 +101,17 @@
                 {
                     echo $columna['detalle'];
                 }  
-            ?></span>
+            ?>
     </div>
+
+    <table class="w-100" id="footer">
+        <tr>
+            <td class="text-center"><img src="../../../img/firmas/boris.png" alt="" style="width:200px;"></td>
+        </tr>
+        <tr>
+            <td class="text-center">Aprobado por Jefe de Mantención</td>
+        </tr>
+        
+    </table>
 </body>
 </html>
