@@ -36,7 +36,6 @@
     <?php include('nav.php');?>
 
     <div id="content">
-        <?php $pass = getenv("pass_correo"); echo $pass; echo "test";?>
         <div class="container-fluid">
             <div class="row justify-content-around movil">
                 <div class="datos">
