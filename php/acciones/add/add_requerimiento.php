@@ -40,7 +40,7 @@
             $mail->SMTPSecure = 'ssl';
             $mail->SMTPAuth   = true;
             $mail->Username   = "sismantencionlandes@gmail.com";
-            $mail->Password   = "vaongachlooxposk";
+            $mail->Password   = getenv("pass_correo");
             $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
             $consulta = "CALL consulta_correos_area(2)";
             $resultado = mysqli_query( conectar(), $consulta );

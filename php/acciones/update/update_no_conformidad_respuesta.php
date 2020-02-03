@@ -35,7 +35,7 @@
                         $mail->SMTPSecure = 'ssl';
                         $mail->SMTPAuth   = true;
                         $mail->Username   = "sismantencionlandes@gmail.com";
-                        $mail->Password   = "vaongachlooxposk";
+                        $mail->Password   = getenv("pass_correo");
                         $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
                         $consulta = "CALL consulta_correos_area(3)";
                         $resultado = mysqli_query( conectar(), $consulta );
@@ -86,7 +86,7 @@
                         $mail->SMTPSecure = 'ssl';
                         $mail->SMTPAuth   = true;
                         $mail->Username   = "sismantencionlandes@gmail.com";
-                        $mail->Password   = "vaongachlooxposk";
+                        $mail->Password   = getenv("pass_correo");
                         $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
                         $consulta = "CALL consulta_correos_area($dep)";
                         $resultado = mysqli_query( conectar(), $consulta );
@@ -156,7 +156,7 @@
                         $mail->SMTPSecure = 'ssl';
                         $mail->SMTPAuth   = true;
                         $mail->Username   = "sismantencionlandes@gmail.com";
-                        $mail->Password   = "vaongachlooxposk";
+                        $mail->Password   = getenv("pass_correo");
                         $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
                         $consulta = "CALL consulta_correos_area($dep)";
                         $resultado = mysqli_query( conectar(), $consulta );
@@ -208,7 +208,7 @@
                             $mail->SMTPSecure = 'ssl';
                             $mail->SMTPAuth   = true;
                             $mail->Username   = "sismantencionlandes@gmail.com";
-                            $mail->Password   = "vaongachlooxposk";
+                            $mail->Password   = getenv("pass_correo");
                             $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
                             $consulta = "CALL consulta_correos_area($dep)";
                             $resultado = mysqli_query( conectar(), $consulta );
@@ -257,7 +257,7 @@
                             $mail->SMTPSecure = 'ssl';
                             $mail->SMTPAuth   = true;
                             $mail->Username   = "sismantencionlandes@gmail.com";
-                            $mail->Password   = "vaongachlooxposk";
+                            $mail->Password   = getenv("pass_correo");
                             $mail->SetFrom('sismantencionlandes@gmail.com', 'NO CONFORMIDAD');
                             $consulta = "CALL consulta_correos_area($dep)";
                             $resultado = mysqli_query( conectar(), $consulta );

@@ -45,7 +45,7 @@
         $mail->SMTPAuth   = true;
         //Definimos la cuenta que vamos a usar. Dirección completa de la misma
         $mail->Username   = "sismantencionlandes@gmail.com";
-        $mail->Password   = "vaongachlooxposk";
+        $mail->Password   = getenv("pass_correo");
         $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
         //Esta línea es por si queréis enviar copia a alguien (dirección y, opcionalmente, nombre)
         //$mail->AddReplyTo('replyto@correoquesea.com','El de la réplica');
