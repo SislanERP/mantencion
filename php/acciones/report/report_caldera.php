@@ -9,7 +9,6 @@
     $html = ob_get_clean();
     $dompdf = new Dompdf();
     $dompdf->loadHtml($html);  
-    $dompdf->set_option("isPhpEnabled", true);   
     $dompdf->setPaper('A4', 'portrait'); 
     $dompdf->render();
     $dompdf->stream("caldera.pdf", array("Attachment" => 0));

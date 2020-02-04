@@ -25,21 +25,6 @@
     </style>
 </head>
 <body>
-    <script type="text/php">
-        if ( isset($pdf) ) { 
-            $pdf->page_script('
-            if ($PAGE_COUNT > 1) {
-                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-                $size = 9;
-                $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;
-                $y = 48;
-                $x = 465;
-                $pdf->text($x, $y, $pageText, $font, $size);
-            } 
-        ');
-    }
-    </script>
-
     <table id="header" border=1 cellspacing=0 cellpadding=2 width="100%" class="table">
         <tr>
             <td class="e1 e2" rowspan="4" width="12%"><img src="../../../img/logo.png" alt="" style="width:90px;"></td>
@@ -66,14 +51,14 @@
 
     <table border=1 cellspacing=0 cellpadding=2 width="100%" class="table">
         <tr>
-            <td class="e1 e2" width="15%">EQUIPOS</td>
-            <td class="e1 e2" width="12%">PURGAS DE VAPOR</td>
-            <td class="e1 e2" width="12%">REVISION INSTRUMENTOS DE MEDIDA</td>
-            <td class="e1 e2" width="12%">REVISION BOMBAS DE AGUA</td>
-            <td class="e1 e2" width="12%">MEDICION ESTANQUES DE GAS</td>
-            <td class="e1 e2" width="12%">PRESION DE TRABAJO</td>
-            <td class="e1 e2" width="12%">H ENCENDIDO</td>
-            <td class="e1 e2" width="12%">H APAGADO</td>
+            <td class="e1 e2" width="15%" style="font-weight:bolder;">EQUIPOS</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">PURGAS DE VAPOR</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">REVISION INSTRUMENTOS DE MEDIDA</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">REVISION BOMBAS DE AGUA</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">MEDICION ESTANQUES DE GAS</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">PRESION DE TRABAJO</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">H ENCENDIDO</td>
+            <td class="e1 e2" width="12%" style="font-weight:bolder;">H APAGADO</td>
         </tr>
         <tr>
             <td class="e1 e2">CALDERA N° 1</td>
@@ -107,7 +92,7 @@
         </tr>
     </table>
 
-    <h3 style="font-size:12px;margin-top:20px;">OBSERVACIONES GENERALES</h3>
+    <h3 style="font-size:12px;margin-top:30px;">OBSERVACIONES GENERALES</h3>
     <div style="border: 1px solid #dee2e6;width:100%;height:300px;padding:10px;font-size:12px;">
         <?php echo $observacion;?>
     </div>

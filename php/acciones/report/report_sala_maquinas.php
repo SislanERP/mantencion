@@ -9,7 +9,7 @@
     $html = ob_get_clean();
     $dompdf = new Dompdf();
     $dompdf->loadHtml($html);   
-    $dompdf->setPaper('A4', 'landscape'); 
+    $dompdf->setPaper('A4', 'portrait'); 
     $dompdf->render();
     $dompdf->stream("sala_maquinas.pdf", array("Attachment" => 0));
 ?>
