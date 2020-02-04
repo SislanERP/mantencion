@@ -10,7 +10,6 @@
     $dompdf = new Dompdf();
     $dompdf->loadHtml($html);  
     $dompdf->set_option("isPhpEnabled", true);
-
     $dompdf->setPaper('A4', 'portrait'); 
     $dompdf->render();
     $dompdf->stream("equipos.pdf", array("Attachment" => 0));
