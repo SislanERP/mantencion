@@ -73,7 +73,7 @@
 
     <div style="margin-top:20px;">
         <span class="font-weight-bold" style="font-size:14px;">Fecha:</span>
-        <span class="font-weight-bold" style="font-size:14px;font-weight:bolder;"><?php $fecha = strtotime($_SESSION['fecha_caldera']);  echo date("d-m-Y",$fecha);?></span>
+        <span class="font-weight-bold" style="font-size:14px;font-weight:bolder;"><?php $fecha = strtotime($_SESSION['fecha_control']);  echo date("d-m-Y",$fecha);?></span>
     </div>
 
     <div id="footer">
