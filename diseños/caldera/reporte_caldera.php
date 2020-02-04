@@ -19,7 +19,7 @@
         #header { position: fixed; left: 0px; top: -150px; right: 0px; text-align: center; }
         #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 150px; }
         #footer .page:after { content: counter(page, upper-roman); }
-        .e1{padding:5px;text-align:center;}
+        .e1{padding:8px;text-align:center;}
         .e2{font-size:11px;}
         .table td {border: 1px solid #dee2e6;}
     </style>
