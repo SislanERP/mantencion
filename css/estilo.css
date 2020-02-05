@@ -446,7 +446,7 @@ input[type="checkbox"]:checked:disabled + label:before {
 
 
 
-@media (max-width: 412px) {
+@media (max-width: 480px) {
     /**/
     .row{flex-wrap: nowrap  ;margin-right: 0px !important;margin-left: 0px !important;}
     .hi{display: none !important;}
