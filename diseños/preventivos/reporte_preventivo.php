@@ -78,6 +78,10 @@
                                 <span style='display:inline-block;width:150px;'>Responsable</span>
                                 <span style='display:inline-block;'>: ".$columna['responsable']."</span>
                             </div>
+                            <div style='float:right;margin-right:74px;'>
+                                <span style='display:inline-block;'>Prioridad</span>
+                                <span style='display:inline-block;'>: ".$columna['prioridad']."</span>
+                            </div>
                         </div>
                         <div class='d-flex w-100'>
                             <div>
