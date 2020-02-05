@@ -17,7 +17,7 @@
 <script type="text/php">
     if ( isset($pdf) ) { 
         $pdf->page_script('
-        if ($PAGE_COUNT > 1) {
+        if ($PAGE_COUNT >= 1) {
             $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
             $size = 9;
             $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;

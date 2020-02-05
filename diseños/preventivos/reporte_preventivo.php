@@ -21,7 +21,7 @@
 <script type="text/php">
     if ( isset($pdf) ) { 
         $pdf->page_script('
-        if ($PAGE_COUNT > 1) {
+        if ($PAGE_COUNT >= 1) {
             $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
             $size = 9;
             $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;
@@ -106,10 +106,12 @@
 
     <table class="w-100" id="footer">
         <tr>
-            <td class="text-center"><img src="../../../img/firmas/boris.png" alt="" style="width:200px;"></td>
+            <td class="text-center">___________________</td>
+            <td class="text-center">___________________</td>
         </tr>
         <tr>
-            <td class="text-center">Aprobado por Jefe de Mantención</td>
+            <td class="text-center">Realizado Por</td>
+            <td class="text-center flota-right">Aprobado Por</td>
         </tr>
         
     </table>
