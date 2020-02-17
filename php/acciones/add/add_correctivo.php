@@ -17,7 +17,7 @@
         $contador = 1;
     }
 
-    if(empty($_POST['ot_padre0'])){$ote="NULL";}else{$año=$_POST['ot_padre0'];}
+    if(empty($_POST['ot_padre0'])){$ote="NULL";}else{$ote=$_POST['ot_padre0'];}
     
     $query="INSERT INTO correctivos (id_correctivo,ot_padre,fec_inicio,id_prioridad,id_tipo_mantenimiento,id_equipo,actividad,id_responsable,id_estado,fec_registro,id_usuario_registro) values($contador,$ote,'$_POST[fecha0]',$_POST[prioridad0],1,$_POST[equipo0],'$_POST[actividad0]',$_POST[responsable0],1,'$fecha',$id_usuario)";
     if (conectar()->query($query) === TRUE) 
