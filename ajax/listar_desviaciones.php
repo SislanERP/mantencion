@@ -15,6 +15,7 @@
     if($action == 'ajax'){
 
 		$query = mysqli_real_escape_string(conectar(),(strip_tags($_REQUEST['query'], ENT_QUOTES)));
+		// if($query == "en proceso"){$ejec = 0;}else if($query="terminado"){$ejec= 1;} else {$ejec= "";}
 
         $tables="	desviaciones a inner join areas b on a.id_area = b.id_area inner join
                     productos c on a.id_producto = c.id_producto inner join
@@ -43,12 +44,12 @@
 					a.fec_ejecucion as fec_ejecucion";
 		if($area == 3)
 		{
-			$sWhere=" a.fecha LIKE '%".$query."%'";
-			$sWhere.=" order by a.id_desviacion desc";
+			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or b.area LIKE '%".$query."%' or a.id_desviacion LIKE '%".$query."%'";
+			$sWhere.=" order by a.id_desviacion desc";	
 		}
 
 		else{
-			$sWhere="a.id_area = $area and a.id_desviacion like '%".$query."'";
+			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or a.id_area LIKE =".$area." or a.id_desviacion LIKE '%".$query."%'";
 			$sWhere.=" order by a.id_desviacion desc";
 		}
 		

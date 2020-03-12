@@ -65,7 +65,7 @@
 
         <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
         <div class="datos_ajax_delete mt-3"></div><!-- Datos ajax Final -->
-        <div class='outer_div table-responsive'></div> 
+        <div class='outer_div table-responsive'></div>
     </div>
   </div>
               

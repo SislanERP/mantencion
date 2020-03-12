@@ -66,7 +66,7 @@
 					<td><?php echo $row['consumo'];?></td>
 					<td><?php echo $row['entrada']." m³";?></td>
 					<td><?php echo $row['salida']." m³";?></td>
-                    <td><?php if($row['id_tipo'] == 1){$total = $row['total'] * 10; echo $total." m³";}else{echo $row['total']." m³";}?></td>
+                    <td><?php if($row['id_tipo'] == 1){$total = $row['total'] * 10; echo $total." m³";}else{echo $row['total']." lts";}?></td>
 					<td><?php echo $row['usuario'];?></td>
 					<td>
 						<?php
