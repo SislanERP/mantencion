@@ -42,7 +42,6 @@
 					a.observaciones as observaciones,
 					a.log_ejecucion as ejecucion,
 					a.fec_ejecucion as fec_ejecucion";
-					echo $area;
 		if($area == 3)
 		{
 			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or b.area LIKE '%".$query."%' or a.id_desviacion LIKE '%".$query."%'";
@@ -50,7 +49,7 @@
 		}
 
 		else{
-			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or a.id_area =".$area." or a.id_desviacion LIKE '%".$query."%'";
+			$sWhere="a.id_area =".$area." or a.id_desviacion=".$query."";
 			$sWhere.=" order by a.id_desviacion desc";
 		}
 		
