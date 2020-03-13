@@ -56,6 +56,7 @@
             <td class="e1" style="text-align:center;">Departamento</td>
             <td class="e1" style="text-align:center;">Descripción</td>
             <td class="e1" style="text-align:center;">Acción Correctiva</td>
+            <td class="e1" style="text-align:center;">Estado</td>
         </tr>
         <?php
             $consulta = "call consulta_resumen_desviaciones()";
