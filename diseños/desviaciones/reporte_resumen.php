@@ -68,6 +68,7 @@
                         <td class="e1"><?php echo $columna['area'];?></td>
                         <td class="e1"><?php echo $columna['descripcion'];?></td>
                         <td class="e1"><?php echo $columna['acciones'];?></td>
+                        <td class="e1"><?php if($columna['estado'] == "NULL"){echo "Pendiente";} else if($columna['estado'] == 0){echo "En Proceso";}else{echo "Terminado";}?></td>
                     </tr>
         <?php   
             }
