@@ -49,7 +49,7 @@
 		}
 
 		else{
-			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or a.id_area LIKE =".$area." or a.id_desviacion LIKE '%".$query."%'";
+			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or a.id_area =".$area." or a.id_desviacion LIKE '%".$query."%'";
 			$sWhere.=" order by a.id_desviacion desc";
 		}
 		
