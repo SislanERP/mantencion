@@ -49,7 +49,7 @@
 		}
 
 		else{
-			$sWhere="a.id_area =".$area." or a.id_desviacion=".$query."";
+			$sWhere="a.id_area =".$area."";
 			$sWhere.=" order by a.id_desviacion desc";
 		}
 		
