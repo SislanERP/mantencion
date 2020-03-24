@@ -97,25 +97,13 @@ function load(page){
 
           if(area == 3)
           {
-              modal.find('.modal-body #consecuencia1').prop("readonly", true)
-              modal.find('.modal-body #acciones1').prop("readonly", true)
-              modal.find('.modal-body #responsable1').prop("readonly", true)
-              modal.find('.modal-body #observaciones1').prop("readonly", false)
-              modal.find('.modal-body #ejecucion1').prop("readonly", true)
-              $("#blo").css("pointer-events", "none");
-              modal.find('.modal-body #estado').prop("disabled", false)
-              $('#esta').show()
-          }
-          else
-          {
               modal.find('.modal-body #consecuencia1').prop("readonly", false)
               modal.find('.modal-body #acciones1').prop("readonly", false)
               modal.find('.modal-body #responsable1').prop("readonly", false)
-              modal.find('.modal-body #observaciones1').prop("readonly", true)
-              modal.find('.modal-body #ejecucion1').prop("readonly", false)
-              modal.find('.modal-body #inlineCheckbox1').prop("disabled", false)
-              modal.find('.modal-body #inlineCheckbox2').prop("disabled", false)
-              $('#esta').hide()
+              modal.find('.modal-body #observaciones1').prop("readonly", false)
+              modal.find('.modal-body #ejecucion1').prop("readonly", true)
+              modal.find('.modal-body #estado').prop("disabled", false)
+              $('#esta').show()
           }
 
           $('#bot').show()
