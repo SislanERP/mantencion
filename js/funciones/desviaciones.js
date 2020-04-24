@@ -67,16 +67,29 @@ function load(page){
 
         if(estado == 2)
         {
-          if(area == 3)
+          if(area == depa)
           {
-            modal.find('.modal-body #consecuencia1').prop("readonly", true)
-            modal.find('.modal-body #acciones1').prop("readonly", true)
-            modal.find('.modal-body #responsable1').prop("readonly", true)
-            modal.find('.modal-body #observaciones1').prop("readonly", true)
-            modal.find('.modal-body #ejecucion1').prop("readonly", true)
-            $("#blo").css("pointer-events", "none");
-            modal.find('.modal-body #estado').prop("disabled", true)
-            $('#esta').show()
+            if(area == 3)
+            {
+              modal.find('.modal-body #consecuencia1').prop("readonly", false)
+              modal.find('.modal-body #acciones1').prop("readonly", false)
+              modal.find('.modal-body #responsable1').prop("readonly", false)
+              modal.find('.modal-body #observaciones1').prop("readonly", false)
+              modal.find('.modal-body #ejecucion1').prop("readonly", false)
+              modal.find('.modal-body #estado').prop("disabled", false)
+              $('#esta').show()
+            }
+            else
+            {
+              modal.find('.modal-body #consecuencia1').prop("readonly", true)
+              modal.find('.modal-body #acciones1').prop("readonly", true)
+              modal.find('.modal-body #responsable1').prop("readonly", true)
+              modal.find('.modal-body #observaciones1').prop("readonly", true)
+              modal.find('.modal-body #ejecucion1').prop("readonly", true)
+              $("#blo").css("pointer-events", "none");
+              modal.find('.modal-body #estado').prop("disabled", true)
+            }
+            
           }
           else
           {
@@ -95,15 +108,54 @@ function load(page){
         }
         else{
 
-          if(area == 3)
+          if(area == depa)
           {
+            if(area == 3)
+            {
               modal.find('.modal-body #consecuencia1').prop("readonly", false)
               modal.find('.modal-body #acciones1').prop("readonly", false)
               modal.find('.modal-body #responsable1').prop("readonly", false)
               modal.find('.modal-body #observaciones1').prop("readonly", false)
-              modal.find('.modal-body #ejecucion1').prop("readonly", true)
+              modal.find('.modal-body #ejecucion1').prop("readonly", false)
               modal.find('.modal-body #estado').prop("disabled", false)
               $('#esta').show()
+            }
+            else
+            {
+              modal.find('.modal-body #consecuencia1').prop("readonly", false)
+              modal.find('.modal-body #acciones1').prop("readonly", false)
+              modal.find('.modal-body #responsable1').prop("readonly", false)
+              modal.find('.modal-body #observaciones1').prop("readonly", true)
+              modal.find('.modal-body #ejecucion1').prop("readonly", false)
+              modal.find('.modal-body #estado').prop("disabled", true)
+              modal.find('.modal-body #inlineCheckbox1').prop("disabled", false)
+              modal.find('.modal-body #inlineCheckbox2').prop("disabled", false)
+            }
+              
+          }
+          else
+          {
+            modal.find('.modal-body #consecuencia1').prop("readonly", true)
+            modal.find('.modal-body #acciones1').prop("readonly", true)
+            modal.find('.modal-body #responsable1').prop("readonly", true)
+            modal.find('.modal-body #ejecucion1').prop("readonly", true)
+            modal.find('.modal-body #inlineCheckbox1').prop("disabled", true)
+            modal.find('.modal-body #inlineCheckbox2').prop("disabled", true)
+
+            if(area == 3)
+            {
+              modal.find('.modal-body #observaciones1').prop("readonly", false)
+              modal.find('.modal-body #estado').prop("disabled", false)
+              $('#esta').show()
+            }
+            else
+            {
+              modal.find('.modal-body #observaciones1').prop("readonly", true)
+              modal.find('.modal-body #estado').prop("disabled", true)
+              $('#esta').hide()
+            }
+              
+              
           }
 
           $('#bot').show()
