@@ -67,32 +67,6 @@ function load(page){
 
         if(estado == 2)
         {
-          if(area == depa)
-          {
-            if(area == 3)
-            {
-              modal.find('.modal-body #consecuencia1').prop("readonly", false)
-              modal.find('.modal-body #acciones1').prop("readonly", false)
-              modal.find('.modal-body #responsable1').prop("readonly", false)
-              modal.find('.modal-body #observaciones1').prop("readonly", false)
-              modal.find('.modal-body #ejecucion1').prop("readonly", false)
-              modal.find('.modal-body #estado').prop("disabled", false)
-              $('#esta').show()
-            }
-            else
-            {
-              modal.find('.modal-body #consecuencia1').prop("readonly", true)
-              modal.find('.modal-body #acciones1').prop("readonly", true)
-              modal.find('.modal-body #responsable1').prop("readonly", true)
-              modal.find('.modal-body #observaciones1').prop("readonly", true)
-              modal.find('.modal-body #ejecucion1').prop("readonly", true)
-              $("#blo").css("pointer-events", "none");
-              modal.find('.modal-body #estado').prop("disabled", true)
-            }
-            
-          }
-          else
-          {
             modal.find('.modal-body #consecuencia1').prop("readonly", true)
             modal.find('.modal-body #acciones1').prop("readonly", true)
             modal.find('.modal-body #responsable1').prop("readonly", true)
@@ -102,10 +76,9 @@ function load(page){
             modal.find('.modal-body #inlineCheckbox2').prop("disabled", true)
             modal.find('.modal-body #estado').prop("disabled", true)
             $('#esta').hide()
-          }
-
-          $('#bot').hide()
+            $('#bot').hide()
         }
+        
         else{
 
           if(area == depa)
