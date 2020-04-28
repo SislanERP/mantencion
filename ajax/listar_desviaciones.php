@@ -42,7 +42,7 @@
 					a.observaciones as observaciones,
 					a.log_ejecucion as ejecucion,
 					a.fec_ejecucion as fec_ejecucion";
-		if($area == 3)
+		if($area == 10)
 		{
 			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or b.area LIKE '%".$query."%' or a.id_desviacion LIKE '%".$query."%'";
 			$sWhere.=" order by a.id_desviacion desc";	

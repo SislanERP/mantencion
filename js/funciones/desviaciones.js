@@ -83,7 +83,7 @@ function load(page){
 
           if(area == depa)
           {
-            if(area == 3)
+            if(area == 10)
             {
               modal.find('.modal-body #consecuencia1').prop("readonly", false)
               modal.find('.modal-body #acciones1').prop("readonly", false)
@@ -115,7 +115,7 @@ function load(page){
             modal.find('.modal-body #inlineCheckbox1').prop("disabled", true)
             modal.find('.modal-body #inlineCheckbox2').prop("disabled", true)
 
-            if(area == 3)
+            if(area == 10)
             {
               modal.find('.modal-body #observaciones1').prop("readonly", false)
               modal.find('.modal-body #estado').prop("disabled", false)
