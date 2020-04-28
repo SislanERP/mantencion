@@ -31,7 +31,7 @@
     </table>
 
     <?php
-        $id = $_SESSION['id_correctivo']; 
+        $id = $_GET['id']; 
         $consulta = "call consulta_report_correctivo($id)";
         $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
         while ($columna = mysqli_fetch_array( $resultado ))

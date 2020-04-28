@@ -100,7 +100,7 @@
 								}
 						?>
                         <?php $_SESSION['id_correctivo'] = $row['id'];?>
-                        <a href="php/acciones/report/report_correctivo.php" target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
+                        <a href="php/acciones/report/report_correctivo.php?id=<?php echo $row['id'];?>" target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
 					</td>
 				</tr>
 				<?php
