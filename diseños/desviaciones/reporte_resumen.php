@@ -54,6 +54,7 @@
         <tr>
             <td class="e1" style="text-align:center;">N°</td>
             <td class="e1" style="text-align:center;">Departamento</td>
+            <td class="e1" style="text-align:center;">Fecha</td>
             <td class="e1" style="text-align:center;">Descripción</td>
             <td class="e1" style="text-align:center;">Acción Correctiva</td>
             <td class="e1" style="text-align:center;">Estado</td>
@@ -67,6 +68,7 @@
                     <tr>
                         <td class="e1"><?php echo $columna['id'];?></td>
                         <td class="e1"><?php echo $columna['area'];?></td>
+                        <td class="e1"><?php echo $columna['fecha'];?></td>
                         <td class="e1"><?php echo $columna['descripcion'];?></td>
                         <td class="e1"><?php echo $columna['acciones'];?></td>
                         <td class="e1"><?php if($columna['estado'] == NULL){echo "Pendiente";} else if($columna['estado'] == 0){echo "En Proceso";}else{echo "Terminado";}?></td>
