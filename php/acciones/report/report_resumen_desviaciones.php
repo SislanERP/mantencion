@@ -11,7 +11,7 @@
     $dompdf->loadHtml($html);   
     $dompdf->set_option("isPhpEnabled", true);
     
-    $dompdf->setPaper('A4', 'portrait'); 
+    $dompdf->setPaper('A4', 'landscape'); 
     $dompdf->render();
     $dompdf->stream("desviaciones.pdf", array("Attachment" => 0));
 ?>
