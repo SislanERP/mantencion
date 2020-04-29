@@ -22,7 +22,7 @@
             $size = 9;
             $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;
             $y = 53;
-            $x = 485;
+            $x = 690;
             $pdf->text($x, $y, $pageText, $font, $size);
         } 
     ');
