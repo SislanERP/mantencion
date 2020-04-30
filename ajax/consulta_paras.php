@@ -45,6 +45,6 @@
 
         <tr>
             <td class="font-weight-bold" style="font-size:20px;">Total</td>
-            <td class="font-weight-bold" style="font-size:20px;"><?php echo date("H:i",$total);?></td>
+            <td class="font-weight-bold" style="font-size:20px;"><?php echo $total;?></td>
         </tr>
     </table>
