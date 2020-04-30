@@ -21,6 +21,7 @@
 	{
         $total = strtotime($columna['total']);
     }
+    else{echo mysql_error(conectar());}
 
     echo "total: ".$total. " - menor: " .$menor. " - mayor: ".$mayor;
 
