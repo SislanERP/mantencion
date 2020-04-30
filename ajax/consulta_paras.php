@@ -22,6 +22,8 @@
         $total = strtotime($columna['total']);
     }
 
+    echo "total: ".$total. " - menor: " .$menor. " - mayor: ".$mayor;
+
     $consulta = "call consulta_paras_por_equipos('$menor','$mayor')";
     $resultado = mysqli_query( conectar(), $consulta );
     ?>
