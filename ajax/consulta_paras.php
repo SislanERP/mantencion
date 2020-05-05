@@ -15,15 +15,13 @@
         $mayor = $columna['mayor'];
     }
 
-    $consulta = "call consulta_total_horas_paras('$menor','$mayor')";
-	$resultado = mysqli_query( conectar(), $consulta );
-	if ($columna = mysqli_fetch_array( $resultado ))
+    $consulta1 = "call consulta_total_horas_paras('$menor','$mayor')";
+	$resultado1 = mysqli_query( conectar(), $consulta1 );
+	if ($columna1 = mysqli_fetch_array( $resultado1 ))
 	{
-        $total = strtotime($columna['total']);
+        $total = strtotime($columna1['total']);
     }
-    else{echo mysql_error(conectar());}
-
-    echo "total: ".$total. " - menor: " .$menor. " - mayor: ".$mayor;
+    else{echo "error";}
 
     $consulta = "call consulta_paras_por_equipos('$menor','$mayor')";
     $resultado = mysqli_query( conectar(), $consulta );
@@ -48,6 +46,6 @@
 
         <tr>
             <td class="font-weight-bold" style="font-size:20px;">Total</td>
-            <td class="font-weight-bold" style="font-size:20px;"><?php echo $total;?></td>
+            <td class="font-weight-bold" style="font-size:20px;"><?php echo date("H:i",$total);?></td>
         </tr>
     </table>
