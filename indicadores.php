@@ -42,7 +42,7 @@
       <form id="Paras">
         <div class="row d-flex justify-content-between mt-2 e3 align-items-end">
           <div class="d-flex w-75">
-            <div class="col-sm-7 col-md-7 col-xl-3">
+            <div class="col-sm-7 col-md-7 col-xl-5 d-flex">
               <div class="form-group mb-0">
                 <label class="col-form-label">Mes:</label>
                 <select name="mes" id="mes" class="selectpicker form-control" data-live-search="true">
@@ -55,6 +55,10 @@
                     }
                   ?>
                 </select>
+              </div>
+              <div class="form-group mb-0 ml-4">
+                    <label class="col-form-label">Año:</label>
+                    <input type="number" class="form-control" name="año" id="año">
               </div>
             </div>
             <div class="col-sm-5 col-md-5 col-xl-3">
