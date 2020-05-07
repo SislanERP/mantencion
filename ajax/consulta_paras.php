@@ -47,9 +47,11 @@
             {
                 $time = strtotime($columna['suma']);
                 echo "<tr>
-                        <td>".$columna['equipo']."</td>
+                        <td><a href='#' data-toggle='modal' data-target='#Detalle'>".$columna['equipo']."</a></td>
                         <td>".date("H:i",$time)."</td>
                     </tr>";
+
+                
             }
         ?>
         

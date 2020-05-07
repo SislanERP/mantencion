@@ -30,6 +30,7 @@
     <?php include('head.php');?>
 <body>
     <?php include('nav.php');?>
+    <?php include('modals/indicadores/detalle.php');?>
 
     <div id="content">
       <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">

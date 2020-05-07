@@ -4,13 +4,13 @@
 
 	$id_usuario = $_SESSION['id_user'];
 
-	$consulta = "call consulta_area_usuario($id_usuario)";
-	$resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-	if ($columna = mysqli_fetch_array( $resultado ))
+	$consulta1 = "call consulta_area_usuario($id_usuario)";
+	$resultado1 = mysqli_query(conectar(), $consulta1 ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+	if ($columna1 = mysqli_fetch_array( $resultado1 ))
 	{
-		$area = $columna['id_area'];
+		$area = $columna1['id_area'];
 	}
-	
+
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
     if($action == 'ajax'){
 
@@ -118,8 +118,7 @@
 									}
 								}
 						?>
-						
-                        <button type="button" class="btn p-0" data-toggle="modal" data-target="#dataResponder" data-id="<?php echo $row['id']?>" data-desviacion="<?php echo $row['desviacion']?>" data-consecuencia="<?php echo $row['consecuencia']?>" data-acciones="<?php echo $row['acciones']?>" data-responsable="<?php echo $row['responsable']?>" data-observaciones="<?php echo $row['observaciones']?>" data-estado="<?php echo $row['id_estado']?>" data-ejecucion="<?php echo $row['ejecucion']?>" data-fec_ejecucion="<?php echo $row['fec_ejecucion']?>" data-area="<?php echo $area?>" data-depa="<?php echo $row['id_area']?>"><img src="img/iconos/ver.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+                        <button type="button" class="btn p-0" data-toggle="modal" data-target="#dataResponder" data-id="<?php echo $row['id']?>" data-desviacion="<?php echo $row['desviacion']?>" data-consecuencia="<?php echo $row['consecuencia']?>" data-acciones="<?php echo $row['acciones']?>" data-responsable="<?php echo $row['responsable']?>" data-observaciones="<?php echo $row['observaciones']?>" data-estado="<?php echo $row['id_estado']?>" data-ejecucion="<?php echo $row['ejecucion']?>" data-fec_ejecucion="<?php echo $row['fec_ejecucion']?>" data-area="<?php echo $columna1['id_area'];?>" data-depa="<?php echo $row['id_area']?>"><img src="img/iconos/ver.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
                         <?php if($row['id_estado'] ==  2){?>
                             <a href='php/acciones/report/report_desviaciones.php?id=<?php echo $row['id']?>' target="_blank" class="btn p-0"><img src="img/iconos/pdf.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>                        
                         <?php }?>
