@@ -42,14 +42,15 @@
 					a.observaciones as observaciones,
 					a.log_ejecucion as ejecucion,
 					a.fec_ejecucion as fec_ejecucion";
-		if($area == 10 or $area = 3)
+		if($columna1['id_area'] == 10 or $columna1['id_area'] == 3)
 		{
+			
 			$sWhere=" a.fecha LIKE '%".$query."%' or f.estado LIKE '%".$query."%' or b.area LIKE '%".$query."%' or a.id_desviacion LIKE '%".$query."%'";
 			$sWhere.=" order by a.id_desviacion desc";	
 		}
 
 		else{
-			$sWhere="a.id_area =".$area."";
+			$sWhere="a.id_area =".$columna1['id_area']."";
 			$sWhere.=" order by a.id_desviacion desc";
 		}
 		
