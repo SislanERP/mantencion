@@ -13,10 +13,10 @@
     
     else
     {
-        $consulta = "call consulta_dia_menor($_POST[mes], $_POST[año])";
-        $resultado = mysqli_query( conectar(), $consulta );
-        if ($columna = mysqli_fetch_array( $resultado ))
-        {
+            $consulta = "call consulta_dia_menor($_POST[mes], $_POST[año])";
+            $resultado = mysqli_query( conectar(), $consulta );
+            if ($columna = mysqli_fetch_array( $resultado ))
+            {
             $menor = $columna['menor'];
             $consulta = "call consulta_dia_mayor($_POST[mes], $_POST[año])";
             $resultado = mysqli_query( conectar(), $consulta );
@@ -46,12 +46,11 @@
             while ($columna = mysqli_fetch_array( $resultado ))
             {
                 $time = strtotime($columna['suma']);
-                echo "<tr>
-                        <td><a href='#' data-toggle='modal' data-target='#Detalle'>".$columna['equipo']."</a></td>
-                        <td>".date("H:i",$time)."</td>
-                    </tr>";
-
                 
+                 echo   "<tr>
+                            <td><a href='#' id='test' data-toggle='modal' data-target='#Detalle' data-menor='".$menor."' data-mayor='".$mayor."' data-id='".$columna['id']."' data-equipo='".$columna['equipo']."' data-tiempo='".$time."'>".$columna['equipo']."</a></td>
+                            <td>".date("H:i",$time)."</td>
+                        </tr>";
             }
         ?>
         

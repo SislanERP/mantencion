@@ -84,5 +84,30 @@
               
   <?php include('footer.php');?>
   <script src="js/funciones/indicadores.js"></script>
+  <script>
+    $('#Detalle').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      
+      var equipo = button.data('equipo')
+      var menor = button.data('menor')
+      var mayor = button.data('mayor')
+      var id = button.data('id')
+      var tiempo = button.data('tiempo')
+
+      var modal = $(this)
+      modal.find('.modal-title').text(equipo)
+      modal.find('.modal-body #id').val(id)
+      
+      $.ajax({
+            type: "POST",
+            url: "ajax/consulta_detalle_indicadores.php",
+            data: {menor:menor,mayor:mayor,id:id,tiempo:tiempo},
+            success: function (data) {
+              $(".result").show();
+              $(".result").html(data);
+            }
+      });
+  })
+  </script>
 </body>
 </html>
