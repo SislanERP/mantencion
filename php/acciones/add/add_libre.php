@@ -18,7 +18,6 @@
     }
 
     $consulta = "SELECT * FROM libres where fec_trabajada='".$_POST['fecha0']."' and id_usuario_registro=".$id_usuario;
-    echo $_POST['fecha0'].$id_usuario;
 	$resultado = mysqli_query( conectar(), $consulta );
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
