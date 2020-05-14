@@ -9,7 +9,7 @@
     $fecha = date("Y-m-d G:i:s");
     $dep = $_POST['depa'];
 
-    if($_POST['area'] <> 3){
+    if($_POST['area'] <> 10){
         $query="UPDATE desviaciones SET consecuencia='$_POST[consecuencia1]', acciones='$_POST[acciones1]', responsable='$_POST[responsable1]', observaciones='$_POST[observaciones1]',fec_edicion='$fecha',id_usuario_edicion='$id_usuario',fec_ejecucion='$_POST[ejecucion1]',log_ejecucion='$_POST[radio]' where id_desviacion=$_POST[id1]";
         if (conectar()->query($query) === TRUE) 
         {
