@@ -42,7 +42,7 @@
 
                 var densityData = {
                     label: 'Horas Producción',
-                    data: [$a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7],$a[8],$a[9],$a[10],$a[11],$a[12]],
+                    data: [$b[1],$b[2],$b[3],$b[4],$b[5],$b[6],$b[7],$b[8],$b[9],$b[10],$b[11],$b[12]],
                     backgroundColor: 'rgba(0, 99, 132, 0.6)',
                     borderWidth: 0,
                     yAxisID: 'y-axis-density'
@@ -50,7 +50,7 @@
                         
                 var gravityData = {
                     label: '% de Paras',
-                    data: [$b[1],$b[2],$b[3],$b[4],$b[5],$b[6],$b[7],$b[8],$b[9],$b[10],$b[11],$b[12]],
+                    data: [$a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7],$a[8],$a[9],$a[10],$a[11],$a[12]],
                     backgroundColor: 'rgba(99, 132, 0, 0.6)',
                     borderWidth: 0,
                     yAxisID: 'y-axis-gravity'
