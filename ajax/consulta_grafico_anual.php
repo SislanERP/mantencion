@@ -71,7 +71,12 @@
                         yAxes: [{
                             id: 'y-axis-density'
                         }, {
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 100
+                            },
                             id: 'y-axis-gravity'
+                            
                         }]
                     }
                 };
