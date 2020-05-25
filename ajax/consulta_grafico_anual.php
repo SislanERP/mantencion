@@ -5,6 +5,7 @@
     $año = mysqli_real_escape_string(conectar(),(strip_tags($_REQUEST['query'], ENT_QUOTES)));
     $a[] = array();
     $b[] = array();
+    $c[] = array();
 
     for($i=1; $i<=12; $i++)
     {
@@ -16,6 +17,7 @@
             {
                 $a[$i] = 0;
                 $b[$i] = 0;
+                $c[$i] = 0;
             }
             else
             {
@@ -24,12 +26,14 @@
                 $minutosTotales= ($v_HorasPartes[0] * 60) + $v_HorasPartes[1];
 
                 $hora_produccion = $columna['horas_productivas'];
+                $q = explode(":", $hora_produccion);
                 $v_HorasPartes1 = explode(":", $hora_produccion);
                 $minutosTotales1= ($v_HorasPartes1[0] * 60) + $v_HorasPartes1[1];
 
                 $por_paras = $minutosTotales * 100 / $minutosTotales1;
-                $a[$i] = $por_paras;
-                $b[$i] = $hora_produccion;
+                $a[$i] = round($por_paras);
+                $b[$i] = $q[0];
+                $c[$i] = $v_HorasPartes[0];
             }
             
         }
@@ -53,7 +57,7 @@
                 };
                         
                 var gravityData = {
-                    label: '% de Paras',
+                    label: 'Porcentaje de paras',
                     data: [$a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7],$a[8],$a[9],$a[10],$a[11],$a[12]],
                     backgroundColor: 'rgba(99, 132, 0, 0.6)',
                     borderWidth: 0,
@@ -72,23 +76,33 @@
                             barPercentage: 1,
                             categoryPercentage: 0.4
                         }],
-                        yAxes: [{
-                            id: 'y-axis-density'
-                        }, {
-                            ticks: {
-                                suggestedMin: 0,
-                                suggestedMax: 100
-                            },
-                            id: 'y-axis-gravity'
-                            
-                        }]
+                        yAxes: 
+                        [
+                            {
+                                ticks: 
+                                {
+                                    suggestedMin: 0,
+                                    suggestedMax: 450
+                                },
+                                id: 'y-axis-density'
+                            }, 
+                            {
+                                ticks: 
+                                {
+                                    suggestedMin: 0,
+                                    suggestedMax: 100
+                                },
+                                id: 'y-axis-gravity'
+                            }
+                        ]
                     }
                 };
 
                 var barChart = new Chart(densityCanvas, {
                     type: 'bar',
                     data: planetData,
-                    options: chartOptions
+                    options: chartOptions,
+                    
                 });
             </script>
           ";
