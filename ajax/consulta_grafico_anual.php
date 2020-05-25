@@ -19,11 +19,15 @@
             }
             else
             {
-                $hora_produccion = 18360;
                 $horaEntrada = $columna['total'];	
                 $v_HorasPartes = explode(":", $horaEntrada);
                 $minutosTotales= ($v_HorasPartes[0] * 60) + $v_HorasPartes[1];
-                $por_paras = $minutosTotales * 100 / $hora_produccion;
+
+                $hora_produccion = $columna['horas_productivas'];
+                $v_HorasPartes1 = explode(":", $hora_produccion);
+                $minutosTotales1= ($v_HorasPartes1[0] * 60) + $v_HorasPartes1[1];
+
+                $por_paras = $minutosTotales * 100 / $minutosTotales1;
                 $a[$i] = $por_paras;
                 $b[$i] = $hora_produccion;
             }
