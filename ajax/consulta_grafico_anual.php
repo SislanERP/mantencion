@@ -108,7 +108,7 @@
                         Chart.defaults.global.defaultFontSize = 15;
         
                         var densityData = {
-                            label: 'Horas Producción',
+                            label: 'HProd',
                             data: $produccion,
                             backgroundColor: 'rgba(0, 99, 132, 0.6)',
                             borderWidth: 0,
@@ -116,7 +116,7 @@
                         };
                                 
                         var gravityData = {
-                            label: 'Porcentaje de paras',
+                            label: '%P',
                             data: $porcentaje,
                             backgroundColor: 'rgba(99, 132, 0, 0.6)',
                             borderWidth: 0,
@@ -124,7 +124,7 @@
                         };
         
                         var Horas = {
-                            label: 'Horas parados',
+                            label: 'HP',
                             data: $horas,
                             borderWidth: 0,
                             yAxisID: 'y-axis-horas'
