@@ -140,7 +140,7 @@
                             tooltips : {
                                 callbacks : {
                                     afterLabel : function(tooltipItem, data) {
-                                        return 'Horas Parados: '+Horas['data'][tooltipItem['index']];
+                                        return 'HP: '+Horas['data'][tooltipItem['index']];
                                     }
                                 }
                 
