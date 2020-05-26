@@ -36,9 +36,9 @@
         <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
             <div class="d-flex justify-content-between e3 mb-5">
                 <h3>Graficos</h3>
-                <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar e6">
+                <!-- <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar e6">
                     <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
-                </a>
+                </a> -->
             </div>
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
