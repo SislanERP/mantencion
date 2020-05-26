@@ -6,10 +6,10 @@
     $mes_inicial = $_POST['mes_inicial'];
     $mes_final = $_POST['mes_final'];
 
-    $a[] = array();
-    $b[] = array();
-    $c[] = array();
-    $meses[] = array();
+    $a = array();
+    $b = array();
+    $c = array();
+    $meses = array();
 
     if(empty($año) or empty($mes_inicial) or empty($mes_final))
     {
@@ -32,10 +32,10 @@
                 {
                     if(empty($columna['total']))
                     {
-                        $a[$i] = 0;
-                        $b[$i] = 0;
-                        $c[$i] = 0;
-                        $meses[$i] = "";
+                        $a[] = 0;
+                        $b[] = 0;
+                        $c[] = 0;
+                        $meses[] = "";
                     }
                     else
                     {
@@ -49,46 +49,46 @@
                         $minutosTotales1= ($v_HorasPartes1[0] * 60) + $v_HorasPartes1[1];
         
                         $por_paras = $minutosTotales * 100 / $minutosTotales1;
-                        $a[$i] = round($por_paras,2);
-                        $b[$i] = $q[0];
-                        $c[$i] = $v_HorasPartes[0];
+                        $a[] = round($por_paras,2);
+                        $b[] = $q[0];
+                        $c[] = $v_HorasPartes[0];
 
                         switch ($i) {
                             case 1:
-                                $meses[$i] = "Enero";
+                                $meses[] = "Enero";
                             break;
                             case 2:
-                                $meses[$i] = "Febrero";
+                                $meses[] = "Febrero";
                             break;
                             case 3:
-                                $meses[$i] = "Marzo";
+                                $meses[] = "Marzo";
                             break;
                             case 4:
-                                $meses[$i] = "Abril";
+                                $meses[] = "Abril";
                             break;
                             case 5:
-                                $meses[$i] = "Mayo";
+                                $meses[] = "Mayo";
                             break;
                             case 6:
-                                $meses[$i] = "Junio";
+                                $meses[] = "Junio";
                             break;
                             case 7:
-                                $meses[$i] = "Julio";
+                                $meses[] = "Julio";
                             break;
                             case 8:
-                                $meses[$i] = "Agosto";
+                                $meses[] = "Agosto";
                             break;
                             case 9:
-                                $meses[$i] = "Septiembre";
+                                $meses[] = "Septiembre";
                             break;
                             case 10:
-                                $meses[$i] = "Octubre";
+                                $meses[] = "Octubre";
                             break;
                             case 11:
-                                $meses[$i] = "Noviembre";
+                                $meses[] = "Noviembre";
                             break;
                             case 12:
-                                $meses[$i] = "Diciembre";
+                                $meses[] = "Diciembre";
                             break;
                         }
                     }
