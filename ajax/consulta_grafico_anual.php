@@ -191,6 +191,7 @@
                             options: chartOptions,
                             
                         });
+                        
                     </script>
                   ";
             
