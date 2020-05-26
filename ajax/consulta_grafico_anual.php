@@ -31,7 +31,7 @@
                 $minutosTotales1= ($v_HorasPartes1[0] * 60) + $v_HorasPartes1[1];
 
                 $por_paras = $minutosTotales * 100 / $minutosTotales1;
-                $a[$i] = round($por_paras);
+                $a[$i] = round($por_paras,2);
                 $b[$i] = $q[0];
                 $c[$i] = $v_HorasPartes[0];
             }
@@ -98,13 +98,22 @@
                                     suggestedMin: 0,
                                     suggestedMax: 450
                                 },
-                                id: 'y-axis-density'
-                            }, 
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Horas Productivas'
+                                },
+                                id: 'y-axis-density',
+                                
+                            },
                             {
                                 ticks: 
                                 {
                                     suggestedMin: 0,
                                     suggestedMax: 100
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Porcentaje'
                                 },
                                 id: 'y-axis-gravity'
                             }
