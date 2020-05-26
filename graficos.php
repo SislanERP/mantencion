@@ -53,6 +53,55 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="alert alert-danger alert-dismissible" role="alert" id="error" style="display:none">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error!</strong> 
+                            Debe ingresar todos los campos que se solicitan.
+                    </div>
+                    <div class="alert alert-danger alert-dismissible" role="alert" id="menor" style="display:none">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error!</strong> 
+                            Mes Final debe ser mayor que Mes Inicial.
+                    </div>  
+                    <form id="Consulta">
+                        <div class="col-12 d-flex mb-5">
+                            <div class="mb-1 col-2">
+                                <label class="w-50">Mes Inicial:</label>
+                                <select name="mes_inicial" id="mes_inicial" class="selectpicker form-control" data-live-search="true">
+                                    <?php 
+                                        $consulta = "call consulta_meses()";
+                                        $resultado = mysqli_query(conectar(), $consulta );
+                                        while ($columna = mysqli_fetch_array( $resultado ))
+                                        { 
+                                        echo    "<option value='".$columna['id_mes']."'>".$columna['mes']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label class="w-50">Mes Final:</label>
+                                <select name="mes_final" id="mes_final" class="selectpicker form-control" data-live-search="true">
+                                    <?php 
+                                        $consulta = "call consulta_meses()";
+                                        $resultado = mysqli_query(conectar(), $consulta );
+                                        while ($columna = mysqli_fetch_array( $resultado ))
+                                        { 
+                                        echo    "<option value='".$columna['id_mes']."'>".$columna['mes']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label class="w-50">Año:</label>
+                                <input type="number" name="año" id="año" class="form-control" value="<?php echo date("Y");?>">
+                            </div>
+                            <div class="col-2 d-flex align-items-end">
+                                <button class="btn btn-primary agregar mr-3" type="submit">
+                                    <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Ejecutar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <canvas id="myChart" width="400" height="200px"></canvas>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
@@ -65,11 +114,41 @@
     </div>
               
   <?php include('footer.php');?>
-  <script src="js/funciones/graficos.js"></script>
   <script>
-		$(document).ready(function(){
-            anual(1);
+        $( "#Consulta" ).submit(function( event ) {
+        event.preventDefault();
+        var form = $('#Consulta')[0];
+        var data = new FormData(form);
+
+        $.ajax({
+        type: "POST",
+        url: "ajax/consulta_grafico_anual.php",
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            if(data == 1)
+            {
+                $("#error").show();
+                setTimeout(function() { $('#error').fadeOut('fast'); }, 3000);
+            }
+
+            else if(data == 2)
+            {
+                $("#menor").show();
+                setTimeout(function() { $('#menor').fadeOut('fast'); }, 3000);
+            }
+
+            else
+            {
+                $(".grafico").html(data);
+            }
+        }
         });
-	</script>
+        
+        event.preventDefault();
+    });
+  </script>
 </body>
 </html>
