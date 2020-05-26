@@ -63,14 +63,28 @@
                     borderWidth: 0,
                     yAxisID: 'y-axis-gravity'
                 };
+
+                var Horas = {
+                    label: 'Horas parados',
+                    data: [$c[1],$c[2],$c[3],$c[4],$c[5],$c[6],$c[7],$c[8],$c[9],$c[10],$c[11],$c[12]],
+                    borderWidth: 0,
+                    yAxisID: 'y-axis-horas'
+                };
                         
                 var planetData = {
                     labels: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
                     datasets: [densityData, gravityData]
                 };
-                
 
                 var chartOptions = {
+                    tooltips : {
+                        callbacks : {
+                            afterLabel : function(tooltipItem, data) {
+                                return 'Horas Parados: '+Horas['data'][tooltipItem['index']];
+                            }
+                        }
+        
+                    },
                     scales: {
                         xAxes: [{
                             barPercentage: 1,
