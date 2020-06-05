@@ -34,7 +34,7 @@
             $contador = 1;
         }
 
-        $query="INSERT INTO detenciones (id_detencion,fecha,camiones,kilos_mm_pp,kilos_producidos,rendimiento,kilos_embolsado,fec_registro,id_usuario_registro) values($contador,'$_POST[fecha]',$_POST[camiones],$_POST[kilos_mm_pp],$_POST[kilos_producidos],$_POST[rendimiento],$_POST[kilos_embolsado],'$fecha',$id_usuario)";
+        $query="INSERT INTO detenciones (id_detencion,fecha,fec_registro,id_usuario_registro) values($contador,'$_POST[fecha]','$fecha',$id_usuario)";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "Información de producción guardada satisfactoriamente.";
