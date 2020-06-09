@@ -49,7 +49,7 @@ function load(page){
         modal.find('select[id=prioridad1]').val(prioridad)
         modal.find('select[id=responsable1]').val(responsable)
         modal.find('.modal-body #desarrollo1').val(desarrollo)
-        document.getElementById('img-href').href = imagen;
+        modal.find('.modal-body #img-href').val(imagen)
 
         if(terminado == 1)
         {
