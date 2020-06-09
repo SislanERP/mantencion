@@ -52,7 +52,7 @@
                         </div>    
                         <div class="col-6 e5">
                             <div class="col-lg-12 d-flex justify-content-center mt-3" style="height:300px;">
-                            <a data-fancybox="gallery" href="" id="img-href"><img src="" alt="" class="pt-3 rounded-circle position-absolute" id="imagenmuestra1" style="object-fit:cover;width:280px;height:300px;"></a>
+                            <a data-fancybox="gallery" href="#" id="img-href"><img src="" alt="" class="pt-3 rounded-circle position-absolute" id="imagenmuestra1" style="object-fit:cover;width:280px;height:300px;"></a>
                                 <div class="image-upload">
                                     <label for="file-input">
                                         <img src="img/iconos/camara.svg" id="im"/> 
