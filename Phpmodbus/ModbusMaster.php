@@ -42,7 +42,7 @@ require_once dirname(__FILE__) . '/PhpType.php';
  */
 class ModbusMaster {
   private $sock;
-  public $host = "192.168.200.206";
+  public $host = "192.168.200.216";
   public $port = "502";  
   public $client = "";
   public $client_port = "502";

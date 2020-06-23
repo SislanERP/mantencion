@@ -36,9 +36,9 @@
       <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
         <div class="d-flex justify-content-between e3">
           <h3>Indicadores</h3>
-          <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar e6">
+          <!-- <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar e6">
             <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
-          </a>
+          </a> -->
         </div>
       <form id="Paras">
         <div class="row d-flex justify-content-between mt-2 e3 align-items-end">
@@ -61,13 +61,6 @@
                     <label class="col-form-label">Año:</label>
                     <input type="number" class="form-control" name="año" id="año">
               </div>
-            </div>
-            <div class="col-sm-5 col-md-5 col-xl-3">
-              <div class="form-group mb-0">
-                  <label class="col-form-label">Horas Trabajadas:</label>
-                  <input type="number" id="horas" name="horas" class="form-control">
-                </div>
-                  
             </div>
           </div>
           <div class="e8">

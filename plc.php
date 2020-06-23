@@ -32,24 +32,42 @@
     <?php include('nav.php');?>
 
     <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
-        <h3>PLC</h3>
-        
-        <div class='w-100 d-flex outer_div mt-5'></div> 
+        <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
+            <h3>PLC</h3>
+            
+            <div class='w-100 d-flex outer_div mt-5'>
+                <div>
+                    <h1>Flujometro riles</h1>
+                    <h1 id="valor0"></h1>
+                </div>
+
+                <div>
+                    <h1>Total flujometro</h1>
+                    <h1 id="valor1"></h1>
+                </div>
+            </div> 
+        </div>
     </div>
-  </div>
               
   <?php include('footer.php');?>
   <script src="js/funciones/plc.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-        function changeNumber() {
-            load(1);
-            }
-        
-        setInterval(changeNumber, 1000);
-    });
-</script>
+  <script>
+      $(document).ready(function(){
+        setInterval('load()',1000);
+      });
+    </script>
+    <script>
+        function load(){
+            $.ajax({
+                url: 'ajax/consulta_flujometro.php',
+                dataType: "json",
+                success: function (data) {
+                    $("#valor0").html(data[0]);
+                    $("#valor1").html(data[1]);
+                }
+            })
+        }
+    </script>
 </body>
 </html>
