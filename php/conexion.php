@@ -1,6 +1,6 @@
 <?php
     // define('DB_HOST','localhost');
-    // define('DB_USER','root');
+    // define('DB_USER','dba');
     // define('DB_PASS','betroox1229');
     // define('DB_NAME','mantencion');
 

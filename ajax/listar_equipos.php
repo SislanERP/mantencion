@@ -24,7 +24,7 @@
 
         include 'pagination.php'; 
 
-        $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+        $page = getPaginationPos();
 		$per_page = 8;
         $adjacents  = 8;
         $offset = ($page - 1) * $per_page;
@@ -111,5 +111,18 @@
 		}
 	}
 ?>
-
+<?php 
+function getPaginationPos(){
+	if (isset($_REQUEST['page']) && !empty($_REQUEST['page']))
+	{
+		setcookie('page_equipos',$_REQUEST['page'],time() + 86400);
+		return $_REQUEST['page'];
+	} 
+	else 
+	{
+		return ($_COOKIE['page_equipos']!='' ? $_COOKIE['page_equipos'] : 1);
+	}
+	
+}
+?>
 		  

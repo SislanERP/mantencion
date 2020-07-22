@@ -93,7 +93,7 @@
 	</script>
     <script>
         $( "#actualizar" ).click(function() {
-            load(1);
+            load();
             consulta_cuadros(1);
         });
     </script>

@@ -59,7 +59,7 @@
               </div>
               <div class="form-group mb-0 ml-4">
                     <label class="col-form-label">Año:</label>
-                    <input type="number" class="form-control" name="año" id="año">
+                    <input type="number" class="form-control" name="año" id="año" value="<?php echo date("Y");?>">
               </div>
             </div>
           </div>
@@ -69,9 +69,22 @@
             </button>
           </div>
         </div>
-      </form>              
-        <div class="datos_ajax_delete mt-3"></div><!-- Datos ajax Final -->
-        <div class='outer_div table-responsive'></div> 
+      </form>           
+      <nav class="mt-4">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="equipos-tab" data-toggle="tab" href="#equipos" role="tab" aria-controls="equipos" aria-selected="true">Por Equipos</a>
+          <a class="nav-item nav-link" id="areas-tab" data-toggle="tab" href="#areas" role="tab" aria-controls="areas" aria-selected="false">Por Áreas</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="equipos" role="tabpanel" aria-labelledby="equipos-tab">
+          <div class="resultado_equipos mt-3"></div>
+        </div>
+        <div class="tab-pane fade" id="areas" role="tabpanel" aria-labelledby="areas-tab">
+          <div class="resultado_ubicacion mt-3"></div>
+        </div>
+      </div>   
+        
     </div>
   </div>
               

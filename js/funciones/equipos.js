@@ -85,7 +85,7 @@ function load(page){
           setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
           $('#dataUpdate').modal('hide');
           $('#file-input').val('');
-          load(1);
+          load();
           consulta_cuadros(1);
         }
       });
@@ -120,7 +120,7 @@ function load(page){
           $('#caracteristicas0').val('')
           $('#imagenmuestra1').attr("src", '')
 
-          load(1);
+          load();
           consulta_cuadros(1);
         }
       });
@@ -142,7 +142,7 @@ function load(page){
                   $(".datos_ajax_delete").html(datos);
                   setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
                   $('#dataDelete').modal('hide');
-                  load(1);
+                  load();
                   consulta_cuadros(1);
               }
         });

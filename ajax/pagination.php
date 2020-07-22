@@ -27,7 +27,7 @@ function paginate($reload, $page, $tpages, $adjacents) {
 	$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
 	for($i=$pmin; $i<=$pmax; $i++) {
 		if($i==$page) {
-			$out.= "<li class='active'><a class='page-link'>$i</a></li>";
+			$out.= "<li class='active'><a class='page-link' id='a'>$i</a></li>";
 		}else if($i==1) {
 			$out.= "<li class='page-item'><a class='page-link' href='javascript:void(0);' onclick='load(1)'>$i</a></li>";
 		}else {

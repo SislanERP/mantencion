@@ -15,7 +15,12 @@ h3{
     font-family: 'Carter One', cursive;
 }
 
-a , a:hover{
+#a{
+    background: #154D92;
+    color:#fff !important;
+} 
+
+a:hover{
     color:#154D92;
 }
 
@@ -391,8 +396,8 @@ input[type="checkbox"]:checked:disabled + label:before {
 }
 
 .active a{
-    background: #154D92;
-    color :#ffff !important;
+    /*background: #154D92;*/
+    color :#154D92 !important;
 }
 /* ---------------------------------------------------
     MEDIAQUERIES
