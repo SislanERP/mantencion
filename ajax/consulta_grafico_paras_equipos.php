@@ -75,66 +75,40 @@
                         type: 'horizontalBar',
                         data: MeSeData,
                         options: {
-                            showAllTooltips: true,
-                            legend: {
-                            display: false
+                            tooltips: {
+                                enabled: false
+                            },
+                            hover: {
+                                animationDuration: 0
+                            },
+                            animation: {
+                                duration: 1,
+                                onComplete: function () {
+                                    var chartInstance = this.chart,
+                                    ctx = chartInstance.ctx;
+            
+                                    this.data.datasets.forEach(function (dataset, i) {
+                                        var meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            var data = dataset.data[index] + ' %';
+                                            ctx.fillStyle = '#000';
+                                            ctx.fillText(data, bar._model.x + 5, bar._model.y);
+                                        });
+                                    });
+                                }
                             },
                             scales: {
                                 xAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
+                                        gridLines: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            beginAtZero: false
+                                        }
                                     }
-                                }],
-                                yAxes: [{
-                                    stacked: true
-                                }]
-                            }
-                    
-                        },
-                        plugins: [{
-                            beforeRender: function (chart) {
-                                if (chart.config.options.showAllTooltips) {
-                                    // create an array of tooltips
-                                    // we can't use the chart tooltip because there is only one tooltip per chart
-                                    chart.pluginTooltips = [];
-                                    chart.config.data.datasets.forEach(function (dataset, i) {
-                                        chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                                            chart.pluginTooltips.push(new Chart.Tooltip({
-                                                _chart: chart.chart,
-                                                _chartInstance: chart,
-                                                _data: chart.data,
-                                                _options: chart.options.tooltips,
-                                                _active: [sector]
-                                            }, chart));
-                                        });
-                                    });
-                        
-                                    // turn off normal tooltips
-                                    chart.options.tooltips.enabled = false;
-                                }
+                                ]
                             },
-                            afterDraw: function (chart, easing) {
-                                if (chart.config.options.showAllTooltips) {
-                                    // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                                    if (!chart.allTooltipsOnce) {
-                                        if (easing !== 1)
-                                            return;
-                                        chart.allTooltipsOnce = true;
-                                    }
-                        
-                                    // turn on tooltips
-                                    chart.options.tooltips.enabled = true;
-                                    Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
-                                        tooltip.initialize();
-                                        tooltip.update();
-                                        // we don't actually need this since we are not animating tooltips
-                                        tooltip.pivot();
-                                        tooltip.transition(easing).draw();
-                                    });
-                                    chart.options.tooltips.enabled = false;
-                                }
-                            }
-                        }]
+                        }              
                     });
 
                     
