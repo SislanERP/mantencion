@@ -23,38 +23,35 @@
 
         else
         {
-            for($i=$mes_inicial; $i<=$mes_final; $i++)
+            
+            $consulta = "call consulta_grafico_equipos($año, $mes_inicial,$mes_final)";
+            $resultado = mysqli_query( conectar(), $consulta );
+            while ($columna = mysqli_fetch_array( $resultado ))
             {
-                $consulta = "call consulta_grafico_equipos($i,$año)";
-                $resultado = mysqli_query( conectar(), $consulta );
-                while ($columna = mysqli_fetch_array( $resultado ))
+                if(empty($columna['total']))
                 {
-                    if(empty($columna['total']))
-                    {
-                        $a[] = 0;
-                        $u[] = "";
-                        $c = "";
-                    }
-                    else
-                    {
-                        $horaEntrada = $columna['total'];	
-                        $v_HorasPartes = explode(":", $horaEntrada);
-                        $minutosTotales= ($v_HorasPartes[0] * 60) + $v_HorasPartes[1];
-        
-                        $hora_produccion = $columna['horas_productivas'];
-                        $q = explode(":", $hora_produccion);
-                        $v_HorasPartes1 = explode(":", $hora_produccion);
-                        $minutosTotales1= ($v_HorasPartes1[0] * 60) + $v_HorasPartes1[1];
-        
-                        $por_paras = $minutosTotales * 100 / $minutosTotales1;
-                        $a[] = round($por_paras,2);
-                        $u[] = $columna['ubicacion'];
-                        $c[] = "#66a1b5";
-                    }
+                    $a[] = 0;
+                    $u[] = "";
+                    $c = "";
                 }
-                
+                else
+                {
+                    $horaEntrada = $columna['total'];	
+                    $v_HorasPartes = explode(":", $horaEntrada);
+                    $minutosTotales= ($v_HorasPartes[0] * 60) + $v_HorasPartes[1];
+        
+                    $hora_produccion = $columna['horas_productivas'];
+                    $q = explode(":", $hora_produccion);
+                    $v_HorasPartes1 = explode(":", $hora_produccion);
+                    $minutosTotales1= ($v_HorasPartes1[0] * 60) + $v_HorasPartes1[1];
+        
+                    $por_paras = $minutosTotales * 100 / $minutosTotales1;
+                    $a[] = round($por_paras,2);
+                    $u[] = $columna['ubicacion'];
+                    $c[] = "#66a1b5";
+                }
             }
-
+                
             $porcentaje = json_encode($a);
             $ubicacion = json_encode($u);
             $color = json_encode($c);
