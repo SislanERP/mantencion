@@ -53,7 +53,7 @@
         if(!$mail->Send()) {
             $messages[] = "El día libre ha sido asignado satisfactoriamente.";
         } else {
-            echo $mail->ErrorInfo;
+            $errors []= $mail->ErrorInfo;
         }  
     }
 
