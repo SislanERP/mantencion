@@ -29,7 +29,6 @@
         $mail->Username   = "sismantencionlandes@gmail.com";
         $mail->Password   = getenv("pass_correo");
         $mail->SetFrom('sismantencionlandes@gmail.com', 'Sistema Mantención');
-        $mail->addCC('cristianasenjotorres@gmail.com');
         $mail->AddAddress("casenjo@landes.cl","Cristian Asenjo");
         $mail->Subject = 'Día libre';
         $mail->MsgHTML("<html> 
