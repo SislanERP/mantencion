@@ -100,7 +100,9 @@
                                             display: false
                                         },
                                         ticks: {
-                                            beginAtZero: false
+                                            beginAtZero: false,
+                                            suggestedMin: 0,
+                                            suggestedMax: 40
                                         }
                                     }
                                 ]
