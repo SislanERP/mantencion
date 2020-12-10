@@ -28,7 +28,7 @@
     
     if(move_uploaded_file($_FILES['imagen']['tmp_name'], $target))
     {
-        $query="INSERT INTO equipos (id_equipo,equipo,marca,id_ubicacion,id_linea,imagen,caracteristicas,fec_registro,id_usuario_registro) values($contador,'$_POST[nombre0]','$_POST[marca0]',$_POST[ubicacion0],$_POST[linea0],'img/equipos/".$_FILES['imagen']['name']."','$_POST[caracteristicas0]','$fecha',$id_usuario)";
+        $query="INSERT INTO equipos (id_equipo,equipo,marca,id_ubicacion,id_linea,imagen,id_estado,caracteristicas,fec_registro,id_usuario_registro) values($contador,'$_POST[nombre0]','$_POST[marca0]',$_POST[ubicacion0],$_POST[linea0],'img/equipos/".$_FILES['imagen']['name']."',$_POST[estado0],'$_POST[caracteristicas0]','$fecha',$id_usuario)";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "El equipo se guardo satisfactoriamente.";
@@ -42,7 +42,7 @@
 
     else
     {
-        $query="INSERT INTO equipos (id_equipo,equipo,marca,id_ubicacion,id_linea,caracteristicas,fec_registro,id_usuario_registro) values($contador,'$_POST[nombre0]','$_POST[marca0]',$_POST[ubicacion0],$_POST[linea0],'$_POST[caracteristicas0]','$fecha',$id_usuario)";
+        $query="INSERT INTO equipos (id_equipo,equipo,marca,id_ubicacion,id_linea,caracteristicas,id_estado,fec_registro,id_usuario_registro) values($contador,'$_POST[nombre0]','$_POST[marca0]',$_POST[ubicacion0],$_POST[linea0],'$_POST[caracteristicas0]',$_POST[estado0],'$fecha',$id_usuario)";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "El equipo se guardo satisfactoriamente.";

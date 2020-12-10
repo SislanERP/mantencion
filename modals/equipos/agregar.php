@@ -48,6 +48,19 @@
                                 </select>
                             </div>
                             <div class="form-group mb-0">
+                                <label class="col-form-label">Estado:</label>
+                                <select name="estado0" id="estado0" class="selectpicker form-control" data-live-search="true">
+                                    <?php 
+                                        $consulta = "call consulta_estado_equipo()";
+                                        $resultado = mysqli_query(conectar(), $consulta );
+                                        while ($columna = mysqli_fetch_array( $resultado ))
+                                        { 
+                                            echo    "<option value='".$columna['id_estado']."'>".$columna['estado']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group mb-0">
                                 <label class="col-form-label">Características:</label>
                                 <textarea name="caracteristicas0" id="caracteristicas0" cols="20" rows="5" class="form-control"></textarea>
                             </div>

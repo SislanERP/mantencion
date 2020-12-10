@@ -29,6 +29,7 @@ function load(page){
       var caracteristicas = button.data('caracteristicas') // Extraer la información de atributos de datos
       var imagen = button.data('imagen')
       var img = button.data('img')
+      var estado = button.data('estado')
 
       var modal = $(this)
       modal.find('.modal-title').text('Editar : '+nombre)
@@ -41,6 +42,7 @@ function load(page){
       modal.find('.modal-body #img').attr("src", imagen)
       modal.find('.modal-body #img').val(img)
       modal.find('.modal-body #img-edit').val('')
+      modal.find('.modal-body #estado').val(estado)
       $('.selectpicker').selectpicker('refresh');
       $('.alert').hide();//Oculto alert
     })
@@ -85,7 +87,7 @@ function load(page){
           setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
           $('#dataUpdate').modal('hide');
           $('#file-input').val('');
-          load();
+          load(1);
           consulta_cuadros(1);
         }
       });
@@ -120,7 +122,7 @@ function load(page){
           $('#caracteristicas0').val('')
           $('#imagenmuestra1').attr("src", '')
 
-          load();
+          load(1);
           consulta_cuadros(1);
         }
       });
@@ -142,7 +144,7 @@ function load(page){
                   $(".datos_ajax_delete").html(datos);
                   setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
                   $('#dataDelete').modal('hide');
-                  load();
+                  load(1);
                   consulta_cuadros(1);
               }
         });

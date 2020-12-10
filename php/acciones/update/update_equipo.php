@@ -18,7 +18,7 @@
         $imagen = "img/equipos/".$_FILES['imagen']['name'];
         if(empty($_FILES['imagen']['name']))
         {
-            $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_equipo=$_POST[id]";
+            $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',id_estado=$_POST[estado],fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_equipo=$_POST[id]";
             if (conectar()->query($query) === TRUE) 
             {
                 $messages[] = "Equipo editado satisfactoriamente.";
@@ -33,7 +33,7 @@
         {
             if($columna['imagen'] == $imagen)
             {
-                $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_equipo=$_POST[id]";
+                $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',id_estado=$_POST[estado],fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_equipo=$_POST[id]";
                 if (conectar()->query($query) === TRUE) 
                 {
                     $messages[] = "Equipo editado satisfactoriamente.";
@@ -49,7 +49,7 @@
                 $target = $target_path . basename( $_FILES['imagen']['name']);
                 if(move_uploaded_file($_FILES['imagen']['tmp_name'], $target))
                 {
-                    $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/equipos/".$_FILES['imagen']['name']."' where id_equipo=$_POST[id]";
+                    $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',id_estado=$_POST[estado],fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/equipos/".$_FILES['imagen']['name']."' where id_equipo=$_POST[id]";
                     if (conectar()->query($query) === TRUE) 
                     {
                         $messages[] = "Equipo editado satisfactoriamente.";
@@ -62,7 +62,7 @@
                 }
                 else
                 {
-                    $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/equipos/".$_FILES['imagen']['name']."' where id_equipo=$_POST[id]";
+                    $query="UPDATE equipos SET equipo='$_POST[nombre]',marca='$_POST[marca]',id_ubicacion=$_POST[ubicacion],id_linea=$_POST[linea],caracteristicas='$_POST[caracteristicas]',id_estado=$_POST[estado],fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/equipos/".$_FILES['imagen']['name']."' where id_equipo=$_POST[id]";
                     if (conectar()->query($query) === TRUE) 
                     {
                         $messages[] = "Equipo editado satisfactoriamente.";

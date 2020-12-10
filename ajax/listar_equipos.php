@@ -9,7 +9,8 @@
 
 		$tables="	equipos a left outer join 
 					ubicaciones b on a.id_ubicacion = b.id_ubicacion left outer join
-					lineas c on a.id_linea = c.id_linea";
+					lineas c on a.id_linea = c.id_linea left outer join
+					estado_equipos d on a.id_estado = d.id_estado";
 		$campos="	a.id_equipo as id, 
 					a.equipo as equipo, 
 					a.marca as marca, 
@@ -18,13 +19,15 @@
 					a.imagen as imagen, 
 					a.id_ubicacion as id_ubicacion,
 					a.id_linea as id_linea,
-					c.linea as linea";
-		$sWhere=" a.equipo LIKE '%".$query."%' or a.marca LIKE '%".$query."%' or c.linea LIKE '%".$query."%' or b.ubicacion LIKE '%".$query."%'";
+					c.linea as linea,
+					d.estado as Estado,
+					a.id_estado as id_estado";
+		$sWhere=" a.equipo LIKE '%".$query."%' or a.marca LIKE '%".$query."%' or c.linea LIKE '%".$query."%' or b.ubicacion LIKE '%".$query."%' or d.estado LIKE '%".$query."%'";
 		$sWhere.=" order by id_equipo desc";
 
         include 'pagination.php'; 
 
-        $page = getPaginationPos();
+        $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 		$per_page = 8;
         $adjacents  = 8;
         $offset = ($page - 1) * $per_page;
@@ -44,6 +47,7 @@
 				  <th>Marca</th>
 				  <th>Ubicación</th>
 				  <th>Línea</th>
+				  <th>Estado</th>
 				  <th>Acción</th>
 				</tr>
 			</thead>
@@ -64,6 +68,7 @@
 					<td><?php echo $row['marca'];?></td>
 					<td><?php echo $row['ubicacion'];?></td>
 					<td><?php echo $row['linea'];?></td>
+					<td><?php echo $row['Estado'];?></td>
 					<td>
 						<?php
 							$id_usuario = $_SESSION['id_user'];
@@ -74,7 +79,7 @@
 							{ 
 								if($columna['editar'] == 1){
 						?>
-									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['equipo']?>" data-marca="<?php echo $row['marca']?>" data-ubicacion="<?php echo $row['id_ubicacion']?>" data-linea="<?php echo $row['id_linea']?>" data-caracteristicas="<?php echo $row['caracteristicas']?>" data-imagen="<?php echo $row['imagen']?>" data-img="<?php echo "img".$row['id']?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+									<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataUpdate" data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['equipo']?>" data-marca="<?php echo $row['marca']?>" data-ubicacion="<?php echo $row['id_ubicacion']?>" data-linea="<?php echo $row['id_linea']?>" data-caracteristicas="<?php echo $row['caracteristicas']?>" data-imagen="<?php echo $row['imagen']?>" data-img="<?php echo "img".$row['id']?>" data-estado="<?php echo $row["id_estado"]?>"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
 						<?php
 								}
 						?>
@@ -111,18 +116,5 @@
 		}
 	}
 ?>
-<?php 
-function getPaginationPos(){
-	if (isset($_REQUEST['page']) && !empty($_REQUEST['page']))
-	{
-		setcookie('page_equipos',$_REQUEST['page'],time() + 86400);
-		return $_REQUEST['page'];
-	} 
-	else 
-	{
-		return ($_COOKIE['page_equipos']!='' ? $_COOKIE['page_equipos'] : 1);
-	}
-	
-}
-?>
+
 		  
