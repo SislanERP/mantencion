@@ -36,6 +36,7 @@
 
     <table border=1 cellspacing=0 cellpadding=2 width="100%" class="table" style="margin-top:-30px;">
         <tr>
+            <td class="e1" style="font-weight:bolder;">Equipo</td>
             <td class="e1" style="font-weight:bolder;">Actividad</td>
             <td class="e1" style="font-weight:bolder;">Turno</td>
             <td class="e1" style="font-weight:bolder;">Estado</td>
@@ -47,6 +48,7 @@
             while ($columna = mysqli_fetch_array( $resultado ))
             {
                 echo    "<tr>
+                            <td>".$columna['equipo']."</td>
                             <td>".$columna['actividad']."</td>
                             <td class='e1'>".$columna['turno']."</td>
                             <td class='e1'>".$columna['estado']."</td>
