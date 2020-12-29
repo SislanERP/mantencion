@@ -115,7 +115,7 @@
         </tr>
         <tr>
             <td class="text-center">Realizado Por</td>
-            <td class="text-center flota-right">Aprobado Por</td>
+            <td class="text-center flota-right"><Var>Verificado</Var> Por</td>
         </tr>
         
     </table>
