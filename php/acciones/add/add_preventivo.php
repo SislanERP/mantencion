@@ -6,7 +6,7 @@
     date_default_timezone_set("America/Santiago");
 	$fecha = date("Y-m-d G:i:s");
 
-    $fecha_inicial = $_POST['fecha0'];
+    $fecha_inicial = $_POST['start'];
     $año_siguiente = strtotime($fecha_inicial."+ 1 year");
     $fecha_modificada = date("Y-m-d");
     $mes_actual = date("m",strtotime($fecha_inicial));
