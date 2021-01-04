@@ -10,6 +10,7 @@
     $año_siguiente = strtotime($fecha_inicial."+ 1 year");
     $fecha_modificada = date("Y-m-d");
     $mes_actual = date("m",strtotime($fecha_inicial));
+    $fec_inicio =  date("Y-m-d");
 
     while($fecha_modificada < $año_siguiente)
     {
