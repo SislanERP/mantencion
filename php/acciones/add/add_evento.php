@@ -5,6 +5,7 @@ include ('../../conexion.php');
 
 $año_siguiente = strtotime($_POST['start']."+ 1 year");
 $fecha_modificada = date("Y-m-d");
+$fec_inicio = date("Y-m-d");
 $mes_actual = date("m",strtotime($_POST['start']));
 
 while($fecha_modificada < $año_siguiente)
@@ -32,7 +33,7 @@ while($fecha_modificada < $año_siguiente)
     $consulta = "SELECT max(id) as correlativo FROM events";
     $resultado = mysqli_query( conectar(), $consulta );
     if ($columna = mysqli_fetch_array( $resultado ))
-    { 
+    {
         $contador = $columna['correlativo'] + 1;
     }
     else
