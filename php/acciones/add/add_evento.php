@@ -5,7 +5,7 @@ include ('../../conexion.php');
 
 $año_siguiente = strtotime($_POST['start']."+ 1 year");
 $fecha_modificada = date("Y-m-d");
-$fec_inicio = date("Y-m-d");
+$fec_inicio = $_POST['start'];
 $mes_actual = date("m",strtotime($_POST['start']));
 
 while($fecha_modificada < $año_siguiente)
@@ -45,7 +45,7 @@ while($fecha_modificada < $año_siguiente)
     $resultado = mysqli_query( conectar(), $consulta );
     if ($columna = mysqli_fetch_array( $resultado ))
     { 
-        $query="INSERT INTO events (id,title,start,end,color) values($contador,'$_POST[title]','$fec_inicio','$_POST[end]','#FF0000')";
+        $query="INSERT INTO events (id,title,start,end,color) values($contador,'$_POST[title]','$fec_inicio','$fec_inicio','#FF0000')";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "Preventivo guardado satisfactoriamente.";
@@ -58,7 +58,7 @@ while($fecha_modificada < $año_siguiente)
     }
     else
     {
-        $query="INSERT INTO events (id,title,start,end,color) values($contador,'$_POST[title]','$_POST[start]','$_POST[end]','#FF0000')";
+        $query="INSERT INTO events (id,title,start,end,color) values($contador,'$_POST[title]','$_POST[start]','$_POST[start]','#FF0000')";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "Preventivo guardado satisfactoriamente.";
