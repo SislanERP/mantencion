@@ -63,7 +63,7 @@
                                         </p> 
                                         <p> 
                                             <b>Fecha:</b></br>
-                                            <span>".$olumna['fecha']."</span>
+                                            <span>".$columna['fecha']."</span>
                                         </p> 
                                         <p> 
                                             <b>OT Padre:</b></br>
@@ -97,8 +97,10 @@
                     echo $mail->ErrorInfo;
                 }  
             }
-
-            
+        }
+        else
+        {
+            $errors []= "Lo siento algo ha salido mal en el envio del correo.".mysqli_error(conectar());
         }
     }
 
