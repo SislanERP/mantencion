@@ -58,14 +58,14 @@
                                     <body> 
                                         <h1>Se registro una mantención correctiva!</h1> 
                                         <p> 
-                                            <h2>N°: ".$contador."</h2> 
+                                            <h2>Correctivo Programado N°: ".$contador."</h2> 
                                         </p> 
                                         <p> 
-                                            <b>Fecha:</b></br>
+                                            <b>Fecha de intervención:</b></br>
                                             <span>".$columna['fecha']."</span>
                                         </p> 
                                         <p> 
-                                            <b>OT Padre:</b></br>
+                                            <b>Orden de trabajo padre:</b></br>
                                             <span>".$columna['ot_padre']."</span>
                                         </p> 
                                         <p> 
@@ -73,20 +73,17 @@
                                             <span>".$columna['prioridad']."</span>
                                         </p> 
                                         <p> 
-                                            <b>Equipo:</b></br>
+                                            <b>Equipo a intervenir:</b></br>
                                             <span>".$columna['equipo']."</span>
                                         </p> 
                                         <p> 
-                                            <b>Responsable:</b></br>
+                                            <b>Responsable de la intervención:</b></br>
                                             <span>".$columna['responsable']."</span>
                                         </p> 
                                         <p> 
-                                            <b>Actividad:</b></br>
+                                            <b>Detalle de intervención:</b></br>
                                             <span>".$columna['actividad']."</span>
                                         </p> 
-                                        <p>
-                                            Favor no responder este mensaje, Gracias!!.
-                                        </p>
                                     </body> 
                                 </html>");
                 $mail->CharSet = 'UTF-8';
@@ -96,6 +93,9 @@
                     echo $mail->ErrorInfo;
                 }  
             }
+        }
+        else{
+            $messages[] = "Correctivo guardado satisfactoriamente.";
         }
     }
 
