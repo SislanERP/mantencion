@@ -39,14 +39,13 @@
             $mail->Password   = getenv("pass_correo");
             $mail->SetFrom('sismantencionlandes@gmail.com', 'CORRECTIVO PROGRAMADO');
 
-            // $consulta = "CALL consulta_correctivo($contador)";
-            // $resultado = mysqli_query( conectar(), $consulta );
-            // while ($columna = mysqli_fetch_array( $resultado ))
-            // { 
-                //$mail->AddAddress($columna['email'], $columna['nombre']);
-            // }
+            $consulta = "SELECT * FROM int_correo_mantecion_correctiva";
+            $resultado = mysqli_query( conectar(), $consulta );
+            while ($columna = mysqli_fetch_array( $resultado ))
+            { 
+                $mail->AddAddress($columna['correo'], $columna['nombre']);
+            }
 
-            $mail->AddAddress("casenjo@landes.cl", 'Cristian Asenjo');
             $consulta = "CALL consulta_correctivo($contador)";
             $resultado = mysqli_query( conectar(), $consulta );
             if ($columna = mysqli_fetch_array( $resultado ))
@@ -91,20 +90,12 @@
                                     </body> 
                                 </html>");
                 $mail->CharSet = 'UTF-8';
-                if(!$mail->Send()) {
+                if($mail->Send()) {
                     $messages[] = "Correctivo guardado satisfactoriamente.";
                 } else {
                     echo $mail->ErrorInfo;
                 }  
             }
-            else
-            {
-                $errors []= "Lo siento algo ha salido mal en el envio del correo 1.".mysqli_error(conectar());
-            }
-        }
-        else
-        {
-            $errors []= "Lo siento algo ha salido mal en el envio del correo.".mysqli_error(conectar());
         }
     }
 
