@@ -1,6 +1,8 @@
 <?php
     session_start();
     include ('../../conexion.php');
+    use PHPMailer\PHPMailer\PHPMailer;
+    require '../../../vendor/autoload.php';
 
     $id_usuario = $_SESSION['id_user'];
     date_default_timezone_set("America/Santiago");
