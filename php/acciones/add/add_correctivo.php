@@ -97,6 +97,10 @@
                     echo $mail->ErrorInfo;
                 }  
             }
+            else
+            {
+                $errors []= "Lo siento algo ha salido mal en el envio del correo 1.".mysqli_error(conectar());
+            }
         }
         else
         {
