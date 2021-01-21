@@ -48,6 +48,25 @@
     </div>
   </div>
 
+  <?php 
+        $id_usuario = $_SESSION['id_user'];
+        $token = $_SESSION['page'];
+        $consulta = "call consulta_acceso_pagina('$token',$id_usuario)";
+        $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+        while ($columna = mysqli_fetch_array( $resultado ))
+        { 
+            if($columna['agregar'] <> 1)
+            {
+                echo "<script>document.getElementsByClassName('fc-view-container').style.pointerEvents = 'none';</script>";
+            }
+            else
+            {
+                echo "<script>document.getElementsByClassName('fc-view-container').style.pointerEvents = 'visible';</script>";
+            }
+            
+        }
+  ?>
+
 
   <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
