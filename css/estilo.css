@@ -400,7 +400,7 @@ input[type="checkbox"]:checked:disabled + label:before {
     color :#154D92 !important;
 }
 
-.dropdown-menu .show{    
+.dropdown-menu.show{    
     max-width: 100% !important;
     min-width: 100% !important;
     transform: none !important;
