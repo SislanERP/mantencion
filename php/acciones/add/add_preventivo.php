@@ -6,7 +6,7 @@
     date_default_timezone_set("America/Santiago");
 	$fecha = date("Y-m-d G:i:s");
 
-    $fecha_inicial = $_POST['fecha0'];
+    $fecha_inicial = $_POST['start'];
     $año_siguiente = strtotime($fecha_inicial."+ 1 year");
     $fecha_modificada = date("Y-m-d");
     $mes_actual = date("m",strtotime($fecha_inicial));
@@ -44,37 +44,19 @@
             $contador = 1;
         }
 
-        $consulta = "SELECT * FROM preventivos WHERE id_equipo = $_POST[equipo0] and YEAR(fec_inicio) = YEAR(now())";
-        $resultado = mysqli_query( conectar(), $consulta );
-        if ($columna = mysqli_fetch_array( $resultado ))
-        { 
-            $query="INSERT INTO preventivos (id_preventivo,fec_inicio,id_tipo_mantenimiento,id_equipo,id_frecuencia,id_estado,fec_registro,id_usuario_registro) values($contador,'$fec_inicio',2,$_POST[equipo0],$_POST[frecuencia0],1,'$fecha',$id_usuario)";
-            if (conectar()->query($query) === TRUE) 
-            {
-                $messages[] = "Preventivo guardado satisfactoriamente.";
-            }
-
-            else
-            {
-                $errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error(conectar());
-            }
+        $query="INSERT INTO preventivos (id_preventivo,fec_inicio,id_tipo_mantenimiento,id_equipo,id_frecuencia,id_estado,fec_registro,id_usuario_registro) values($contador,'$fecha_modificada',2,$_POST[equipo0],$_POST[frecuencia0],1,'$fecha',$id_usuario)";
+        if (conectar()->query($query) === TRUE) 
+        {
+            $messages[] = "Preventivo guardado satisfactoriamente.";
         }
+
         else
         {
-            $query="INSERT INTO preventivos (id_preventivo,fec_inicio,id_tipo_mantenimiento,id_equipo,id_frecuencia,id_estado,fec_registro,id_usuario_registro) values($contador,'$fecha_inicial',2,$_POST[equipo0],$_POST[frecuencia0],1,'$fecha',$id_usuario)";
-            if (conectar()->query($query) === TRUE) 
-            {
-                $messages[] = "Preventivo guardado satisfactoriamente.";
-            }
-
-            else
-            {
-                $errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error(conectar());
-            }
+            $errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error(conectar());
         }
+        
 
         $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fecha_inicial));
-        $fec_inicio =  date("Y-m-d",$fecha_modificada);
         $mes_actual = $mes_actual + 1;
     }
 

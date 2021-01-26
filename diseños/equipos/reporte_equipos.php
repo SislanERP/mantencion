@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td class="e1 e2" width="12%">Fecha Rev</td>
-                <td width="10%" class="e1 e2">29/01/2020</td>
+                <td width="10%" class="e1 e2">04/12/2020</td>
             </tr>
         </tr>
     </table>
