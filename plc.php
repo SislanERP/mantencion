@@ -37,24 +37,18 @@
             
             <div class='w-100 d-flex outer_div mt-5'>
                 <div>
-                    <h1>Flujometro riles</h1>
+                    <h1>Totalizador Flujometro</h1>
                     <h1 id="valor0"></h1>
-                </div>
-
-                <div>
-                    <h1>Total flujometro</h1>
-                    <h1 id="valor1"></h1>
                 </div>
             </div> 
         </div>
     </div>
               
   <?php include('footer.php');?>
-  <script src="js/funciones/plc.js"></script>
 
   <script>
       $(document).ready(function(){
-        setInterval('load()',1000);
+        setInterval('load()',10000);
       });
     </script>
     <script>
@@ -64,7 +58,6 @@
                 dataType: "json",
                 success: function (data) {
                     $("#valor0").html(data[0]);
-                    $("#valor1").html(data[1]);
                 }
             })
         }

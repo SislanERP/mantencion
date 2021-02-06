@@ -1,25 +1,14 @@
 <?php
+    session_start();
+    require_once("../php/conexion.php");
 
-require_once dirname(__FILE__) . '/../Phpmodbus/ModbusMaster.php';
+    $consulta = "SELECT * FROM f_total_riles order by fecha desc limit 1";
+	$resultado = mysqli_query( conectar(), $consulta );
+	if ($columna = mysqli_fetch_array( $resultado ))
+	{
+        $arr = array();
+        $arr[0] = $columna['valor'];
+    }
 
-// Create Modbus object
-$modbus = new ModbusMaster("192.168.200.216", "TCP");
-
-try {
-    // FC 3
-    $recData0 = $modbus->readMultipleRegisters(0,0, 1);
-    $recData1 = $modbus->readMultipleRegisters(0,1, 2);
-}
-catch (Exception $e) {
-    // Print error information if any
-    echo $modbus;
-    echo $e;
-    exit;
-}
-
-$arr = array();
-$arr[0] = $recData0[1];
-$arr[1] = $recData1[1] * 100;
-
-echo json_encode($arr);
+    echo json_encode($arr);
 ?>
