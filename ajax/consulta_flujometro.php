@@ -7,9 +7,9 @@
 	while ($columna = mysqli_fetch_array( $resultado ))
 	{
         echo "
-            <div class='col-lg-4 col-sm-12'>
-                <h2 class=''>".$columna['nombre']."</h2>
-                <h1 class=''>".$columna['valor']."</h1>
+            <div class='col-lg-4 col-sm-12 mb-4'>
+                <h2 class='plc_titulo'>".$columna['nombre']."</h2>
+                <h1 class='plc_valor'>".$columna['valor']."</h1>
             </div>
         ";
     }
