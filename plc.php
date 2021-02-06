@@ -36,7 +36,7 @@
             <h3>PLC</h3>
             
             <div class='w-100 d-flex outer_div mt-5'>
-                <div class="resultado"></div>
+                <div class="row w-100"></div>
             </div> 
         </div>
     </div>
@@ -53,8 +53,7 @@
             $.ajax({
                 url: 'ajax/consulta_flujometro.php',
                 success: function (data) {
-                    alert(data);
-                    $(".resultado").html(data);
+                    $(".row").html(data);
                 }
             })
         }
