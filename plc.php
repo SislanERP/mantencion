@@ -53,6 +53,7 @@
             $.ajax({
                 url: 'ajax/consulta_flujometro.php',
                 success: function (data) {
+                    alert(data);
                     $(".resultado").html(data);
                 }
             })
