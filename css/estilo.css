@@ -399,6 +399,14 @@ input[type="checkbox"]:checked:disabled + label:before {
     /*background: #154D92;*/
     color :#154D92 !important;
 }
+
+.dropdown-menu.show{    
+    max-width: 100% !important;
+    min-width: 100% !important;
+    transform: none !important;
+    overflow-x: initial !important;
+    top: auto !important;
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -484,6 +492,7 @@ input[type="checkbox"]:checked:disabled + label:before {
     .e12{flex-direction: column;}
     #imagenmuestra1{margin-top: 0px;}
     .modal-footer{margin-top: 30px;}
+    
 }
 
 
