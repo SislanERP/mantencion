@@ -36,8 +36,9 @@
             <h3>PLC</h3>
             
             <div class='w-100 d-flex outer_div mt-5'>
-                <div class="row w-100"></div>
-                <div class="resultado"></div>
+                <div class="row w-100">
+                    <div class="resultado"></div>
+                </div>
             </div> 
         </div>
     </div>
