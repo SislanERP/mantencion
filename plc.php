@@ -36,10 +36,7 @@
             <h3>PLC</h3>
             
             <div class='w-100 d-flex outer_div mt-5'>
-                <div>
-                    <h1>Totalizador Flujometro</h1>
-                    <h1 id="valor0"></h1>
-                </div>
+                <div class="resultado"></div>
             </div> 
         </div>
     </div>
@@ -55,9 +52,8 @@
         function load(){
             $.ajax({
                 url: 'ajax/consulta_flujometro.php',
-                dataType: "json",
                 success: function (data) {
-                    $("#valor0").html(data[0]);
+                    $(".resultado").html(data);
                 }
             })
         }

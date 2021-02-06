@@ -2,13 +2,16 @@
     session_start();
     require_once("../php/conexion.php");
 
-    $consulta = "SELECT * FROM f_total_riles order by fecha desc limit 1";
+    $consulta = "call consulta_plc()";
 	$resultado = mysqli_query( conectar(), $consulta );
-	if ($columna = mysqli_fetch_array( $resultado ))
+	while ($columna = mysqli_fetch_array( $resultado ))
 	{
-        $arr = array();
-        $arr[0] = $columna['valor'];
+        echo "
+            <div class=''>
+                <h1 class=''>".$columna['nombre']."</h1>
+                <h1 class=''>".$columna['valor']."</h1>
+            </div>
+        ";
     }
 
-    echo json_encode($arr);
 ?>
