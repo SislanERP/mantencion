@@ -460,6 +460,9 @@ input[type="checkbox"]:checked:disabled + label:before {
 
     #imagenmuestra1{margin-top: 30px;}
     .e12{flex-wrap: wrap !important;}
+    .resultado{
+        flex-direction: column;
+    }
 }
 
 
@@ -512,9 +515,7 @@ input[type="checkbox"]:checked:disabled + label:before {
     font-size: 4em;
 }
 
-
-
-
+.resultadoñ{display: flex;}
 
 
 
