@@ -10,7 +10,7 @@
 	$resultado = mysqli_query( conectar(), $consulta );
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
-        $query="UPDATE detenciones SET camiones=$_POST[camiones],kilos_mm_pp=$_POST[kilos_mm_pp],kilos_producidos=$_POST[kilos_producidos],rendimiento=$_POST[rendimiento],kilos_embolsado=$_POST[kilos_embolsado],fec_edicion='$fecha', id_usuario_edicion=$id_usuario where fecha='$_POST[fecha]'";
+        $query="UPDATE detenciones SET camiones=$_POST[camiones],kilos_mm_pp=$_POST[kilos_mm_pp],kilos_producidos=$_POST[kilos_producidos],rendimiento=$_POST[rendimiento],kilos_embolsado=$_POST[kilos_embolsado],fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_detencion=$columna[id_detencion]";
         if (conectar()->query($query) === TRUE) 
         {
             $messages[] = "Información de producción actualizada satisfactoriamente.";
