@@ -30,9 +30,6 @@
     <?php include('head.php');?>
 <body>
     <?php include('nav.php');?>
-    <?php include('modals/consulta_libres/editar.php');?>
-    <?php include('modals/consulta_libres/eliminar.php');?>
-    <?php consulta_acceso_sub_pagina();?>
 
     <div id="content">
       <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">

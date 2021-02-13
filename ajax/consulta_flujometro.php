@@ -13,7 +13,7 @@
             echo "
                 <div class='col-lg-4 col-sm-12 mb-4'>
                     <h2 class='plc_titulo'>".$columna1['nombre']."</h2>
-                    <h1 class='plc_valor'>".$columna1['valor']."</h1>
+                    <h1 class='plc_valor'>".$columna1['valor']." ".$columna1['simbologia']."</h1>
                 </div>
             ";
         }
