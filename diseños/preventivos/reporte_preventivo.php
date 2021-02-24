@@ -38,7 +38,7 @@
                 <td  rowspan="4" class="p-1" style="width:10%;vertical-align: inherit;"><img src="../../../img/logo.png" alt="" style="width:90px;"></td>
                 <td rowspan="4" class="text-center font-weight-bold p-1" style="vertical-align: inherit; width:62%;"><h3>ORDEN DE TRABAJO <br>R13   </br></h3></td>
                 <td class="text-center p-1" style="font-size: 12px;">Versión</td>
-                <td class="text-center p-1" style="font-size: 12px;">0.1</td>
+                <td class="text-center p-1" style="font-size: 12px;">0.2</td>
                 <tr>
                     <td class="text-center p-1" colspan="2" style="font-size: 12px;height:18px;"></td>
                 </tr>
@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td class="text-center p-1" style="font-size: 12px;">Fecha Rev</td>
-                    <td class="text-center p-1" style="font-size: 12px;">23/01/2020</td>
+                    <td class="text-center p-1" style="font-size: 12px;">02/02/2021</td>
                 </tr>
             </tr>
         <thead>

@@ -45,7 +45,7 @@
 
   <script>
       $(document).ready(function(){
-        setInterval('load()',5000);
+            
       });
     </script>
     <script>

@@ -18,7 +18,7 @@
             <td class="e1 e2" rowspan="4" width="12%"><img src="../../../img/logo.png" alt="" style="width:90px;"></td>
             <td class="e1 e2" width="58%" rowspan="4"><h1>INSPECCIONES DIARIAS EQUIPOS FRIGORIFICOS SALA DE MAQUINAS R14</h1></td>
             <td class="e1 e2">Versión</td>
-            <td class="e1 e2">0.1</td>
+            <td class="e1 e2">0.2</td>
             <tr>
                 <td colspan=2 class="e1 e2">Página 1 de 1</td>
             </tr>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td class="e1 e2" width="12%">Fecha Rev</td>
-                <td width="10%" class="e1 e2">23/01/2020</td>
+                <td width="10%" class="e1 e2">02/02/2021</td>
             </tr>
         </tr>
     </table>
