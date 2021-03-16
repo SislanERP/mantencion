@@ -37,7 +37,12 @@
 
     <div id="content">
       <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
-        <h3>Requerimientos Mantención</h3>
+        <div class="d-flex justify-content-between e3">
+          <h3>Requerimientos Mantención</h3>
+          <a href="php/acciones/report/report_resumen_requerimientos.php" target="_blank" class="btn btn-primary agregar mr-3 e6" id="exportar">
+            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Resumen
+          </a>
+        </div>
         <div class="row d-flex justify-content-between mt-5 e3">
           <div class="col-sm-7 col-md-7 col-xl-3 e3">
               <input class="form-control" id="q" onkeyup="load(1);" type="text" placeholder="Buscar.." autofocus/>
