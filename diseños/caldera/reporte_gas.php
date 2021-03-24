@@ -19,7 +19,7 @@
 					detalle_caldera b on a.id_control = b.id_control
 				WHERE
 					b.id_tipo = 2 and date(a.fecha) between '".$desde."' and '".$hasta."'
-				ORDER BY
+				GROUP BY
 					a.fecha";
     $resultado = mysqli_query(conectar(), $consulta );
     
