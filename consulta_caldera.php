@@ -62,7 +62,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-riles" role="tabpanel" aria-labelledby="nav-riles-tab">
-                <div class="riles mt-3 d-flex flex-column">
+                <div class="gas mt-3 d-flex flex-column">
                 
                 </div> 
             </div>
@@ -82,13 +82,13 @@
             var hasta = $("#hasta").val();
             var parametros = {"desde": desde,"hasta": hasta, "page":page};
             $.ajax({
-                url:'ajax/listar_totalizador.php',
+                url:'ajax/listar_consumo_gas.php',
                 data: parametros,
                 beforeSend: function(objeto){
                     $("#loader").html("<img src='img/loader.gif'>");
                 },
                 success:function(data){
-                    $(".riles").html(data).fadeIn('slow');
+                    $(".gas").html(data).fadeIn('slow');
                 }
             })
         }
