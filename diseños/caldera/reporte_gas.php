@@ -6,7 +6,7 @@
     $hasta = $_SESSION['totalizador_gas_hasta']; 
 
     header('Content-type: application/vnd.ms-excel;charset=iso-8859-15');
-    header('Content-Disposition: attachment; filename=totalizador.xls');
+    header('Content-Disposition: attachment; filename=caldera_gas.xls');
 
     $consulta = "SELECT
 					a.fecha as fecha,
@@ -47,6 +47,8 @@
                     <td><?=$row['salida'] - $row['entrada']?></td>
 				</tr>
 <?php
+				$dia = $row['salida'] - $row['entrada'];
+				$total = $total + $dia;
 			}
 ?>
 		</tbody>
@@ -54,15 +56,14 @@
 
 
     <table class="table">
-        <?php
-            while($row = mysqli_fetch_array($resultado)){
-				$dia = $row['salida'] - $row['entrada'];
-				$total = $total + $dia;
-			}
-?>
-				<tr>
-					<td style="font-weight:bolder;background:yellow;">Totalizador</td>
-					<td style="font-weight:bolder;background:yellow;"><?=$total?></td>
-				</tr>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="font-weight:bolder;background:yellow;">Totalizador</td>
+				<td style="font-weight:bolder;background:yellow;"><?=$total?></td>
+			</tr>
 		</tbody>
 	</table>  
