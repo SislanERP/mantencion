@@ -35,15 +35,14 @@
     $query = mysqli_query(conectar(),"SELECT $campos from $tables where $sWhere Limit $offset,$per_page");
 
     if ($numrows>0){
-        $consulta = "SELECT  min(a.valor) as minimo , max(a.valor) as maximo FROM f_total_riles a WHERE date(a.fecha) between '$desde' and '$hasta'";
-        $resultado = mysqli_query(conectar(), $consulta );
-        if($row = mysqli_fetch_array($resultado)){
-            $total = $row['maximo'] - $row['minimo'];
+        while($row = mysqli_fetch_array($query)){
+            $dia = $row['salida'] - $row['entrada'];
+            $total = $total + $dia;
         }
 ?>
         <div class="d-flex justify-content-between">
             <h1>Totalizador: <?=$total?> m³</h1>
-            <a href="diseños/consultas/reporte_totalizador.php" class="btn btn-primary agregar e6">
+            <a href="diseños/caldera/reporte_gas.php" class="btn btn-primary agregar e6">
                 <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
             </a>
         </div>
@@ -63,14 +62,16 @@
 			while($row = mysqli_fetch_array($query)){
 				?>
 				<tr>
-					<td><?=$row['fecha'];?></td>
-					<td><?=$row['inicio']?></td>
-                    <td><?=$row['detencion']?></td>
+					<td><?php echo date("d/m/Y", strtotime($row['fecha']));?></td>
+					<td><?php $entrada = strtotime($row['inicio']);echo date("H:i",$entrada);?></td>
+                    <td><?php $salida = strtotime($row['detencion']);echo date("H:i",$salida);?></td>
                     <td><?=$row['entrada']?> m³</td>
                     <td><?=$row['salida']?> m³</td>
                     <td><?=$row['salida'] - $row['entrada']?> m³</td>
 				</tr>
 				<?php
+
+                
 			}
 			?>
 			</tbody>
