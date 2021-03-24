@@ -35,13 +35,10 @@
     $query = mysqli_query(conectar(),"SELECT $campos from $tables where $sWhere Limit $offset,$per_page");
 
     if ($numrows>0){
-        while($row1 = mysqli_fetch_array($query)){
-            $dia = $row1['salida'] - $row1['entrada'];
-            $total = $total + $dia;
-        }
+        
 ?>
-        <div class="d-flex justify-content-between">
-            <h1>Totalizador: <?=$total?> m³</h1>
+        <div class="d-flex justify-content-end">
+            <!-- <h1>Totalizador: <?=$total?> m³</h1> -->
             <a href="diseños/caldera/reporte_gas.php" class="btn btn-primary agregar e6">
                 <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
             </a>
