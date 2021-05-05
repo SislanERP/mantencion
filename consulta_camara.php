@@ -82,7 +82,7 @@
             var hasta = $("#hasta").val();
             var parametros = {"desde": desde,"hasta": hasta, "page":page};
             $.ajax({
-                url:'ajax/listar_consumo_gas.php',
+                url:'ajax/listar_temperatura_camaras.php',
                 data: parametros,
                 beforeSend: function(objeto){
                     $("#loader").html("<img src='img/loader.gif'>");
