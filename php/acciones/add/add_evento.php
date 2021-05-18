@@ -30,6 +30,21 @@ while($fecha_modificada < $año_siguiente)
         $frecuencia = "year";
     }
 
+    if($_POST['frecuencia'] == 5)
+    { 
+        $frecuencia = "month";
+    }
+
+    if($_POST['frecuencia'] == 6)
+    { 
+        $frecuencia = "month";
+    }
+
+    if($_POST['frecuencia'] == 7)
+    { 
+        $frecuencia = "month";
+    }
+
     $consulta = "SELECT max(id) as correlativo FROM events";
     $resultado = mysqli_query( conectar(), $consulta );
     if ($columna = mysqli_fetch_array( $resultado ))
@@ -70,9 +85,54 @@ while($fecha_modificada < $año_siguiente)
         }
     }
 
-    $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
-    $fec_inicio =  date("Y-m-d",$fecha_modificada);
-    $mes_actual = $mes_actual + 1;
+    if($_POST['frecuencia'] == 5)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 2;
+    }
+
+    if($_POST['frecuencia'] == 6)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 3;
+    }
+
+    if($_POST['frecuencia'] == 7)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 6;
+    }
+
+    if($_POST['frecuencia'] == 4)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 1;
+    }
+
+    if($_POST['frecuencia'] == 3)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 1;
+    }
+
+    if($_POST['frecuencia'] == 2)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 1;
+    }
+
+    if($_POST['frecuencia'] == 1)
+    { 
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $fec_inicio =  date("Y-m-d",$fecha_modificada);
+        $mes_actual = $mes_actual + 1;
+    }
 }
 
 	
