@@ -2,7 +2,7 @@
     // define('DB_HOST','localhost');
     // define('DB_USER','root');
     // define('DB_PASS','betroox1229');
-    // define('DB_NAME','mantencion');
+    // define('DB_NAME','planta');
 
     define('DB_HOST','sislanmysql.mysql.database.azure.com');
     define('DB_USER','dba@sislanmysql');

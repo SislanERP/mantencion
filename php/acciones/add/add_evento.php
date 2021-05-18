@@ -4,11 +4,11 @@ session_start();
 include ('../../conexion.php');
 
 $año_siguiente = strtotime($_POST['start']."+ 1 year");
-$fecha_modificada = date("Y-m-d");
+$fecha_modificada = strtotime($_POST['start']);
 $fec_inicio = $_POST['start'];
 $mes_actual = date("m",strtotime($_POST['start']));
 
-while($_POST['start'] < $año_siguiente)
+while($fecha_modificada <= $año_siguiente)
 {
     if($_POST['frecuencia'] == 1)
     { 
@@ -69,53 +69,54 @@ while($_POST['start'] < $año_siguiente)
     
     if($_POST['frecuencia'] == 5)
     { 
-        $mes_actual = $mes_actual + 2;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 2;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
     }
 
     if($_POST['frecuencia'] == 6)
     { 
-        $mes_actual = $mes_actual + 3;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 3;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
     }
 
     if($_POST['frecuencia'] == 7)
     { 
-        $mes_actual = $mes_actual + 6;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 6;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
     }
 
     if($_POST['frecuencia'] == 4)
     { 
-        $mes_actual = $mes_actual + 1;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 1;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
     }
 
     if($_POST['frecuencia'] == 3)
     { 
-        $mes_actual = $mes_actual + 1;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 1;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
     }
 
     if($_POST['frecuencia'] == 2)
     { 
-        $mes_actual = $mes_actual + 1;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 1;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
     }
 
     if($_POST['frecuencia'] == 1)
     { 
-        $mes_actual = $mes_actual + 1;
-        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($_POST['start']));
+        $mes_actual = 1;
+        $fecha_modificada = strtotime ('+'.$mes_actual.''.$frecuencia, strtotime($fec_inicio));
         $fec_inicio =  date("Y-m-d",$fecha_modificada);
         
     }
+
 }
 
 	
