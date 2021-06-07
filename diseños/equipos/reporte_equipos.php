@@ -53,7 +53,7 @@
     <table border=1 cellspacing=0 cellpadding=2 width="100%" class="table">
         <?php
         
-            $consulta = "call consulta_ubicaciones()";
+            $consulta = "call consulta_ubicaciones_reporte()";
             $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
             while ($columna = mysqli_fetch_array( $resultado ))
             { 
