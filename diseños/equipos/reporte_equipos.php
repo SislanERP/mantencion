@@ -51,9 +51,37 @@
         <em style="font-size:9px;">Soc. Pesquera Landes S.A. - Secotr Astillero Rural - Dalcahue, Décima Región - CHILE.</em>
     </div>
     <table border=1 cellspacing=0 cellpadding=2 width="100%" class="table">
-        <tr>
-            <td class="e1" style="text-align:center;">Nombre</td>
-        </tr>
+        <?php
+        
+            $consulta = "call consulta_ubicaciones()";
+            $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+            while ($columna = mysqli_fetch_array( $resultado ))
+            { 
+                $id = $columna['id_ubicacion'];
+                ?>
+
+                    <tr>
+                        <td class="e1" style="text-align:center;"><?=$columna['ubicacion']?></td>
+                    </tr>
+
+                <?php
+
+                $consulta1 = "call consulta_equipos_reporte($id)";
+                $resultado1 = mysqli_query(conectar(), $consulta1 ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                while ($columna1 = mysqli_fetch_array( $resultado1 ))
+                { 
+                    ?>
+
+                    <tr>
+                        <td class="e1"><?php echo $columna1['equipo'];?></td>
+                    </tr>
+
+                    <?php
+                }
+            }
+        ?>
+
+       
         <?php
             $consulta = "call consulta_equipos()";
             $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");

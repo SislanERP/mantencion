@@ -17,7 +17,7 @@ while($fecha_modificada <= $año_siguiente)
 
     if($_POST['frecuencia'] == 2)
     { 
-        $frecuencia = "week";
+        $frecuencia = "week";   
     }
 
     if($_POST['frecuencia'] == 3)
