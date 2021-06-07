@@ -80,20 +80,6 @@
                 }
             }
         ?>
-
-       
-        <?php
-            $consulta = "call consulta_equipos()";
-            $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-            while ($columna = mysqli_fetch_array( $resultado ))
-            { 
-        ?>
-                    <tr>
-                        <td class="e1"><?php echo $columna['equipo'];?></td>
-                    </tr>
-        <?php   
-            }
-        ?>
     </table>
     
 </body>
