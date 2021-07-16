@@ -13,7 +13,8 @@
                 c.nombre as responsable,
                 a.fec_inicio as inicio,
                 a.fec_termino as termino,
-                d.id_gantt as gantt";
+                d.id_gantt as gantt,
+                a.id_usuario_responsable as id_responsable";
 	$sWhere=" a.id_gantt_detalle_equipo = $gantt";
 
     include 'pagination.php'; 
@@ -54,6 +55,7 @@
                         <div class="d-flex">
                             <form id="EliminarActividad<?=$row['id']?>">
                                 <input type="hidden" id='id_registro_eliminar<?=$row['id']?>' value="<?=$row['id']?>"/>
+                                <button type="button" data-toggle="modal" data-target="#dataActividad" data-id="<?=$row['id']?>" data-i="<?=$row['inicio']?>" data-t="<?=$row['termino']?>" data-r="<?=$row['id_responsable']?>" data-a="<?=$row['actividad']?>" class="btn p-0"><img src="img/iconos/editar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
                                 <button type="submit" class="btn p-0"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
                             </form>
                         </div>

@@ -40,7 +40,8 @@
                                         <label>Equipo</label>
                                         <div id="select_equipos"></div>
                                     </div>
-                                    <div class="pr-3 pb-3 d-flex w-100 justify-content-end">
+                                    <div class="pr-3 pb-3 d-flex w-100 justify-content-between">
+                                        <button type="button" data-toggle="modal" data-target="#dataCopiar" class="btn btn-primary ml-3">Copiar</button>
                                         <button type="submit" class="btn btn-primary">Agregar</button>
                                     </div>
                                     <div class="mensaje_gantt_equipo w-100 pl-3 pr-3"></div>

@@ -30,6 +30,25 @@ function load(page){
         modal.find('.modal-body #año').val(año)
         $('.alert').hide();
     })
+
+    $('#dataActividad').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      var id = button.data('id')
+      var inicio = button.data('i')
+      var termino = button.data('t')
+      var responsable = button.data('r')
+      var actividad = button.data('a')
+
+      var modal = $(this)
+      modal.find('.modal-title').text('Editar : '+id)
+      modal.find('.modal-body #idd').val(id)
+      modal.find('.modal-body #inicio1').val(inicio)
+      modal.find('.modal-body #termino1').val(termino)
+      modal.find('select[id=responsable1]').val(responsable)
+      modal.find('.modal-body #actividad1').val(actividad)
+      $('.selectpicker').selectpicker('refresh');
+      $('.alert').hide();
+  })
   
     $('#dataDelete').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) 
@@ -108,6 +127,49 @@ function load(page){
         });
           
         event.preventDefault();
+    });
+
+    $( "#actualidarActividad" ).submit(function( event ) {
+      event.preventDefault();
+      var form = $('#actualidarActividad')[0];
+      var data = new FormData(form);
+
+      $.ajax({
+        type: "POST",
+        url: "php/acciones/update/update_detalle_actividad.php",
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data) {
+          $(".mensaje_gantt_actividades").show();
+          $(".mensaje_gantt_actividades").html(data);
+          setTimeout(function() { $('.mensaje_gantt_actividades').fadeOut('fast'); }, 3000);
+
+          var id = $("#id_gantt_equipo").val();
+          actividades_gantt(id);
+          $('#dataActividad').modal('hide');
+        }
+      });
+        
+      event.preventDefault();
+  });
+
+    $( "#CopiarEquipo" ).submit(function( event ) {
+      var parametros = $(this).serialize();
+      $.ajax({
+        type: "POST",
+        url: "php/acciones/update/update_copiar_equipo.php",
+        data: parametros,
+      success: function(datos){
+        $(".mensaje_gantt_equipo").show();
+        $(".mensaje_gantt_equipo").html(datos);
+        setTimeout(function() { $('.mensaje_gantt_equipo').fadeOut('fast'); }, 3000);
+        $('#dataCopiar').modal('hide');
+      }
+    });
+
+    event.preventDefault();
     });
 
     $( "#AddActividad" ).submit(function( event ) {

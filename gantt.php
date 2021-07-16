@@ -33,6 +33,8 @@
     <?php include("modals/gantt/editar.php");?>
     <?php include("modals/gantt/eliminar.php");?>
     <?php include("modals/gantt/detalle.php");?>
+    <?php include("modals/gantt/copiar.php");?>
+    <?php include("modals/gantt/editar_actividad.php");?>
     <?php include('nav.php');?>
 
     <div id="content">
