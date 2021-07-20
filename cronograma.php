@@ -6,10 +6,14 @@
     $inactivo = 1800;
     $m1 = "";
     $c = 0;
-    $c2 = 0;
+    $c4 = "";
+    $c3= 0;
     $arr[] = "";
     $arr1[] = "";
-    $dd="";
+    $arr2[] = "";
+    $arr4[]  = "";
+    $dd = "";
+    $dd1 = "";
  
     if(isset($_SESSION['id_user']) ) {
         $vida_session = time() - $_SESSION['tiempo'];
@@ -35,13 +39,14 @@
 <html lang="es">
     <?php include('head.php');?>
 <body>
-    <div class="contenedor m-3 table-responsive">
+    <div class="contenedor m-3">
         <table class="table">
             <thead>
                 <tr>
-                    <td colspan="2"></td>
-                    <?php 
-                        $consulta = "SELECT MONTH(fec_inicio) as inicio, fec_inicio as fec_inicio, fec_termino as fec_termino, MONTH(fec_termino) as termino from gantt where id_gantt = 1";
+                    <td class="border-bottom" colspan="2"></td>
+                    <?php
+                        $gantt = $_GET['id'];
+                        $consulta = "SELECT MONTH(fec_inicio) as inicio, fec_inicio as fec_inicio, fec_termino as fec_termino, MONTH(fec_termino) as termino from gantt where id_gantt = $gantt";
                         $resultado = mysqli_query( conectar(), $consulta );
                         if ($columna = mysqli_fetch_array( $resultado ))
                         {
@@ -75,14 +80,14 @@
                                 $c++;
                             }
 
+                            
 
                             $cc = count($arr1);
                             for($uu = 0 ; $uu < $cc ; $uu++)
                             {
-                                echo $uu;
                                 $token1 = strtok($arr1[$uu], ".");
                                 while($token1 !== false) {
-                                    $dd .= "<td>".$token1."</td>";
+                                    $dd .= "<td class='font-weight-bold border'>".$token1."</td>";
                                     $token1 = strtok(".");
                                 }
     
@@ -97,43 +102,95 @@
                                 if ($columna = mysqli_fetch_array( $resultado ))
                                 {
                                     $v = $arr[$c1];
+                                    $arr4[$c1] = $i;
                                     
                     ?>
-                                        
-                                        <td colspan="<?=$v?>"><?=$columna['mes']?></td>
-                                    
+                                        <td class="font-weight-bold text-center border" colspan="<?=$v?>"><?=$columna['mes']?></td>
                     <?php                 
                                 }
                                 $c1++;
                             }
                             
                     ?>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tarea</td>
-                                            <td>Responsable</td>
-                                            <?php 
-                                                 $o = count($arr1);
-                                                 for($u=0;$u<=$o;$u++)
-                                                 {
-                                                     echo $dd;
-                                                 }
-                                            ?>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-weight-bold border text-center">Tarea</td>
+                                    <td class="font-weight-bold border">Responsable</td>
+                                    <?=$dd?>
+                                </tr>
+                                    
+                                        <?php 
+                                            $consulta = "SELECT d.ubicacion as area, c.id_ubicacion as id FROM gantt_detalle_actividad a inner join gantt_detalle_equipo b on a.id_gantt_detalle_equipo = b.id_registro inner JOIN equipos c on b.id_equipo = c.id_equipo inner join ubicaciones d on c.id_ubicacion = d.id_ubicacion GROUP by d.ubicacion";
+                                            $resultado = mysqli_query( conectar(), $consulta );
+                                            while ($columna = mysqli_fetch_array( $resultado ))
+                                            {
+                                                echo "<tr><th style='color:gray;font-weight:600;border:1px solid #dee2e6 !important;'>".$columna['area']."</th><td style='border-right:1px solid #dee2e6 !important;'></td></tr>";
+                                                $consulta1 = "SELECT c.equipo as equipo, b.id_equipo as id FROM gantt_detalle_actividad a inner join gantt_detalle_equipo b on a.id_gantt_detalle_equipo = b.id_registro inner JOIN equipos c on b.id_equipo = c.id_equipo inner join ubicaciones d on c.id_ubicacion = d.id_ubicacion where d.id_ubicacion = $columna[id] GROUP BY c.equipo";
+                                                $resultado1 = mysqli_query( conectar(), $consulta1 );
+                                                while ($columna1 = mysqli_fetch_array( $resultado1 ))
+                                                {
+                                                    echo "<tr><td class='pl-4' style='white-space: nowrap;color:#154D92;font-weight:600;border-right:1px solid #dee2e6 !important;'>".$columna1['equipo']."</td><td style='border-right:1px solid #dee2e6 !important;'></td></tr>";
+                                                    $consulta2 = "SELECT a.actividad as actividad,e.nombre as responsable, a.id_registro as id FROM gantt_detalle_actividad a inner join gantt_detalle_equipo b on a.id_gantt_detalle_equipo = b.id_registro inner JOIN equipos c on b.id_equipo = c.id_equipo inner join ubicaciones d on c.id_ubicacion = d.id_ubicacion inner join trabajadores e on e.id_trabajador = a.id_usuario_responsable where b.id_equipo = $columna1[id]";
+                                                    $resultado2 = mysqli_query( conectar(), $consulta2 );
+                                                    while ($columna2 = mysqli_fetch_array( $resultado2 ))
+                                                    {
+                                                        ?>
+                                                        <tr>
+                                                            <?php
+                                                            echo "<td class='pl-5' style='border-right:1px solid #dee2e6 !important;'> - ".$columna2['actividad']."</td><td style='white-space: nowrap;border-right:1px solid #dee2e6 !important;'>".$columna2['responsable']."</td>";
+                                                            $consulta3 = "SELECT fec_inicio,fec_termino FROM gantt_detalle_actividad WHERE id_registro = $columna2[id]";
+                                                            $resultado3 = mysqli_query( conectar(), $consulta3 );
+                                                            while ($columna3 = mysqli_fetch_array( $resultado3 ))
+                                                            {
+                                                                $c4 = 0;
+                                                                $fecha_entero = strtotime($columna3['fec_inicio']);
+                                                                $fecha_entero1 = strtotime($columna3['fec_termino']);
+                                                                $dia = date("d", $fecha_entero);
+                                                                $dia1 = date("d", $fecha_entero1);
+                                                                $mes = date("m", $fecha_entero);
+                                                                
+                                                                for($i=$mes_inicio; $i<= $mes_termino; $i++)
+                                                                { 
+                                                                    $consulta4 = "SELECT * FROM meses WHERE id_mes=$i";
+                                                                    $resultado4 = mysqli_query( conectar(), $consulta4 );
+                                                                    if ($columna4 = mysqli_fetch_array( $resultado4 ))
+                                                                    {
+                                                                        
+                                                                        $token1 = strtok($arr1[$c4], ".");
+                                                                         while($token1 !== false) {
+                                                                            echo "<td id='".$columna2['id'].$columna4['mes'].$token1."'></td>";
+                                                                            $token1 = strtok(".");
+                                                                        }
+                                                                    }
+
+                                                                    $c4++;
+                                                                }
+
+                                                                while($dia <= $dia1)
+                                                                {
+                                                                    $consulta5 = "SELECT * FROM meses WHERE id_mes=$mes";
+                                                                    $resultado5 = mysqli_query( conectar(), $consulta5 );
+                                                                    if ($columna5 = mysqli_fetch_array( $resultado5 ))   
+                                                                    {
+                                                                        echo "<script>var element = document.getElementById('".$columna2['id'].$columna5['mes'].$dia."');element.classList.add('mystyle');</script>";
+                                                                    }
+
+                                                                    $dia++;
+                                                                }
+
+                                                                
+                                                            }
+
+                                                            
+                                                            ?>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                }
+                                            }
+                                        ?>
+                            </tbody>
                     <?php
                         }
                     ?>
@@ -144,3 +201,23 @@
     
 </body>
 </html>
+
+<?php 
+    function tachar($valores){
+        $c2 = 0;
+        $token = strtok($valores, ".");
+        while($token !== false) { 
+            $arr2[$c2] = $token;
+            $token = strtok(".");
+            $c2++;
+        }
+
+        var_dump($arr2);
+        $c2 = 0;
+        unset($arr2);
+    }
+
+    function consulta(){
+
+    }
+?>

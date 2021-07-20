@@ -72,6 +72,7 @@
 						?>
 										<button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDelete" data-id="<?php echo $row['id']?>" data-anio="<?=$row['año']?>"><img src="img/iconos/eliminar.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
                                         <button type="button" class="btn p-0" data-toggle="modal" data-target="#dataDetalle" data-id_gantt="<?php echo $row['id']?>"><img src="img/iconos/ver.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+										<a href="cronograma.php?id=<?=$row['id']?>" target="_blank"><img src="img/iconos/registros.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></a>
 						<?php
 									}
 						?>
