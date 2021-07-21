@@ -7,7 +7,7 @@
     color: #154D92;
 }
 
-.mystyle{background: #154D92;border:1px solid aliceblue;}
+.mystyle{background: #154D92;border:1px solid aliceblue; color:red;}
 body{
     background-color: #F8F5F5;
 }

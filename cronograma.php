@@ -38,9 +38,10 @@
 <!DOCTYPE html>
 <html lang="es">
     <?php include('head.php');?>
+    <?php include('footer.php');?>
 <body>
     <div class="contenedor m-3">
-        <table class="table">
+        <table class="table" id="export">
             <thead>
                 <tr>
                     <td class="border-bottom" colspan="2"></td>
@@ -173,7 +174,7 @@
                                                                     $resultado5 = mysqli_query( conectar(), $consulta5 );
                                                                     if ($columna5 = mysqli_fetch_array( $resultado5 ))   
                                                                     {
-                                                                        echo "<script>var element = document.getElementById('".$columna2['id'].$columna5['mes'].$dia."');element.classList.add('mystyle');</script>";
+                                                                        echo "<script>$('#".$columna2['id'].$columna5['mes'].$dia."').css('background-color','#154D92');$('#".$columna2['id'].$columna5['mes'].$dia."').css({'border-color': '#fff', 'border-weight':'1px', 'border-style':'solid'});</script>";
                                                                     }
 
                                                                     $dia++;
@@ -198,26 +199,36 @@
             
         </table>
     </div>
-    
 </body>
+<script>
+    $(document).ready(function(){
+        
+        var htmls = "";
+            var uri = 'data:application/vnd.ms-excel;base64,';
+            var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="content-type" content="application/vnd.ms-Excel; charset=UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'; 
+            var base64 = function(s) {
+                return window.btoa(unescape(encodeURIComponent(s)))
+            };
+
+            var format = function(s, c) {
+                return s.replace(/{(\w+)}/g, function(m, p) {
+                    return c[p];
+                })
+            };
+
+            htmls = $("#export").html();
+
+            var ctx = {
+                worksheet : 'Worksheet',
+                table : htmls
+            }
+
+
+            var link = document.createElement("a");
+            link.download = "cronograma.xls";
+            link.href = uri + base64(format(template, ctx));
+            link.click();
+
+    });
+</script>
 </html>
-
-<?php 
-    function tachar($valores){
-        $c2 = 0;
-        $token = strtok($valores, ".");
-        while($token !== false) { 
-            $arr2[$c2] = $token;
-            $token = strtok(".");
-            $c2++;
-        }
-
-        var_dump($arr2);
-        $c2 = 0;
-        unset($arr2);
-    }
-
-    function consulta(){
-
-    }
-?>
