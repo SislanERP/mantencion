@@ -3,7 +3,6 @@
 ?>
 
 <?php
-    $inactivo = 1800;
     $m1 = "";
     $c = 0;
     $c4 = "";
@@ -14,25 +13,6 @@
     $arr4[]  = "";
     $dd = "";
     $dd1 = "";
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
 ?>
 
 <!DOCTYPE html>
