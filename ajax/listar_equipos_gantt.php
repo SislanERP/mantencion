@@ -8,7 +8,8 @@
 
 	$campos="	a.id_registro as id,
                 b.equipo as equipo,
-                a.id_gantt as gantt";
+                a.id_gantt as gantt,
+                a.id_equipo as id_equipo";
 	$sWhere=" a.id_gantt = $gantt";
 
     include 'pagination.php'; 
@@ -36,6 +37,13 @@
 			<tbody id="myTable">
 			<?php
 			while($row = mysqli_fetch_array($query)){
+                $consulta = "SELECT * FROM gantt_detalle_equipo a inner JOIN gantt_detalle_actividad b on a.id_registro = b.id_gantt_detalle_equipo WHERE a.id_equipo = $row[id_equipo] and a.id_gantt = $gantt";
+                $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                if ($columna = mysqli_fetch_array( $resultado ))
+                { 
+                    $info = "<button type='button' class='btn p-0'><img src='img/iconos/no.svg' alt='' class='btn-accion align-self-center' style='width:34px;'></button>";
+                }
+                else{$info = "<button type='button' class='btn p-0'><img src='img/iconos/si.svg' alt='' class='btn-accion align-self-center' style='width:34px;'></button>";}
 				?>
 				<tr>
                     <td><?php echo $row['equipo'];?></td>
@@ -50,6 +58,7 @@
                             <form id="Actividades<?=$row['id']?>" class="ml-3">
                                 <input type="hidden" id='id_registro_equipo<?=$row['id']?>' value="<?=$row['id']?>"/>
                                 <button type="submit" class="btn p-0"><img src="img/iconos/calidad.svg" alt="" class="btn-accion align-self-center" style="width:34px;"></button>
+                                <?=$info?>
                             </form>
                         </div>
                     </td>
