@@ -85,6 +85,7 @@
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="equipos-tab" data-toggle="tab" href="#equipos" role="tab" aria-controls="equipos" aria-selected="true">% Paras</a>
                 <a class="nav-item nav-link" id="areas-tab" data-toggle="tab" href="#areas" role="tab" aria-controls="areas" aria-selected="false">% Por Áreas</a>
+                <a class="nav-item nav-link" id="hp-tab" data-toggle="tab" href="#hp" role="tab" aria-controls="hp" aria-selected="false">% Por total de HP</a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -95,6 +96,10 @@
                 <div class="tab-pane fade" id="areas" role="tabpanel" aria-labelledby="areas-tab">
                     <canvas id="myChart1" width="400" height="200px"></canvas>
                     <div class="grafico1" id="grafico1"></div>
+                </div>
+                <div class="tab-pane fade" id="hp" role="tabpanel" aria-labelledby="hp-tab">
+                    <canvas id="myChart2" width="400" height="200px"></canvas>
+                    <div class="grafico2" id="grafico2"></div>
                 </div>
             </div>   
 
@@ -123,67 +128,99 @@
         var data = new FormData(form);
 
         $.ajax({
-        type: "POST",
-        url: "ajax/consulta_grafico_porcentaje_paras.php",
-        data: data,
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function (data) {
-            if(data == 1)
-            {
-                $("#error").show();
-                setTimeout(function() { $('#error').fadeOut('fast'); }, 3000);
+            type: "POST",
+            url: "ajax/consulta_grafico_porcentaje_paras.php",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                if(data == 1)
+                {
+                    $("#error").show();
+                    setTimeout(function() { $('#error').fadeOut('fast'); }, 3000);
+                }
+
+                else if(data == 2)
+                {
+                    $("#menor").show();
+                    setTimeout(function() { $('#menor').fadeOut('fast'); }, 3000);
+                }
+
+                else
+                {
+                    $("#myChart").remove();
+
+                    divParent = document.getElementById('grafico');
+                    divParent.innerHTML = '<canvas id="myChart"></canvas>';
+
+                    $("#myChart").html(data);
+                }
             }
+        });
 
-            else if(data == 2)
-            {
-                $("#menor").show();
-                setTimeout(function() { $('#menor').fadeOut('fast'); }, 3000);
+        $.ajax({
+            type: "POST",
+            url: "ajax/consulta_grafico_paras_equipos.php",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                if(data == 1)
+                {
+                    $("#error").show();
+                    setTimeout(function() { $('#error').fadeOut('fast'); }, 3000);
+                }
+
+                else if(data == 2)
+                {
+                    $("#menor").show();
+                    setTimeout(function() { $('#menor').fadeOut('fast'); }, 3000);
+                }
+
+                else
+                {
+                    $("#myChart1").remove();
+
+                    divParent = document.getElementById('grafico1');
+                    divParent.innerHTML = '<canvas id="myChart1"></canvas>';
+
+                    $("#myChart1").html(data);
+                }
             }
+        });
 
-            else
-            {
-                $("#myChart").remove();
+        $.ajax({
+            type: "POST",
+            url: "ajax/consulta_grafico_paras_equipos_100.php",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                if(data == 1)
+                {
+                    $("#error").show();
+                    setTimeout(function() { $('#error').fadeOut('fast'); }, 3000);
+                }
 
-                divParent = document.getElementById('grafico');
-                divParent.innerHTML = '<canvas id="myChart"></canvas>';
+                else if(data == 2)
+                {
+                    $("#menor").show();
+                    setTimeout(function() { $('#menor').fadeOut('fast'); }, 3000);
+                }
 
-                $("#myChart").html(data);
+                else
+                {
+                    $("#myChart2").remove();
+
+                    divParent = document.getElementById('grafico2');
+                    divParent.innerHTML = '<canvas id="myChart2"></canvas>';
+
+                    $("#myChart2").html(data);
+                }
             }
-        }
-    });
-
-    $.ajax({
-        type: "POST",
-        url: "ajax/consulta_grafico_paras_equipos.php",
-        data: data,
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function (data) {
-            if(data == 1)
-            {
-                $("#error").show();
-                setTimeout(function() { $('#error').fadeOut('fast'); }, 3000);
-            }
-
-            else if(data == 2)
-            {
-                $("#menor").show();
-                setTimeout(function() { $('#menor').fadeOut('fast'); }, 3000);
-            }
-
-            else
-            {
-                $("#myChart1").remove();
-
-                divParent = document.getElementById('grafico1');
-                divParent.innerHTML = '<canvas id="myChart1"></canvas>';
-
-                $("#myChart1").html(data);
-            }
-        }
         });
         
         event.preventDefault();

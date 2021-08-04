@@ -52,6 +52,8 @@
                         $a[] = round($por_paras,2);
                         $b[] = $q[0];
                         $c[] = $v_HorasPartes[0];
+                        $h = $v_HorasPartes[0];
+                        $_SESSION['paras'] =$h;
 
                         switch ($i) {
                             case 1:
