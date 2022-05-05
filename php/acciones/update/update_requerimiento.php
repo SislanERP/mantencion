@@ -11,14 +11,16 @@
         mkdir($target_path, 0777, true);
     }
 
-    $consulta = "SELECT * FROM requerimientos where id_requerimiento=$_POST[id]";
+    $id = $_POST['id-edit'];
+
+    $consulta = "SELECT * FROM requerimientos where id_requerimiento=$id";
 	$resultado = mysqli_query( conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 	if ($columna = mysqli_fetch_array( $resultado ))
 	{ 
         $imagen = "img/requerimientos/".$_FILES['imagen']['name'];
         if(empty($_FILES['imagen']['name']))
         {
-            $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_requerimiento=$_POST[id]";
+            $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_requerimiento=$id";
             if (conectar()->query($query) === TRUE) 
             {
                 $messages[] = "Requerimiento editado satisfactoriamente.";
@@ -29,11 +31,12 @@
                 $errors []= "1".mysqli_error(conectar());
             }
         }
+    
         else
         {
             if($columna['imagen'] == $imagen)
             {
-                $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_requerimiento=$_POST[id]";
+                $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario where id_requerimiento=$id";
                 if (conectar()->query($query) === TRUE) 
                 {
                     $messages[] = "Requerimiento editado satisfactoriamente.";
@@ -49,7 +52,7 @@
                 $target = $target_path . basename( $_FILES['imagen']['name']);
                 if(move_uploaded_file($_FILES['imagen']['tmp_name'], $target))
                 {
-                    $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/requerimientos/".$_FILES['imagen']['name']."' where id_requerimiento=$_POST[id]";
+                    $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/requerimientos/".$_FILES['imagen']['name']."' where id_requerimiento=$id";
                     if (conectar()->query($query) === TRUE) 
                     {
                         $messages[] = "Requerimiento editado satisfactoriamente.";
@@ -62,7 +65,7 @@
                 }
                 else
                 {
-                    $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/requerimientos/".$_FILES['imagen']['name']."' where id_requerimiento=$_POST[id]";
+                    $query="UPDATE requerimientos SET actividad='$_POST[actividad]',fec_edicion='$fecha', id_usuario_edicion=$id_usuario, imagen='img/requerimientos/".$_FILES['imagen']['name']."' where id_requerimiento=$id";
                     if (conectar()->query($query) === TRUE) 
                     {
                         $messages[] = "Requerimiento editado satisfactoriamente.";

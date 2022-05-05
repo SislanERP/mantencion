@@ -1,55 +1,47 @@
 <?php 
-    include('php/funciones.php');
-?>
-
-<?php
-    $inactivo = 1800;
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
+  session_start();
+  require_once("./php/conexion.php");
+  $_SESSION['titulo'] = "PLC";
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('head.php');?>
+
+<head>
+  <title>Sistema Mantención | <?=$_SESSION['titulo']?></title>
+  <?php include('head.php')?>
+</head>
+
 <body>
-    <?php include('nav.php');?>
-
-    <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white" style="background:#fff;border-radius:15px;">
-        <h3>PLC</h3>
-        
-        <div class='w-100 d-flex outer_div mt-5'></div> 
+    <?php include('menu.php')?>
+    <div class="main-content">
+        <?php include('nav.php')?>
+        <!-- Header -->
+        <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+        <div class="container-fluid mt--7 mb-5">
+            <div class="row resultado bg-b shadow pr-3 pl-3">
+            </div>
+        </div>
     </div>
-  </div>
-              
-  <?php include('footer.php');?>
-  <script src="js/funciones/plc.js"></script>
+    <div class="mensaje"></div>
+    <?php include('script.php')?>
+    <script src="js/funciones/equipos.js"></script>
+    <script>
+        $(document).ready(function(){
+            diseño();
+            load();
+            setInterval('load()',300000);
+        });
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-        function changeNumber() {
-            load(1);
-            }
-        
-        setInterval(changeNumber, 1000);
-    });
-</script>
+        function load(){
+            $.ajax({
+                url: 'ajax/consulta_plc.php',
+                success: function (data) {
+                    $(".resultado").html(data);
+                }
+            })
+        }
+    </script>
+    
 </body>
 </html>

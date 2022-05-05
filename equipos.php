@@ -1,105 +1,268 @@
 <?php 
-    include('php/funciones.php');
-?>
-
-<?php
-    $inactivo = 1800;
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
+  session_start();
+  require_once("./php/conexion.php");
+  $_SESSION['titulo'] = "Equipos";
+             
+  $buscarUsuario = "call consulta_acceso_funciones('$_SESSION[titulo]',$_SESSION[id_user])";
+  $result = conectar()->query($buscarUsuario);
+  if ($columna = mysqli_fetch_array( $result ))
+  {
+      $add = $columna['agregar'];
+      $edit = $columna['editar'];
+      $delete = $columna['eliminar'];
+  }
+  
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('head.php');?>
+
+<head>
+  <title>Sistema Mantención | <?=$_SESSION['titulo']?></title>
+  <?php include('head.php')?>
+</head>
+
 <body>
-    <?php include("modals/equipos/imagen.php");?>
-    <?php include("modals/equipos/agregar.php");?>
-    <?php include("modals/equipos/editar.php");?>
-    <?php include("modals/equipos/eliminar.php");?>
-    <?php include('nav.php');?>
-
-    <div id="content">
-        <?php $pass = getenv("pass_correo"); echo $pass; echo "test";?>
-        <div class="container-fluid">
-            <div class="row justify-content-around movil">
-                <div class="datos">
-                    <p class="inter">Equipos Ingresados</p> 
-                    <span class="detalles pro-stock"></span>
-                </div>
-                <div class="datos">
-                    <p class="inter">...</p> 
-                    <span class="detalles pro-total"></span>
-                </div>
-                <div class="datos">
-                    <p class="inter">...</p> 
-                    <span class="detalles-down"></span>
-                </div>
-            </div>
-
-            <div class="container-fluid d-flex justify-content-between mt-5 e3">
-                <div class="row w-50 e4">
-                    <div class="col-xl-8 col-8 p-0 e5">
-                        <input class="form-control" id="q" onkeyup="load(1);" type="text" placeholder="Buscar.." autofocus/>
+  <?php include('menu.php')?>
+  <div class="main-content">
+    <?php include('nav.php')?>
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Titulo</h5>
+                      <span class="h2 font-weight-bold mb-0">---</span>
                     </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> ---</span>
+                    <span class="text-nowrap">---</span>
+                  </p>
                 </div>
-                <div class="row d-flex e6">
-                    <button class="btn btn-primary agregar mr-3" id="actualizar">
-                        <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
-                    </button>
-                    <a href="php/acciones/report/report_equipos.php" target="_blank" class="btn btn-primary agregar mr-3">
-                        <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
-                    </a>
-                    <?php if(consulta_acceso_pagina() == 1){?>
-                        <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
-                            <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-                        </button>
-                    <?php }else{?>
-                        <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
-                            <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-                        </button>
-                    <?php }?>
-                </div>
+              </div>
             </div>
-
-            <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
-            <div class="datos_ajax_delete mt-3"></div>
-            <div class='outer_div table-responsive'></div>
-        </div>    
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Titulo</h5>
+                      <span class="h2 font-weight-bold mb-0">---</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> ---</span>
+                    <span class="text-nowrap">---</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Titulo</h5>
+                      <span class="h2 font-weight-bold mb-0">---</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> ---</span>
+                    <span class="text-nowrap">---</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Titulo</h5>
+                      <span class="h2 font-weight-bold mb-0">---</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                        <i class="fas fa-percent"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> ---</span>
+                    <span class="text-nowrap">---</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <?php include('footer.php');?>
-    <script src="js/funciones/equipos.js"></script>
-    <script>
-		$(document).ready(function(){
-            load(1);
-            consulta_cuadros(1);
-		});
-	</script>
-    <script>
-        $( "#actualizar" ).click(function() {
-            load(1);
-            consulta_cuadros(1);
-        });
-    </script>
+    <div class="container-fluid mt--7 mb-5">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow pr-3 pl-3">
+            <div class="resultado">
+              <div id="toolbar">
+                <select class="selectpicker form-control" data-live-search="true">
+                  <option value="all">Exportar Todo</option>
+                  <option value="">Exportar Página</option>
+                  <option value="selected">Exportar Selección</option>
+                </select>
+                
+              </div>
+<?php 
+                if($add == 1)
+                {
+?>
+                <a href="#" id="add" class="btn btn-success float-right" style="margin-top:10px;margin-left:5px;margin-right:0px;"><i class="fas fa-plus-square"></i></a>
+<?php
+                }
+?>
+              
+              <table class="table align-items-center table-flush"
+                id="table" 
+                data-toggle="table"
+                data-locale="es-CL"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-show-export="true"
+                data-pagination="true"
+                data-show-toggle="true"
+                data-buttons-class="primary"
+                data-show-print="true"
+                data-reorderable-columns="true"
+                data-click-to-select="true"
+                data-search-selector="#buscar"
+                data-id-field="id"
+                data-buttons="buttons"
+                data-url="ajax/listar_equipos.php">
+                
+                <thead class="bg-primary text-light">
+                  <tr>
+                      <th data-field="" data-sortable="true"></th>
+                      <th data-field="id" data-sortable="true" data-visible="false">Id</th>
+                      <th data-field="equipo" data-sortable="true">Equipo</th>
+                      <th data-field="marca" data-sortable="true" data-visible="false">Marca</th>
+                      <th data-field="ubicacion" data-sortable="true">Ubicación</th>
+                      <th data-field="linea" data-sortable="true">Línea</th>
+                      <th data-field="estado" data-sortable="true">Estado</th>
+<?php 
+                      if($edit == 1 || $delete == 1)
+                      {
+?>
+                        <th data-formatter="operateFormatter">Acción</th>
+<?php
+                      }
+?>
+                      
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mensaje"></div>
+  <?php include('modals/equipos/agregar.php')?>
+  <?php include('modals/equipos/editar.php')?>
+  <?php include('modals/equipos/eliminar.php')?>
+  <?php include('script.php')?>
+  <script src="js/funciones/equipos.js"></script>
+  <script>
+    $(document).ready(function(){
+      diseño();
+    });
+  </script>
+  <script>
+    var $table = $('#table')
 
-    <script>
+    $(function() {
+      $('#toolbar').find('select').change(function () {
+        
+        $table.bootstrapTable('destroy').bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+          columns: [
+            {
+              field: 'state',
+              checkbox: true,
+              visible: $(this).val() === 'selected'
+            }
+          ]
+        })
+      }).trigger('change')
+    })
+
+    function operateFormatter(value, row, index) {
+<?php
+        if($edit == 1 && $delete == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-nombre="'+ row['equipo'] +'" data-marca="'+ row['marca'] +'" data-ubicacion="'+ row['id_ubicacion'] +'" data-linea="'+ row['id_linea'] +'" data-caracteristicas="'+ row['caracteristicas'] +'" data-imagen="'+ row['imagen'] +'" data-img="img'+ row['id'] +'" data-estado="'+ row['id_estado'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-nombre="'+ row['equipo'] +'" title="Remove">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php
+        }
+        else if($edit == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-nombre="'+ row['equipo'] +'" data-marca="'+ row['marca'] +'" data-ubicacion="'+ row['id_ubicacion'] +'" data-linea="'+ row['id_linea'] +'" data-caracteristicas="'+ row['caracteristicas'] +'" data-imagen="'+ row['imagen'] +'" data-img="img'+ row['id'] +'" data-estado="'+ row['id_estado'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  '
+          ].join('')
+<?php
+        }
+        else if($delete == 1)
+        {
+?>
+          return [
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-nombre="'+ row['equipo'] +'" title="Remove">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php 
+        }
+?>
+      
+    }
+
+    $("#add").click(function() {
+      $("#dataRegister").modal('show');
+    });
+  </script>
+  <script>
         function handleFileSelect(evt) {
             var files = evt.target.files;
             for (var i = 0, f; f = files[i]; i++) {
@@ -121,6 +284,5 @@
         document.getElementById('img-edit').addEventListener('change', handleFileSelect, false);
     
     </script>
-    
 </body>
 </html>

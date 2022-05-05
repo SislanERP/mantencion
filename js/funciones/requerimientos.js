@@ -1,19 +1,7 @@
-function load(page){
-    var query=$("#q").val();
-    var parametros = {"action":"ajax","page":page,'query':query};
-    $("#loader").fadeIn('slow');
-    $.ajax({
-        url:'ajax/listar_requerimientos.php',
-        data: parametros,
-         beforeSend: function(objeto){
-        $("#loader").html("<img src='img/loader.gif'>");
-        },
-        success:function(data){
-            $(".outer_div").html(data).fadeIn('slow');
-            $("#loader").html("");
-        }
+    $('#dataRegister').on('show.bs.modal', function (event) {
+        $('#imagenmuestra1').attr("src", 'img/equipos/sn.png')
+        $('#file-input').val('')
     })
-}
 
     $('#dataUpdate').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
@@ -23,9 +11,11 @@ function load(page){
 
         var modal = $(this)
         modal.find('.modal-title').text('Editar Requerimiento')
-        modal.find('.modal-body #id').val(id)
+        modal.find('.modal-body #id-edit').val(id)
         modal.find('.modal-body #actividad').val(actividad)
         modal.find('.modal-body #img').attr("src", imagen)
+        modal.find('.modal-body #img-href-edit').val(id)
+        document.getElementById('img-href-edit').href = imagen;
         $('.alert').hide();
     })
 
@@ -34,7 +24,6 @@ function load(page){
         var id = button.data('id')
         var actividad = button.data('actividad')
         var imagen = button.data('imagen')
-        var area = button.data('area')
         var estado = button.data('estado')
         var terminado = button.data('terminado')
         var prioridad = button.data('prioridad')
@@ -47,11 +36,13 @@ function load(page){
         modal.find('.modal-body #actividad1').val(actividad)
         modal.find('.modal-body #imagenmuestra1').attr("src", imagen)
         modal.find('select[id=prioridad1]').val(prioridad)
+        modal.find('select[id=estado1]').val(estado)
         modal.find('select[id=responsable1]').val(responsable)
         modal.find('.modal-body #desarrollo1').val(desarrollo)
-        modal.find('select[id=estado1]').val(estado)
+        modal.find('.modal-body #img-href').val(id)
+        document.getElementById('img-href').href = imagen;
 
-        if(terminado == 1)
+        if(terminado == "SI")
         {
             $("#blo").css("pointer-events", "none");
             modal.find('.modal-body #prioridad1').prop("disabled", true)
@@ -62,22 +53,27 @@ function load(page){
         }
         else
         {
-            if(area == 2)
-            {
-                $("#blo").css("pointer-events", "none");
-                modal.find('.modal-body #prioridad1').prop("disabled", false)
-                modal.find('.modal-body #responsable1').prop("disabled", false)
-                modal.find('.modal-body #desarrollo1').prop("readonly", false)
-                modal.find('.modal-body #estado1').prop("disabled", false)
-            }
+            $.ajax({
+                url:'ajax/consulta_area_usuario.php',
+                success:function(data){
+                    if(data == 2)
+                    {
+                        $("#blo").css("pointer-events", "none");
+                        modal.find('.modal-body #prioridad1').prop("disabled", false)
+                        modal.find('.modal-body #responsable1').prop("disabled", false)
+                        modal.find('.modal-body #desarrollo1').prop("readonly", false)
+                        modal.find('.modal-body #estado1').prop("disabled", false)
+                    }
 
-            else
-            {
-                modal.find('.modal-body #prioridad1').prop("disabled", true)
-                modal.find('.modal-body #responsable1').prop("disabled", true)
-                modal.find('.modal-body #desarrollo1').prop("readonly", true)
-                modal.find('.modal-body #estado1').prop("disabled", true)
-            }
+                    else
+                    {
+                        modal.find('.modal-body #prioridad1').prop("disabled", true)
+                        modal.find('.modal-body #responsable1').prop("disabled", true)
+                        modal.find('.modal-body #desarrollo1').prop("readonly", true)
+                        modal.find('.modal-body #estado1').prop("disabled", true)
+                    }
+                }
+            })
 
             $('#esta').show()
         }
@@ -101,8 +97,8 @@ function load(page){
         var id = button.data('id') 
 
         var modal = $(this)
-        modal.find('.modal-body #id').val(id)
-        modal.find('.modal-body #id').text(id)
+        modal.find('.modal-body #id-delete').val(id)
+        modal.find('.modal-body #id-delete').text(id)
     })
 
     $( "#guardarDatos" ).submit(function( event ) {
@@ -118,16 +114,15 @@ function load(page){
           contentType: false,
           cache: false,
           beforeSend: function (objeto) {
-            $(".datos_ajax_delete").html("Mensaje: Cargando...");
+            $(".mensaje").html("Mensaje: Cargando...");
           },
           success: function (data) {
-            $(".datos_ajax_delete").show();
-            $(".datos_ajax_delete").html(data);
-            setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+            $(".mensaje").show();
+            $(".mensaje").html(data);
+            //setTimeout(function() { $('.mensaje').fadeOut('fast'); }, 3000);
             $('#dataRegister').modal('hide');
             $('#actividad0').val('');
-
-            load(1);
+            $table.bootstrapTable('refresh');
           }
         });
           
@@ -148,15 +143,14 @@ function load(page){
           contentType: false,
           cache: false,
           beforeSend: function (objeto) {
-            $(".datos_ajax_delete").html("Mensaje: Cargando...");
+            $(".mensaje").html("Mensaje: Cargando...");
           },
           success: function (data) {
-            $(".datos_ajax_delete").show();
-            $(".datos_ajax_delete").html(data);
-            setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+            $(".mensaje").show();
+            $(".mensaje").html(data);
+            setTimeout(function() { $('.mensaje').fadeOut('fast'); }, 3000);
             $('#dataResponder').modal('hide');
-
-            load(1);
+            $table.bootstrapTable('refresh');
           }
         });
           
@@ -177,15 +171,14 @@ function load(page){
           contentType: false,
           cache: false,
           beforeSend: function (objeto) {
-            $(".datos_ajax_delete").html("Mensaje: Cargando...");
+            $(".mensaje").html("Mensaje: Cargando...");
           },
           success: function (data) {
-            $(".datos_ajax_delete").show();
-            $(".datos_ajax_delete").html(data);
-            setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+            $(".mensaje").show();
+            $(".mensaje").html(data);
+            setTimeout(function() { $('.mensaje').fadeOut('fast'); }, 3000);
             $('#dataUpdate').modal('hide');
-  
-            load(1);
+            $table.bootstrapTable('refresh');
           }
         });
           event.preventDefault();
@@ -198,14 +191,14 @@ function load(page){
                     url: "php/acciones/delete/delete_requerimiento.php",
                     data: parametros,
                      beforeSend: function(objeto){
-                        $(".datos_ajax_delete").html("Mensaje: Cargando...");
+                        $(".mensaje").html("Mensaje: Cargando...");
                       },
                     success: function(datos){
-                      $(".datos_ajax_delete").show();
-                      $(".datos_ajax_delete").html(datos);
-                      setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+                      $(".mensaje").show();
+                      $(".mensaje").html(datos);
+                      setTimeout(function() { $('.mensaje').fadeOut('fast'); }, 3000);
                       $('#dataDelete').modal('hide');
-                      load(1);
+                      $table.bootstrapTable('refresh');
                   }
             });
           event.preventDefault();

@@ -2,8 +2,8 @@
     session_start();
     require_once("../php/conexion.php");
     
-    $email = $_POST['email_login'];
-    $contraseña = $_POST['password_login'];
+    $email = $_POST['email'];
+    $contraseña = $_POST['pass'];
     $buscarUsuario = "call consulta_login('$email')";
     $result = conectar()->query($buscarUsuario);
     if ($columna = mysqli_fetch_array( $result ))
@@ -32,18 +32,14 @@
     }
 
     if (isset($errors)){
-			
-        ?>
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Error!</strong> 
-                    <?php
-                        foreach ($errors as $error) {
-                                echo $error;
-                            }
-                        ?>
-            </div>
-            <?php
-            }
-    
+?>
+        <div class="alert alert-warning alert-dismissible fade show position-relative" role="alert">
+            <span class="alert-icon"><i class="ni ni-air-baloon"></i></span>
+            <span class="alert-text"><strong>Error! </strong><?php foreach($errors as $error){echo $error;}?></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+<?php
+    }
 ?>

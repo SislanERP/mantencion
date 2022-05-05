@@ -1,112 +1,191 @@
 <?php 
-    include('php/funciones.php');
+  session_start();
+  require_once("./php/conexion.php");
+  $_SESSION['titulo'] = "Detenciones";
+             
+  $buscarUsuario = "call consulta_acceso_funciones('$_SESSION[titulo]',$_SESSION[id_user])";
+  $result = conectar()->query($buscarUsuario);
+  if ($columna = mysqli_fetch_array( $result ))
+  {
+      $add = $columna['agregar'];
+      $edit = $columna['editar'];
+      $delete = $columna['eliminar'];
+  }
+  
 ?>
 
-<?php
-    $inactivo = 1800;
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('head.php');?>
+
+<head>
+  <title>Sistema Mantención | <?=$_SESSION['titulo']?></title>
+  <?php include('head.php')?>
+</head>
 <body>
-    <?php include("modals/detenciones/agregar.php");?>
-    <?php include("modals/detenciones/editar.php");?>
-    <?php include("modals/detenciones/eliminar.php");?>
-    <?php include('nav.php');?>
-
-    <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
-        <div class="d-flex justify-content-between e3">
-            <h3>Información de Producción y Problemas Mecánicos</h3>
-            <a href="php/acciones/report/report_detenciones.php" target="_blank" class="btn btn-primary agregar mr-3 e6" id="exportar">
-                <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
-            </a>
-        </div>
-        
-        
-        <form id="guardarEncabezado" novalidate class="e6">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Fecha</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" onchange="load(1);" value="<?php echo date("Y-m-d");?>" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>N° Camiones</label>
-                    <input type="number" class="form-control" id="camiones" name="camiones" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Kilos Mm.PP</label>
-                    <input type="number" class="form-control" id="kilos_mm_pp" name="kilos_mm_pp" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Kilos Producidos</label>
-                    <input type="number" class="form-control" id="kilos_producidos" name="kilos_producidos" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>% Rendimiento</label>
-                    <input type="number" class="form-control" id="rendimiento" name="rendimiento" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Kilos Producto Embolsado</label>
-                    <input type="number" class="form-control" id="kilos_embolsado" name="kilos_embolsado" required>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <?php if(consulta_acceso_pagina() == 1){?>
-                    <button type="submit" class="btn btn-primary agregar">
-                        <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
-                    </button>
-                    <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_detencion">
-                        <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-                    </a>
-                <?php }else{?>
-                    <button type="submit" class="btn btn-primary agregar" id="save" disabled>
-                        <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
-                    </button>
-                    <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_detencion" disabled>
-                        <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-                    </a>
-                <?php }?>
+  <?php include('menu.php')?>
+  <div class="main-content">
+    <?php include('nav.php')?>
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+    <div class="container-fluid mt--7 mb-5">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow pr-3 pl-3">
+            <div class="resultado">
+<?php 
+                if($add == 1)
+                {
+?>
+                <a href="#" id="add" class="btn btn-success float-right" style="margin-top:10px;margin-left:5px;margin-right:0px;"><i class="fas fa-plus-square"></i></a>
+<?php
+                }
+?>
+              
+              <table class="table align-items-center table-flush"
+                id="table" 
+                data-toggle="table"
+                data-locale="es-CL"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-pagination="true"
+                data-show-toggle="true"
+                data-buttons-class="primary"
+                data-reorderable-columns="true"
+                data-click-to-select="true"
+                data-search-selector="#buscar"
+                data-id-field="id"
+                data-buttons="buttons"
+                data-sticky-header="true"
+                data-detail-view="true"
+                data-detail-view-icon="true"
+                data-detail-formatter="detailFormatter"
+                data-url="ajax/listar_detenciones.php">
                 
+                <thead class="bg-primary text-light">
+                  <tr>
+                        <th data-field="id" data-sortable="true" data-visible="false">N°</th>
+                        <th data-field="fecha" data-sortable="true">Fecha</th>
+                        <th data-field="camiones" data-sortable="true">Camiones</th>
+                        <th data-field="kilos_mm_pp" data-sortable="true">Kilos Mm.PP</th>
+                        <th data-field="kilos_producidos" data-sortable="true">K. Producidos</th>
+                        <th data-field="rendimiento" data-sortable="true">Rendimiento</th>
+                        <th data-field="kilos_embolsado" data-sortable="true">K. Embolsado</th>
+<?php 
+                      if($edit == 1 || $delete == 1)
+                      {
+?>
+                        <th data-formatter="operateFormatter" data-field="accion">Acción</th>
+<?php
+                      }
+?>
+                      
+                  </tr>
+                </thead>
+              </table>
             </div>
-        </form>
-
-        <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
-        <div class="datos_ajax_delete mt-3"></div>
-        <div class='outer_div table-responsive'></div> 
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-              
-  <?php include('footer.php');?>
+  <div class="mensaje"></div>
+  <?php include('modals/detenciones/agregar.php')?>
+  <?php include('modals/detenciones/editar.php')?>
+  <?php include('modals/detenciones/eliminar.php')?>
+  <?php include('modals/detenciones/eliminar_detalle.php')?>
+  <?php include('modals/detenciones/detalle.php')?>
+  <?php include('script.php')?>
   <script src="js/funciones/detenciones.js"></script>
+  <script>
+    $(document).ready(function(){
+      diseño();
+    });
+  </script>
+<script>
+    var $table = $('#table');
+    function operateFormatter(value, row, index) {
+<?php
+        if($edit == 1 && $delete == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha_0'] +'" data-camiones="'+ row['camiones'] +'" data-kilos_mm_pp="'+ row['kilos_mm_pp'] +'" data-kilos_producidos="'+ row['kilos_producidos'] +'" data-rendimiento="'+ row['rendimiento_0'] +'" data-kilos_embolsado="'+ row['kilos_embolsado'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" title="Eliminar">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>',
+            '<a class="text-gray" href="#" data-toggle="modal" data-target="#dataDetalle" data-id="'+ row['id'] +'" title="Detalle">',
+              '<i class="fa fa-book pl-3" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php
+        }
+        else if($edit == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha_0'] +'" data-camiones="'+ row['camiones'] +'" data-kilos_mm_pp="'+ row['kilos_mm_pp'] +'" data-kilos_producidos="'+ row['kilos_producidos'] +'" data-rendimiento="'+ row['rendimiento_0'] +'" data-kilos_embolsado="'+ row['kilos_embolsado'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+          ].join('')
+<?php
+        }
+        else if($delete == 1)
+        {
+?>
+          return [
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" title="Eliminar">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php 
+        }
+?>
+      
+    }
 
-    <script>
-		$(document).ready(function(){
-            load(1);
-            consulta_cuadros(1);
-		});
-    </script>
+    function detailFormatter(index, row) {
+        return childDetail(index,row)  
+    }
+
+    function childDetail(index,row){
+        var table = document.createElement('table');
+        table.setAttribute('class','table align-items-center table-flush');
+        table.setAttribute('id',"sub_table"+index);
+
+        var parametros = { "id": row['id'] };
+        $.ajax({
+            url: 'ajax/listar_detalle_detencion.php',
+            data: parametros,
+            success: function (data) {
+                $('#sub_table'+index).html(data);
+            }
+        })
+        
+        return table;
+    }
+
+    $("#add").click(function() {
+      $("#dataRegister").modal('show');
+    });
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+  </script>
 </body>
 </html>
+

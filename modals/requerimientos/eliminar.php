@@ -9,9 +9,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="id-delete" name="id-delete">
                     <p>Esta acción eliminará de forma permanente el requerimiento:</p>
-                    <b id="id"></b>
+                    <b id="id-delete"></b>
                     <p>Deseas continuar?</p>
                 </div>
                 <div class="modal-footer">

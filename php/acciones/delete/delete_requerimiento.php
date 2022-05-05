@@ -2,7 +2,7 @@
     session_start();
     include ('../../conexion.php');
 
-    $id=intval($_POST['id']);
+    $id=intval($_POST['id-delete']);
 		
 		$sql="DELETE FROM requerimientos WHERE id_requerimiento='".$id."'";
 		$query_delete = mysqli_query(conectar(),$sql);

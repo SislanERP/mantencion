@@ -15,7 +15,7 @@
 		if (isset($errors)){
 			
 			?>
-			<div class="alert alert-danger" role="alert">
+			<div class="alert alert-danger" role="alert" style="z-index:1000">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<strong>Error!</strong> 
 					<?php
@@ -29,7 +29,7 @@
 			if (isset($messages)){
 				
 				?>
-				<div class="alert alert-success" role="alert">
+				<div class="alert alert-success" role="alert" style="z-index:1000">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						<strong>¡Bien hecho!</strong>
 						<?php

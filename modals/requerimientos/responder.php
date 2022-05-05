@@ -1,7 +1,7 @@
 
 <form id="Responder">
-    <div class="modal fade bd-example-modal-lg" id="dataResponder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade bd-example-modal-xl" id="dataResponder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Responder Requerimiento </h5>
@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div id="datos_ajax_register"></div>
                     <div class="row e12">
-                        <div class="col-6 e5">
+                        <div class="col-sm-12 col-lg-7">
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Actividad:</label>
                                 <textarea name="actividad1" id="actividad1" cols="30" rows="3" class="form-control" required></textarea>
@@ -48,19 +48,6 @@
                                 <label class="col-form-label">Desarrollo:</label>
                                 <textarea name="desarrollo1" id="desarrollo1" cols="30" rows="4" class="form-control" required></textarea>
                             </div>
-                            
-                        </div>    
-                        <div class="col-6 e5">
-                            <div class="col-lg-12 d-flex justify-content-center mt-3" style="height:300px;">
-                                <img src="" alt="" class="pt-3 rounded-circle position-absolute" id="imagenmuestra1" style="object-fit:cover;width:280px;height:300px;">
-                                <div class="image-upload">
-                                    <label for="file-input">
-                                        <img src="img/iconos/camara.svg" id="im"/> 
-                                    </label>
-
-                                    <input type="file" name="imagen" id="file-input"/>
-                                </div>
-                            </div>
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Estado:</label>
                                 <select name="estado1" id="estado1" class="selectpicker form-control" data-live-search="true">
@@ -80,19 +67,31 @@
                                         <label class="col-form-label">Finalizado?</label>
                                     </div>
                                     <div class="form-check form-check-inline mb-0">
-                                        <input class="form-check-input" type="radio" id="inlineCheckbox1" value="0" name="radio" style="margin-top:10px !important;">
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox1" value="0" name="radio">
                                         <label class="form-check-label" for="inlineCheckbox1">NO</label>
                                     </div>
                                     <div class="form-check form-check-inline ml-5">
-                                        <input class="form-check-input" type="radio" id="inlineCheckbox2" value="1" name="radio" style="margin-top:10px !important;">
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox2" value="1" name="radio">
                                         <label class="form-check-label" for="inlineCheckbox2">SI</label>
                                     </div>
                                 </div>
                             </div>
+                        </div>    
+                        <div class="col-sm-12 col-lg-4">
+                            <h3 class="mb-4 pb-3">Imagen referencial</h3>
+                            <div class="col-lg-12 d-flex justify-content-center mt-3" style="height:300px;">
+                                <a data-fancybox="gallery" href="#" id="img-href" style="display: contents;"><img src="" alt="" class="position-absolute" id="imagenmuestra1" style="object-fit:cover;width:100%;height:300px;border-style:dashed;"></a>
+                                <div class="image-upload">
+                                    <label for="file-input-responder">
+                                        <i class="img-otros fas fa-camera-retro"></i>
+                                    </label>
+
+                                    <input type="file" name="imagen" id="file-input-responder" disabled/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <output id="list"></output>
-                    <div class="modal-footer mt-3">
+                    <div class="modal-footer mt-3 pr-0">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                         <button type="submit" class="btn btn-primary" id="esta">Responder Requerimiento</button>
                     </div>

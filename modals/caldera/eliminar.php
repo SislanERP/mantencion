@@ -10,8 +10,8 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
-                    <p>Esta acción eliminará de forma permanente el siguiente consumo:</p>
-                    <b id="tipo"></b>
+                    <p>Esta acción eliminará de forma permanente el registro de caldera con fecha:</p>
+                    <p><b id="fec"></b></p>
                     <p>Deseas continuar?</p>
                 </div>
                 <div class="modal-footer">

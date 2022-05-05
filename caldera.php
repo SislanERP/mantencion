@@ -1,103 +1,190 @@
 <?php 
-    include('php/funciones.php');
+  session_start();
+  require_once("./php/conexion.php");
+  $_SESSION['titulo'] = "Caldera";
+             
+  $buscarUsuario = "call consulta_acceso_funciones('$_SESSION[titulo]',$_SESSION[id_user])";
+  $result = conectar()->query($buscarUsuario);
+  if ($columna = mysqli_fetch_array( $result ))
+  {
+      $add = $columna['agregar'];
+      $edit = $columna['editar'];
+      $delete = $columna['eliminar'];
+  }
+  
 ?>
 
-<?php
-    $inactivo = 1800;
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('head.php');?>
-<body>
-    <?php include("modals/caldera/agregar.php");?>
-    <?php include("modals/caldera/editar.php");?>
-    <?php include("modals/caldera/eliminar.php");?>
-    <?php include('nav.php');?>
 
-    <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
-        <div class="d-flex justify-content-between e3">
-          <h3>Consumo Diario</h3>
-          <a href="php/acciones/report/report_caldera.php" target="_blank" class="btn btn-primary agregar">
-            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar Día
-          </a>
-        </div>
-        
-        <form id="guardarEncabezado" novalidate class="e6">
-          <div class="d-flex justify-content-between e3">
-            <div class="form-row w-50 e10">
-              <div class="form-group col-md-12">
-                  <label>Fecha</label>
-                  <input type="date" class="form-control" id="fecha" name="fecha" onchange="load(1);" value="<?php echo date("Y-m-d");?>" required>
-              </div>
-              <div class="form-group col-md-12">
-                  <label>Hora Encendido</label>
-                  <input type="time" id="hora_encendido" name="hora_encendido" class="form-control">
-              </div>
-            </div>
-            <div class="form-row w-50 e10">
-              <div class="form-group col-md-12">
-                  <label>Hora Apagado</label>
-                  <input type="time" id="hora_apagado" name="hora_apagado" class="form-control">
-              </div>
-              <div class="form-group col-md-12">
-                  <label>Observación General</label>
-                  <textarea class="form-control" name="observacion" id="observacion" cols="10" rows="1"></textarea>
-              </div>
+<head>
+  <title>Sistema Mantención | <?=$_SESSION['titulo']?></title>
+  <?php include('head.php')?>
+</head>
+<body>
+  <?php include('menu.php')?>
+  <div class="main-content">
+    <?php include('nav.php')?>
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+    <div class="container-fluid mt--7 mb-5">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow pr-3 pl-3">
+            <div class="resultado">
+<?php 
+                if($add == 1)
+                {
+?>
+                <a href="#" id="add" class="btn btn-success float-right" style="margin-top:10px;margin-left:5px;margin-right:0px;"><i class="fas fa-plus-square"></i></a>
+<?php
+                }
+?>
+              
+              <table class="table align-items-center table-flush"
+                id="table" 
+                data-toggle="table"
+                data-locale="es-CL"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-pagination="true"
+                data-show-toggle="true"
+                data-buttons-class="primary"
+                data-reorderable-columns="true"
+                data-click-to-select="true"
+                data-search-selector="#buscar"
+                data-id-field="id"
+                data-buttons="buttons"
+                data-sticky-header="true"
+                data-detail-view="true"
+                data-detail-view-icon="true"
+                data-detail-formatter="detailFormatter"
+                data-url="ajax/listar_caldera.php">
+                
+                <thead class="bg-primary text-light">
+                  <tr>
+                        <th data-field="id" data-sortable="true" data-visible="false">N°</th>
+                        <th data-field="fecha" data-sortable="true">Fecha</th>
+                        <th data-field="camiones" data-sortable="true">Turno</th>
+                        <th data-field="kilos_mm_pp" data-sortable="true">Hora encendido</th>
+                        <th data-field="kilos_producidos" data-sortable="true">Hora apagado</th>
+                        <th data-field="rendimiento" data-sortable="true">Observación</th>
+<?php 
+                      if($edit == 1 || $delete == 1)
+                      {
+?>
+                        <th data-formatter="operateFormatter" data-field="accion">Acción</th>
+<?php
+                      }
+?>
+                      
+                  </tr>
+                </thead>
+              </table>
             </div>
           </div>
-          <div class="d-flex justify-content-between mt-3">
-            <?php if(consulta_acceso_sub_pagina() == 1){?>
-              <button type="submit" class="btn btn-primary agregar">
-                <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
-              </button>
-              <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_control">
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-              </a>
-              <?php }else{?>
-                <button type="submit" class="btn btn-primary agregar" id="save" disabled>
-                  <img src="img/iconos/guardar.svg" alt="" style="width:34px; margin-right: 14px;"> Guardar
-                </button>
-                <a href="" class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" id="agregar_control" disabled>
-                  <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-                </a>
-              <?php }?>
-            </div>
-        </form>
-        <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
-        <div class="datos_ajax_delete mt-3"></div><!-- Datos ajax Final -->
-        <div class='outer_div table-responsive'></div> 
+        </div>
+      </div>
     </div>
   </div>
-              
-  <?php include('footer.php');?>
+  <div class="mensaje"></div>
+  <?php include('modals/caldera/agregar.php')?>
+  <?php include('modals/caldera/editar.php')?>
+  <?php include('modals/caldera/eliminar.php')?>
+  <?php include('modals/caldera/eliminar_detalle.php')?>
+  <?php include('modals/caldera/detalle.php')?>
+  <?php include('script.php')?>
   <script src="js/funciones/caldera.js"></script>
+  <script>
+    $(document).ready(function(){
+      diseño();
+    });
+  </script>
+<script>
+    var $table = $('#table');
+    function operateFormatter(value, row, index) {
+<?php
+        if($edit == 1 && $delete == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha_0'] +'" data-turno="'+ row['turno'] +'" data-h_encendido="'+ row['encendido'] +'" data-h_apagado="'+ row['apagado'] +'" data-observacion="'+ row['observacion'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" title="Eliminar">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>',
+            '<a class="text-gray" href="#" data-toggle="modal" data-target="#dataDetalle" data-id="'+ row['id'] +'" title="Detalle">',
+              '<i class="fa fa-book pl-3" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php
+        }
+        else if($edit == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha_0'] +'" data-turno="'+ row['turno'] +'" data-h_encendido="'+ row['encendido'] +'" data-h_apagado="'+ row['apagado'] +'" data-observacion="'+ row['observacion'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+          ].join('')
+<?php
+        }
+        else if($delete == 1)
+        {
+?>
+          return [
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" title="Eliminar">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php 
+        }
+?>
+      
+    }
 
-    <script>
-      $(document).ready(function(){
-        load(1);
-        consulta_cuadros(1);
-      });
-    </script>
+    function detailFormatter(index, row) {
+        return childDetail(index,row)  
+    }
+
+    function childDetail(index,row){
+        var table = document.createElement('table');
+        table.setAttribute('class','table align-items-center table-flush');
+        table.setAttribute('id',"sub_table"+index);
+
+        var parametros = { "id": row['id'] };
+        $.ajax({
+            url: 'ajax/listar_detalle_caldera.php',
+            data: parametros,
+            success: function (data) {
+                $('#sub_table'+index).html(data);
+            }
+        })
+        
+        return table;
+    }
+
+    $("#add").click(function() {
+      $("#dataRegister").modal('show');
+    });
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+  </script>
 </body>
 </html>
+

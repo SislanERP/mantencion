@@ -1,86 +1,251 @@
 <?php 
-    include('php/funciones.php');
+  session_start();
+  require_once("./php/conexion.php");
+  $_SESSION['titulo'] = "Actividades Diarias";
+             
+  $buscarUsuario = "call consulta_acceso_funciones('$_SESSION[titulo]',$_SESSION[id_user])";
+  $result = conectar()->query($buscarUsuario);
+  if ($columna = mysqli_fetch_array( $result ))
+  {
+      $add = $columna['agregar'];
+      $edit = $columna['editar'];
+      $delete = $columna['eliminar'];
+  }
+  
 ?>
 
-<?php
-    $inactivo = 1800;
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('head.php');?>
+
+<head>
+  <title>Sistema Mantención | <?=$_SESSION['titulo']?></title>
+  <?php include('head.php')?>
+</head>
 <body>
-    <?php include("modals/actividades/agregar.php");?>
-    <?php include("modals/actividades/editar.php");?>
-    <?php include("modals/actividades/eliminar.php");?>
-    <?php include('nav.php');?>
-
-    <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
-        <div class="d-flex justify-content-between e3">
-          <h3>Actividades Diarias</h3>
-          <a href="php/acciones/report/report_actividades.php" target="_blank" class="btn btn-primary agregar e6">
-            <img src="img/iconos/pdf.svg" alt="" style="width:34px; margin-right: 14px;"> Exportar
-          </a>
-        </div>
-
-        <div class="row d-flex justify-content-between mt-5 e3">
-          <div class="col-sm-7 col-md-7 col-xl-3">
-              <input class="form-control" id="q" onchange="load(1);" type="date" value="<?php echo date("Y-m-d");?>" autofocus/>
+  <?php include('menu.php')?>
+  <div class="main-content">
+    <?php include('nav.php')?>
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+    <div class="container-fluid mt--7 mb-5">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow pr-3 pl-3">
+            <div class="resultado">
+            <div id="toolbar" class="select">
+              <select class="selectpicker form-control" data-live-search="true">
+                <option value="all">Exportar Todo</option>
+                <option value="">Exportar Página</option>
+                <option value="selected">Exportar Selección</option>
+              </select>
+            </div>
+<?php 
+                if($add == 1)
+                {
+?>
+                <a href="#" id="add" class="btn btn-success float-right" style="margin-top:10px;margin-left:5px;margin-right:0px;"><i class="fas fa-plus-square"></i></a>
+<?php
+                }
+?>
+              
+              <table class="table align-items-center table-flush"
+                id="table" 
+                data-toggle="table"
+                data-locale="es-CL"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-auto-refresh="true"
+                data-auto-refresh-interval="3"
+                data-show-columns="true"
+                data-show-export="true"
+                data-pagination="true"
+                data-show-toggle="true"
+                data-buttons-class="primary"
+                data-show-print="true"
+                data-reorderable-columns="true"
+                data-click-to-select="true"
+                data-search-selector="#buscar"
+                data-id-field="id"
+                data-buttons="buttons"
+                data-sticky-header="true"
+                data-url="ajax/listar_actividades.php">
+                
+                <thead class="bg-primary text-light">
+                  <tr>
+                        <th data-field="id" data-sortable="true" data-visible="false" data-print-ignore="true">N°</th>
+                        <th data-field="fecha" data-sortable="true" data-visible="true">Fecha</th>
+                        <th data-field="turno" data-sortable="true" data-visible="true">Turno</th>
+                        <th data-field="equipo" data-sortable="true">Equipo</th>
+                        <th data-field="estado" data-sortable="true">Estado</th>
+                        <th data-field="actividad" data-sortable="true">Actividad</th>
+                        <th data-field="usuario" data-sortable="true">Trabajador</th>
+<?php 
+                      if($edit == 1 || $delete == 1)
+                      {
+?>
+                        <th data-formatter="operateFormatter" data-field="accion" data-print-ignore="true">Acción</th>
+<?php
+                      }
+?>
+                      
+                  </tr>
+                </thead>
+              </table>
+            </div>
           </div>
-          <div class="e8">
-            <button class="btn btn-primary agregar mr-3" id="actualizar">
-              <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
-            </button>
-            <?php if(consulta_acceso_sub_pagina() == 1){?>
-              <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-              </button>
-            <?php }else{?>
-              <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-              </button>
-            <?php }?>
-          </div>
         </div>
-
-        <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
-        <div class="datos_ajax_delete mt-3"></div><!-- Datos ajax Final -->
-        <div class='outer_div table-responsive'></div> 
+      </div>
     </div>
   </div>
-              
-  <?php include('footer.php');?>
+  <div class="mensaje"></div>
+  <?php include('modals/actividades/agregar.php')?>
+  <?php include('modals/actividades/editar.php')?>
+  <?php include('modals/actividades/eliminar.php')?>
+  <?php include('script.php')?>
   <script src="js/funciones/actividades.js"></script>
+  <script>
+    $(document).ready(function(){
+      diseño();
+    });
+  </script>
+  <script>
+    var $table = $('#table')
 
-    <script>
-      $(document).ready(function(){
-        load(1);
-      });
-    </script>
-    <script>
-      $( "#actualizar" ).click(function() {
-          load(1);
-      });
-    </script>
+    $(function() {
+      $('#toolbar').find('select').change(function () {
+        $table.bootstrapTable('destroy').bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ['excel', 'pdf'],
+          columns: [
+            {
+              field: 'state',
+              checkbox: true,
+              visible: $(this).val() === 'selected'
+            },
+            {
+              field: 'fecha',
+              title: 'Fecha'
+            }, 
+            {
+              field: 'turno',
+              title: 'Turno'
+            }, 
+            {
+              field: 'equipo',
+              title: 'Equipo'
+            },
+            {
+              field: 'estado',
+              title: 'Estado'
+            },
+            {
+              field: 'actividad',
+              title: 'Actividad'
+            },
+            {
+              field: 'usuario',
+              title: 'Trabajador'
+            },
+            {
+              field:'accion',
+              forceHide: true
+            }
+          ]
+        })
+      }).trigger('change')
+    })
+
+    $(function() {
+    $table.bootstrapTable({
+      printPageBuilder: function (table) {
+        return `
+<html>
+  <head>
+  <style type="text/css" media="print">
+  @page {
+    size: auto;
+    margin: 25px 0 25px 0;
+  }
+  </style>
+  <style type="text/css" media="all">
+  table {
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  table, th, td {
+    border: 1px solid grey;
+  }
+  th, td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  p {
+    font-weight: bold;
+    margin-left:20px;
+  }
+  table {
+    width:94%;
+    margin-left:3%;
+    margin-right:3%;
+  }
+  div.bs-table-print {
+    text-align:center;
+  }
+  </style>
+  </head>
+  <title>Print Table</title>
+  <body>
+  <div class="bs-table-print">${table}</div>
+  </body>
+</html>`
+      }
+    })
+  })
+
+    function operateFormatter(value, row, index) {
+        var reporte = row['documento'];
+<?php
+        if($edit == 1 && $delete == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" data-turno="'+ row['id_turno'] +'" data-estado="'+ row['id_estado'] +'" data-actividad="'+ row['actividad'] +'" data-detalle="'+ row['detalle'] +'" data-equipo="'+ row['id_equipo'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-actividad="'+ row['actividad'] +'" data-usuario="'+ row['usuario'] +'" title="Remove">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php
+        }
+        else if($edit == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" data-turno="'+ row['id_turno'] +'" data-estado="'+ row['id_estado'] +'" data-actividad="'+ row['actividad'] +'" data-detalle="'+ row['detalle'] +'" data-equipo="'+ row['id_equipo'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a> '
+          ].join('')
+<?php
+        }
+        else if($delete == 1)
+        {
+?>
+          return [
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-actividad="'+ row['actividad'] +'" data-usuario="'+ row['usuario'] +'" title="Remove">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>'
+          ].join('')
+<?php 
+        }
+?>
+      
+    }
+
+    $("#add").click(function() {
+      $("#dataRegister").modal('show');
+    });
+  </script>
 </body>
 </html>
+

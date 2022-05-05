@@ -25,7 +25,7 @@
             $mail->SMTPSecure = 'ssl';
             $mail->SMTPAuth   = true;
             $mail->Username   = "sismantencionlandes@gmail.com";
-            $mail->Password   = "vaongachlooxposk";
+            $mail->Password   = getenv("pass_correo");
             $mail->SetFrom('sismantencionlandes@gmail.com', 'REQUERIMIENTOS');
             $consulta = "CALL consulta_correo_usuario($user)";
             $resultado = mysqli_query( conectar(), $consulta );

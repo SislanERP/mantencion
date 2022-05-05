@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Registro </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -11,7 +11,10 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <input type="hidden" name="id" id="id">
+                            <div class="form-group mb-0">
+                                <label class="col-form-label">Fecha:</label>
+                                <input type="date" class="form-control" name="fecha" id="fecha" value="<?php echo date("Y-m-d");?>" required>
+                            </div>
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Turno:</label>
                                 <select name="turno" id="turno" class="selectpicker form-control" data-live-search="true">
@@ -26,33 +29,24 @@
                                 </select>
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Tipo Consumo:</label>
-                                <select name="tipo" id="tipo" class="selectpicker form-control" data-live-search="true">
-                                    <?php 
-                                        $consulta = "call consulta_tipo_consumo()";
-                                        $resultado = mysqli_query(conectar(), $consulta );
-                                        while ($columna = mysqli_fetch_array( $resultado ))
-                                        { 
-                                            echo    "<option value='".$columna['id_tipo']."'>".$columna['consumo']."</option>";
-                                        }
-                                    ?>
-                                </select>
+                                <label class="col-form-label">Hora encendido</label>
+                                <input type="time" class="form-control" name="h_encendido" id="h_encendido">
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Consumo m³ (Entrada):</label>
-                                <input type="number" class="form-control" name="entrada" id="entrada">
+                                <label class="col-form-label">Hora apagado</label>
+                                <input type="time" class="form-control" name="h_apagado" id="h_apagado">
                             </div>
-                            
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Consumo m³ (Salida)</label>
-                                <input type="number" class="form-control" name="salida" id="salida">
+                                <label class="col-form-label">Observación:</label>
+                                <textarea name="observacion" id="observacion" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Editar Consumo</button>
+                    <output id="list"></output>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>
                 </div>
             </div>
         </div>

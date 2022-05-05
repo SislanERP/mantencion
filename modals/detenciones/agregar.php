@@ -9,69 +9,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="datos_ajax_register"></div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Tipo Falla:</label>
-                                <select name="tipo0" id="tipo0" class="selectpicker form-control" data-live-search="true" required>
-                                    <?php 
-                                        $consulta = "call consulta_tipo_falla()";
-                                        $resultado = mysqli_query(conectar(), $consulta );
-                                        while ($columna = mysqli_fetch_array( $resultado ))
-                                        { 
-                                            echo    "<option value='".$columna['id_tipo_falla']."'>".$columna['tipo']."</option>";
-                                        }
-                                    ?>
-                                </select>
+                                <label class="col-form-label">Fecha:</label>
+                                <input type="date" class="form-control" name="fecha0" id="fecha0" value="<?php echo date("Y-m-d");?>" required>
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Equipo:</label>
-                                <select name="equipo0" id="equipo0" class="selectpicker form-control" data-live-search="true" required>
-                                    <?php 
-                                        $consulta = "call consulta_equipos()";
-                                        $resultado = mysqli_query(conectar(), $consulta );
-                                        while ($columna = mysqli_fetch_array( $resultado ))
-                                        { 
-                                            echo    "<option value='".$columna['id_equipo']."'>".$columna['equipo']."</option>";
-                                        }
-                                    ?>
-                                </select>
+                                <label class="col-form-label">Camiones:</label>
+                                <input type="number" class="form-control" name="camiones0" id="camiones0" onkeypress='validate(event)' min="0">
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Descripción:</label>
-                                <textarea name="descripcion0" id="descripcion0" cols="20" rows="5" class="form-control" required></textarea>
+                                <label class="col-form-label">Kilos Mm.PP:</label>
+                                <input type="number" class="form-control" name="kilos_mm_pp0" id="kilos_mm_pp0" onkeypress='validate(event)' min="0">
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Hora de Falla:</label>
-                                <input type="time" class="form-control" name="falla0" id="falla0" required>
+                                <label class="col-form-label">Kilos Producidos:</label>
+                                <input type="number" class="form-control" name="kilos_producidos0" id="kilos_producidos0" onkeypress='validate(event)' min="0">
                             </div>
                             <div class="form-group mb-0">
-                                <label class="col-form-label">Tiempo:</label>
-                                <input type="time" class="form-control" name="tiempo0" id="tiempo0" required>
+                                <label class="col-form-label">Rendimiento:</label>
+                                <input type="decimal" class="form-control" name="rendimiento0" id="rendimiento0" onkeypress='validate(event)' min="0">
                             </div>
                             
-                            <div class="form-group mb-0 d-flex align-items-center">
-                                <label class="col-form-label">Detención de proceso:</label>
-                                <div class="form-check ml-3">
-                                    <input class="form-check-input mt-3" type="radio" name="detencion_proceso0" id="detencion_proceso1" value="1" checked>
-                                    <label class="form-check-label" for="detencion_proceso1">
-                                        Sí
-                                    </label>
-                                </div>
-                                <div class="form-check ml-3">
-                                    <input class="form-check-input mt-3" type="radio" name="detencion_proceso0" id="detencion_proceso2" value="0">
-                                    <label class="form-check-label" for="detencion_proceso2">
-                                        No
-                                    </label>
-                                </div>
+                            <div class="form-group mb-0">
+                                <label class="col-form-label">Kilos Embolsado:</label>
+                                <input type="number" class="form-control" name="kilos_embolsado0" id="kilos_embolsado0" onkeypress='validate(event)' min="0">
                             </div>
                         </div>
                     </div>
                     <output id="list"></output>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-                        <button type="submit" class="btn btn-primary">Agregar Detención</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
                 </div>
             </div>

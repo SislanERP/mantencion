@@ -1,6 +1,6 @@
-function load(page) {
+function load() {
     var equipo=$("#equipo").val();
-    var parametros = { "action": "ajax", "page": page,'equipo':equipo };
+    var parametros = {'equipo':equipo };
     $.ajax({
         url: 'ajax/consulta_plantilla_equipo.php',
         data: parametros,
@@ -8,9 +8,12 @@ function load(page) {
         success: function (data) {
             $('#summernote').summernote();
             $('#summernote').summernote('code', data[0]);
+            $('.note-btn').removeAttr('title');
         },
         error: function() {
+            $('#summernote').summernote();
             $('#summernote').summernote('code', '');
+            $('.note-btn').removeAttr('title');
         }
     })
 }
@@ -28,9 +31,9 @@ $( "#guardarDatos" ).submit(function( event ) {
       contentType: false,
       cache: false,
       success: function (data) {
-        $(".datos_ajax_delete").show();
-        $(".datos_ajax_delete").html(data);
-        setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+        $(".mensaje").show();
+        $(".mensaje").html(data);
+        setTimeout(function() { $('.mensaje').fadeOut('fast'); }, 3000);
         $('#confirm').modal('hide');
         load(1);
       }
@@ -52,9 +55,9 @@ $( "#CopiarPlantilla" ).submit(function( event ) {
       contentType: false,
       cache: false,
       success: function (data) {
-        $(".datos_ajax_delete").show();
-        $(".datos_ajax_delete").html(data);
-        setTimeout(function() { $('.datos_ajax_delete').fadeOut('fast'); }, 3000);
+        $(".mensaje").show();
+        $(".mensaje").html(data);
+        setTimeout(function() { $('.mensaje').fadeOut('fast'); }, 3000);
         $('#copiar').modal('hide');
         load(1);
       }

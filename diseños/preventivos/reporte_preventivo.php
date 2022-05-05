@@ -2,9 +2,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Reporte Preventivo</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <link rel="stylesheet" type="text/css"href="css/ventas.css">
     <style>
        @page { margin: 180px 50px; }
        #header { position: fixed; left: 0px; top: -150px; right: 0px; text-align: center; }
@@ -12,45 +9,62 @@
        #footer .page:after { content: counter(page, upper-roman); }
      </style>
     <style>
-        td{font-size:12px;padding:3px !important;margin:3px !important;}
-        ul{margin:1px !important;   }
+        td{font-size:15px; padding:3px;}
+        ul{margin:1px !important;}
+        .border{border:1px solid #c3c3c3;}
+        .bl{border-left:1px solid #c3c3c3;}
+        .br{border-right:1px solid #c3c3c3;}
+        .bb{border-bottom:1px solid #c3c3c3;}
+        .table{width:100%;border:1px solid #c3c3c3;}
+        .table td{border:1px solid #c3c3c3;}
+        table{border-spacing:0px;}
     </style>
 </head>
 
-<body class="bl">
+<body>
 <script type="text/php">
     if ( isset($pdf) ) { 
         $pdf->page_script('
-        if ($PAGE_COUNT > 1) {
+        if ($PAGE_COUNT >= 1) {
             $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
             $size = 9;
             $pageText = "Página " . $PAGE_NUM . " de " . $PAGE_COUNT;
-            $y = 48;
+            $y = 50;
             $x = 465;
             $pdf->text($x, $y, $pageText, $font, $size);
         } 
     ');
 }
 </script> 
-    <table id="header" class="table table-bordered ">
+    <table id="header" width="100%" class="border">
         <thead>
-            <tr>
-                <td  rowspan="4" class="p-1" style="width:10%;vertical-align: inherit;"><img src="../../../img/logo.png" alt="" style="width:90px;"></td>
-                <td rowspan="4" class="text-center font-weight-bold p-1" style="vertical-align: inherit; width:62%;"><h3>ORDEN DE TRABAJO <br>R13   </br></h3></td>
-                <td class="text-center p-1" style="font-size: 12px;">Versión</td>
-                <td class="text-center p-1" style="font-size: 12px;">0.1</td>
+            <?php 
+                $consulta = "call consulta_informe(1)";
+                $resultado = mysqli_query(conectar(), $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                while ($columna = mysqli_fetch_array( $resultado ))
+                {
+            ?>
                 <tr>
-                    <td class="text-center p-1" colspan="2" style="font-size: 12px;height:18px;"></td>
+                    <td class="br" rowspan="4" style="width:10%;"><img src="../../../img/brand/logo.png" alt="" style="width:90px;"></td>
+                    <td class="br" rowspan="4" style="width:60%;"><h3><?=$columna['informe']?> <br><?=$columna['registro']?>   </br></h3></td>
+                    <td class="br bb" style="font-size: 12px;">Versión</td>
+                    <td class="bb" style="font-size: 12px;"><?=$columna['version']?></td>
+                    <tr>
+                        <td class="bb" colspan="2" style="font-size: 12px;height:18px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="br bb" style="font-size: 12px;">Fecha Elab</td>
+                        <td class="bb" style="font-size: 12px;"><?php echo date("d/m/Y", strtotime($columna['fec_elaboracion']))?></td>
+                    </tr>
+                    <tr>
+                        <td class="br" style="font-size: 12px;">Fecha Rev</td>
+                        <td style="font-size: 12px;"><?php echo date("d/m/Y", strtotime($columna['fec_revision']))?></td>
+                    </tr>
                 </tr>
-                <tr>
-                    <td class="text-center p-1" style="font-size: 12px;">Fecha Elab</td>
-                    <td class="text-center p-1" style="font-size: 12px;">23/01/2020</td>
-                </tr>
-                <tr>
-                    <td class="text-center p-1" style="font-size: 12px;">Fecha Rev</td>
-                    <td class="text-center p-1" style="font-size: 12px;">23/01/2020</td>
-                </tr>
-            </tr>
+            <?php 
+                }
+            ?>
+            
         <thead>
     </table>
 
@@ -62,35 +76,30 @@
         {
             $id_equipo = $columna['id_equipo'];
             $responsable = $columna['responsable'];
-            echo    "<div style='border: 1px solid #dee2e6;width:100%;padding:15px;margin-bottom:-30px;'>
-                        <div class='d-flex w-100'>
-                            <div>
-                                <span style='display:inline-block;width:150px;'>N° Preventivo</span>
-                                <span style='display:inline-block;''>: ".$columna['id']."</span>
-                            </div>
-                            <div style='float:right;'>
-                                <span style='display:inline-block;'>Fecha Inicio</span>
-                                <span style='display:inline-block;'>: ".date("d/m/Y", strtotime($columna['fecha']))."</span>
-                            </div>
-                        </div>
-                        <div class='d-flex w-100'>
-                            <div>
-                                <span style='display:inline-block;width:150px;'>Responsable</span>
-                                <span style='display:inline-block;'>: ".$columna['responsable']."</span>
-                            </div>
-                        </div>
-                        <div class='d-flex w-100'>
-                            <div>
-                                <span style='display:inline-block;width:150px;'>Tipo Mantenimiento</span>
-                                <span style='display:inline-block;'>: ".$columna['tipo_mantenimiento']."</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span style='display:inline-block;width:150px;'>Nombre Equipo</span>
-                            <span style='display:inline-block;'>: ".$columna['equipo']."</span>
-                        </div>
-                    </div>
-                    ";
+            echo    "<table class='border' width='100%' style='padding:8px;'>
+                        <thead>
+                            <tr>
+                                <td style='width:20%;'>N° Preventivo:</td>
+                                <td style='width:50%;'>".$columna['id']."</td>
+                                <td style='width:15%;'>Fecha Inicio:</td>
+                                <td style='width:15%;'>".date("d/m/Y", strtotime($columna['fecha']))."</td>
+                            </tr>
+                            <tr>
+                                <td>Responsable:</td>
+                                <td>".$columna['responsable']."</td>
+                                <td style='width:15%;'>Prioridad:</td>
+                                <td style='width:15%;'>".$columna['prioridad']."</td>
+                            </tr>
+                            <tr>
+                                <td>Tipo Mantenimiento:</td>
+                                <td colspan='4'>".$columna['tipo_mantenimiento']."</td>
+                            </tr>
+                            <tr>
+                                <td>Nombre Equipo:</td>
+                                <td colspan='4'>".$columna['equipo']."</td>
+                            </tr>
+                        </thead>
+                    </table>";
         }    
     ?>
     <div style="margin-bottom:-60px;">
@@ -104,14 +113,15 @@
             ?>
     </div>
 
-    <table class="w-100" id="footer">
+    <table width="100%" id="footer">
         <tr>
-            <td class="text-center"><img src="../../../img/firmas/boris.png" alt="" style="width:200px;"></td>
+            <td style="width:50%;text-align:center;">___________________</td>
+            <td style="width:50%;text-align:center;">___________________</td>
         </tr>
         <tr>
-            <td class="text-center">Aprobado por Jefe de Mantención</td>
+            <td style="width:50%;text-align:center;">Realizado Por</td>
+            <td style="width:50%;text-align:center;">Verificado Por</td>
         </tr>
-        
     </table>
 </body>
 </html>

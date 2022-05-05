@@ -5,14 +5,6 @@
     $id_usuario = $_SESSION['id_user'];
     date_default_timezone_set("America/Santiago");
     $fecha = date("Y-m-d G:i:s");
-    $fec_detencion = $_SESSION['fecha_detencion']; 
-
-    $consulta = "SELECT * FROM detenciones where fecha = '$fec_detencion'";
-	$resultado = mysqli_query( conectar(), $consulta );
-	if ($columna = mysqli_fetch_array( $resultado ))
-	{ 
-        $detencion = $columna['id_detencion'];
-    }
 
     $consulta = "SELECT max(id_registro) as correlativo FROM detalle_detencion";
 	$resultado = mysqli_query( conectar(), $consulta );
@@ -25,10 +17,10 @@
         $contador = 1;
     }
     
-    $query="INSERT INTO detalle_detencion (id_registro,id_detencion,id_tipo_falla,id_equipo,descripcion,hora_falla,tiempo,detencion_proceso,fec_registro,id_usuario_registro) values($contador,$detencion,$_POST[tipo0],$_POST[equipo0],'$_POST[descripcion0]','$_POST[falla0]','$_POST[tiempo0]',$_POST[detencion_proceso0],'$fecha',$id_usuario)";
+    $query="INSERT INTO detalle_detencion (id_registro,id_detencion,id_tipo_falla,id_equipo,descripcion,hora_falla,tiempo,detencion_proceso,fec_registro,id_usuario_registro) values($contador,$_POST[id_d],$_POST[tipo0],$_POST[equipo0],'$_POST[descripcion0]','$_POST[falla0]','$_POST[tiempo0]',$_POST[detencion_proceso0],'$fecha',$id_usuario)";
     if (conectar()->query($query) === TRUE) 
     {
-        $messages[] = "Detención guardada satisfactoriamente.";
+        $messages[] = "Detalle guardado satisfactoriamente.";
     }
 
     else

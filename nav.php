@@ -1,23 +1,43 @@
-<nav class="container-fluid nav-superior bg-white e2">
-  <div class="row d-flex justify-content-between align-items-center">
-    <div class="d-flex w-75">
-      <a class="menu_desplegable" href="#" onclick="abrir()" ><img src="img/iconos/menu.png" alt="" style="width:40px;height:40px;margin-left:10px;"></a>
-      <img class="logo img-fluid" src="img/logo.png" alt="">
-    </div>
-      <div class="perfil">
-        <?php consulta_usuario();?>
-      </div>
-  </div>
-</nav>
-<div class="wrapper pt-3 pl-3 pr-3">
-  <nav id="sidebar" class="shadow mb-5 bg-white">
-    <ul class="list-unstyled components mt-4">
-      <?php  consulta_menu();?>
-    </ul>
-    <?php consulta_menu_inferior();?>
-  </nav>
+<!-- Navbar -->
+<?php 
+  if($_SESSION['titulo'] == "Perfil"){$class="navbar-top-p";}else{$class="navbar-top";}
+?>
 
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<nav class="navbar <?=$class?> navbar-expand-md navbar-dark" id="navbar-main">
+    <div class="container-fluid">
+    <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"><?=$_SESSION['titulo']?></a>
+        <!-- Form -->
+        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+              </div>
+              <input class="form-control" placeholder="Buscar..." type="text" id="buscar">
+            </div>
+          </div>
+        </form>
+        <!-- User -->
+        <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item dropdown">
+                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="media align-items-center" id="media">
+                  
+                </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Bienvendio/a !</h6>
+                    </div>
+                    <div id="menu_perfil"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- End Navbar -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -33,11 +53,4 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <script>
-    function abrir()
-    {
-       $('#sidebar').toggleClass("active");
-    }
-  </script>
+</div>

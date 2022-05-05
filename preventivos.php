@@ -1,80 +1,170 @@
 <?php 
-    include('php/funciones.php');
-?>
-
-<?php
-    $inactivo = 1800;
- 
-    if(isset($_SESSION['id_user']) ) {
-        $vida_session = time() - $_SESSION['tiempo'];
-        if($vida_session > $inactivo)
-        {
-            session_destroy();
-            echo "<script>location.href='index.php';</script>";
-            die();
-        }
-        else
-        {
-            $_SESSION['tiempo'] = time();
-        }
-    }
-    else
-    {
-        echo "<script>location.href='index.php';</script>";
-        die();
-    }
+  session_start();
+  require_once("./php/conexion.php");
+  $_SESSION['titulo'] = "Pr.Programado";
+             
+  $buscarUsuario = "call consulta_acceso_funciones('$_SESSION[titulo]',$_SESSION[id_user])";
+  $result = conectar()->query($buscarUsuario);
+  if ($columna = mysqli_fetch_array( $result ))
+  {
+      $add = $columna['agregar'];
+      $edit = $columna['editar'];
+      $delete = $columna['eliminar'];
+  }
+  
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('head.php');?>
-<body>
-    <?php include("modals/preventivos/agregar.php");?>
-    <?php include("modals/preventivos/editar.php");?>
-    <?php include("modals/preventivos/eliminar.php");?>
-    <?php include('nav.php');?>
 
-    <div id="content">
-      <div class="content-fluid p-5 shadow mb-5 bg-white e7" style="background:#fff;border-radius:15px;">
-        <h3>Preventivos Programados</h3>
-        <div class="row d-flex justify-content-between mt-5 e3">
-          <div class="col-sm-7 col-md-7 col-xl-3 e3">
-              <input class="form-control" id="q" onkeyup="load(1);" type="text" placeholder="Buscar.." autofocus/>
-          </div>
-          <div class="e8">
-            <button class="btn btn-primary agregar mr-3" id="actualizar">
-              <img src="img/iconos/actualizar.svg" alt="" style="width:34px; margin-right: 14px;"> Actualizar
-            </button>
-            <!-- <?php if(consulta_acceso_sub_pagina() == 1){?>
-              <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister">
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-              </button>
-            <?php }else{?>
-              <button class="btn btn-primary agregar" data-toggle="modal" data-target="#dataRegister" disabled>
-                <img src="img/iconos/agregar.svg" alt="" style="width:34px; margin-right: 14px;"> Agregar
-              </button>
-            <?php }?> -->
+<head>
+  <title>Sistema Mantención | <?=$_SESSION['titulo']?></title>
+  <?php include('head.php')?>
+</head>
+<body>
+  <?php include('menu.php')?>
+  <div class="main-content">
+    <?php include('nav.php')?>
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+    <div class="container-fluid mt--7 mb-5">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow pr-3 pl-3">
+            <div class="resultado">
+              <div id="toolbar">
+                <select class="selectpicker form-control" data-live-search="true">
+                  <option value="all">Exportar Todo</option>
+                  <option value="">Exportar Página</option>
+                  <option value="selected">Exportar Selección</option>
+                </select>
+                
+              </div>
+
+              <table class="table align-items-center table-flush"
+                id="table" 
+                data-toggle="table"
+                data-locale="es-CL"
+                data-toolbar="#toolbar"
+                data-show-refresh="true"
+                data-auto-refresh="true"
+                data-auto-refresh-interval="3"
+                data-show-columns="true"
+                data-show-export="true"
+                data-pagination="true"
+                data-show-toggle="true"
+                data-buttons-class="primary"
+                data-show-print="true"
+                data-reorderable-columns="true"
+                data-click-to-select="true"
+                data-search-selector="#buscar"
+                data-id-field="id"
+                data-buttons="buttons"
+                data-sticky-header="true"
+                data-url="ajax/listar_preventivos.php">
+                
+                <thead class="bg-primary text-light">
+                  <tr>
+                        <th data-field="" data-sortable="false"></th>
+                        <th data-field="id" data-sortable="true" data-visible="true">N°</th>
+                        <th data-field="fecha" data-sortable="true">Fecha</th>
+                        <th data-field="prioridad" data-sortable="true" data-visible="false">Prioridad</th>
+                        <th data-field="equipo" data-sortable="true">Equipo</th>
+                        <th data-field="trabajador" data-sortable="true">Responsable</th>
+                        <th data-field="estado" data-sortable="true">Estado</th>
+<?php 
+                      if($edit == 1 || $delete == 1)
+                      {
+?>
+                        <th data-formatter="operateFormatter">Acción</th>
+<?php
+                      }
+?>
+                      
+                  </tr>
+                </thead>
+              </table>
+            </div>
           </div>
         </div>
-
-        <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
-        <div class="datos_ajax_delete mt-3"></div><!-- Datos ajax Final -->
-        <div class='outer_div table-responsive'></div> 
+      </div>
     </div>
   </div>
-              
-  <?php include('footer.php');?>
+  <div class="mensaje"></div>
+  <?php include('modals/preventivo/editar.php')?>
+  <?php include('modals/preventivo/eliminar.php')?>
+  <?php include('script.php')?>
   <script src="js/funciones/preventivos.js"></script>
+  <script>
+    $(document).ready(function(){
+      diseño();
+    });
+  </script>
+  <script>
+    var $table = $('#table')
 
-    <script>
-      $(document).ready(function(){
-        load(1);
-      });
-    </script>
-    <script>
-      $( "#actualizar" ).click(function() {
-          load(1);
-      });
-    </script>
+    $(function() {
+      $('#toolbar').find('select').change(function () {
+        $table.bootstrapTable('destroy').bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+          columns: [
+            {
+              field: 'state',
+              checkbox: true,
+              visible: $(this).val() === 'selected'
+            }
+          ]
+        })
+      }).trigger('change')
+    })
+
+    function operateFormatter(value, row, index) {
+        var reporte = "php/acciones/report/report_preventivo.php?id=" + row['id'];
+<?php
+        if($edit == 1 && $delete == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" data-prioridad="'+ row['id_prioridad'] +'" data-responsable="'+ row['id_trabajador'] +'" data-estado="'+ row['id_estado'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" title="Remove">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>',
+            '<a href="'+ reporte +'" target="_blank"><i class="fas fa-file-pdf pl-3" style="font-size:20px;color:#000;"></i></a>'
+          ].join('')
+<?php
+        }
+        else if($edit == 1)
+        {
+?>
+          return [
+            '<a class="text-primary" href="#" data-toggle="modal" data-target="#dataUpdate" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" data-prioridad="'+ row['id_prioridad'] +'" data-responsable="'+ row['id_trabajador'] +'" data-estado="'+ row['id_estado'] +'" title="Editar">',
+              '<i class="fas fa-pencil-alt pr-1" style="font-size:20px;"></i>',
+            '</a>  ',
+            '<a href="'+ reporte +'" target="_blank"><i class="fas fa-file-pdf pl-3" style="font-size:20px;color:#000;"></i></a>'
+          ].join('')
+<?php
+        }
+        else if($delete == 1)
+        {
+?>
+          return [
+            '<a class="text-danger" href="#" data-toggle="modal" data-target="#dataDelete" data-id="'+ row['id'] +'" data-fecha="'+ row['fecha'] +'" title="Remove">',
+              '<i class="fa fa-trash-alt pl-1" style="font-size:20px;"></i>',
+            '</a>',
+            '<a href="'+ reporte +'" target="_blank"><i class="fas fa-file-pdf pl-3" style="font-size:20px;color:#000;"></i></a>'
+          ].join('')
+<?php 
+        }
+?>
+      
+    }
+
+    $("#add").click(function() {
+      $("#dataRegister").modal('show');
+    });
+  </script>
 </body>
 </html>
+

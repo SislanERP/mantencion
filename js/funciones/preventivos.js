@@ -1,37 +1,17 @@
-function load(page){
-    var query=$("#q").val();
-    var parametros = {"action":"ajax","page":page,'query':query};
-    $("#loader").fadeIn('slow');
-    $.ajax({
-        url:'ajax/listar_preventivos.php',
-        data: parametros,
-         beforeSend: function(objeto){
-        $("#loader").html("<img src='img/loader.gif'>");
-        },
-        success:function(data){
-            $(".outer_div").html(data).fadeIn('slow');
-            $("#loader").html("");
-        }
-    })
-}
-
     $('#dataUpdate').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
         var fecha = button.data('fecha')
-        var equipo = button.data('equipo')
-        var actividad = button.data('actividad')
-        var frecuencia = button.data('frecuencia')
+        var prioridad = button.data('prioridad')
+        var responsable = button.data('responsable')
         var estado = button.data('estado')
 
         var modal = $(this)
-        modal.find('.modal-title').text('Editar : '+actividad)
         modal.find('.modal-body #id').val(id)
         modal.find('.modal-body #fecha').val(fecha)
-        modal.find('select[id=equipo]').val(equipo)
-        modal.find('.modal-body #actividad').val(actividad)
-        modal.find('select[id=frecuencia]').val(frecuencia)
+        modal.find('select[id=prioridad]').val(prioridad)
         modal.find('select[id=estado]').val(estado)
+        modal.find('select[id=responsable]').val(responsable)
         $('.selectpicker').selectpicker('refresh');
         $('.alert').hide();
     })
