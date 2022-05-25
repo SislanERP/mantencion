@@ -10,9 +10,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="datos_ajax_register"></div>
-                    <div class="row e12">
-                        <div class="col-6 e5">
+                    <div class="row">
+                        <div class="col-6">
                             <div class="form-group mb-0">
                                 <label class="col-form-label">Nombre:</label>
                                 <input type="text" class="form-control" name="nombre0" id="nombre0" required>
@@ -29,20 +28,7 @@
                                         $resultado = mysqli_query(conectar(), $consulta );
                                         while ($columna = mysqli_fetch_array( $resultado ))
                                         { 
-                                            echo    "<option value='".$columna['id_ubicacion']."'>".$columna['ubicacion']."</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label class="col-form-label">Línea Proceso:</label>
-                                <select name="linea0" id="linea0" class="selectpicker form-control" data-live-search="true">
-                                    <?php 
-                                        $consulta = "call consulta_linea_proceso()";
-                                        $resultado = mysqli_query(conectar(), $consulta );
-                                        while ($columna = mysqli_fetch_array( $resultado ))
-                                        { 
-                                            echo    "<option value='".$columna['id_linea']."'>".$columna['linea']."</option>";
+                                            echo    "<option value='".$columna['id_registro']."'>".$columna['ubicacion']."</option>";
                                         }
                                     ?>
                                 </select>
@@ -55,7 +41,7 @@
                                         $resultado = mysqli_query(conectar(), $consulta );
                                         while ($columna = mysqli_fetch_array( $resultado ))
                                         { 
-                                            echo    "<option value='".$columna['id_estado']."'>".$columna['estado']."</option>";
+                                            echo    "<option value='".$columna['id_registro']."'>".$columna['estado']."</option>";
                                         }
                                     ?>
                                 </select>
@@ -65,7 +51,7 @@
                                 <textarea name="caracteristicas0" id="caracteristicas0" cols="20" rows="5" class="form-control"></textarea>
                             </div>
                         </div>
-                        <div class="col-6 e5">
+                        <div class="col-6">
                             <div class="col-lg-12 d-flex justify-content-center mt-3" style="height:100%;">
                                 <img src="" alt="" class="position-absolute" id="imagenmuestra1" style="object-fit:cover;width:90%;height:90%;box-shadow: 10px 8px 20px #c3c3c3;border-style:dashed;">
                                 <div class="image-upload">

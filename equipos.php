@@ -2,7 +2,11 @@
   session_start();
   require_once("./php/conexion.php");
   $_SESSION['titulo'] = "Equipos";
-             
+      
+  if(empty($_SESSION['id_user']) ) {
+    echo "<script>location.href='index.php';</script>";
+  }
+
   $buscarUsuario = "call consulta_acceso_funciones('$_SESSION[titulo]',$_SESSION[id_user])";
   $result = conectar()->query($buscarUsuario);
   if ($columna = mysqli_fetch_array( $result ))
@@ -26,11 +30,9 @@
   <?php include('menu.php')?>
   <div class="main-content">
     <?php include('nav.php')?>
-    <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">
-          <!-- Card stats -->
           <div class="row">
             <div class="col-xl-3 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">

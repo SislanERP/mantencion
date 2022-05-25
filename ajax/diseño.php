@@ -41,47 +41,13 @@
             $resultado1 =  mysqli_query(conectar(), $query1 );
             while ($columna1 = mysqli_fetch_array( $resultado1 ))
             {
-                $query2 = "select count(*) as contador from sub_menu a where a.id_menu = $columna1[id_menu]";
-                $resultado2 =  mysqli_query(conectar(), $query2 );
-                if ($columna2 = mysqli_fetch_array( $resultado2 ))
-                {
-                    if($columna2['contador'] <> 0)
-                    {
-                        $arr[1] .= "<li class='nav-item'>
-                                        <a class='nav-link' href='#navbar-".$columna1['menu']."' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='navbar-".$columna1['menu']."'>
-                                            <i class='".$columna1['icono']."' style='color:".$columna1['color']."'></i>
-                                            <span class='nav-link-text'>".$columna1['menu']."</span>
-                                        </a>
-                                        <div class='collapse' id='navbar-".$columna1['menu']."'>
-                                            <ul class='nav nav-sm flex-column'>";
-                        $query3 = "select a.submenu, a.href from sub_menu a inner join accesos b on a.id_menu = b.id_menu where a.id_menu = $columna1[id_menu] and b.acceso = 1 and b.id_usuario_acceso= $_SESSION[id_user]";
-                        $resultado3 =  mysqli_query(conectar(), $query3 );
-                        while ($columna3 = mysqli_fetch_array( $resultado3 ))
-                        {
-                            $arr[1] .=  "
-                                        <li class='nav-item'>
-                                            <a href='".$columna3['href']."' class='nav-link'>
-                                                <i class='fas fa-circle' style='font-size:8px;min-width:15px;color:".$columna1['color']."'></i>  
-                                                <span class='sidenav-normal'>".$columna3['submenu']." </span>
-                                            </a>
-                                        </li>";
-                        }
-
-                        $arr[1] .= "        </ul>
-                                        </div>
-                                    </li>";
-                    }
-                    else
-                    {
-                        $arr[1] .= "
+                $arr[1] .= "
                         <li class='nav-item'>
                             <a class='nav-link' href='".$columna1['href']."'>
                                 <i class='".$columna1['icono']."' style='color:".$columna1['color']."'></i>
                                 <span>".$columna1['menu']."</span>
                             </a>
                         </li>";
-                    }
-                }
             }
             $arr[1] .= "</ul>";    
     }
